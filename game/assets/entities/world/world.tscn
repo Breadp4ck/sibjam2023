@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://crthv77lfgu3b"]
+[gd_scene load_steps=3 format=3 uid="uid://crthv77lfgu3b"]
 
 [ext_resource type="Script" path="res://assets/entities/world/World.cs" id="1_obc53"]
+[ext_resource type="PackedScene" uid="uid://dehodl12notn5" path="res://assets/entities/levels/backrooms/backrooms.tscn" id="2_kjf6a"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_obc53")
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ViewportContainer"]
+size = Vector2i(1152, 648)
+
+[node name="Backrooms" parent="ViewportContainer/SubViewport" instance=ExtResource("2_kjf6a")]
+
+[node name="UI" type="CanvasLayer" parent="."]
