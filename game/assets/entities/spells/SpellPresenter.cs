@@ -47,7 +47,7 @@ public partial class SpellPresenter : Node3D
 		{
 			case SpellType.Cum:
 				spellNode = _spellObject[(int)spellType].Instantiate();
-				AoESpell cumSpell = (AoESpell)spellNode.GetScript();
+				AoESpell cumSpell = (AoESpell)spellNode;
 				cumSpell.SetDirection(_spellCaster.LookDirection);
 				spell = cumSpell;
 				break;

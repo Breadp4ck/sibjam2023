@@ -12,6 +12,7 @@ script = ExtResource("1_6btrp")
 _speed = 1.0
 _duration = 2.0
 SpellName = "Сгусток"
+Description = "Спермы"
 ManaCost = 15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

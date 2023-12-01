@@ -25,6 +25,12 @@ public partial class SpellCaster : Node3D
 	// Call me outside of this class to cast a spell.
 	public void CastSpell()
 	{
+		if (_chosenSpell == null)
+		{
+			GD.Print("Spell is NULL. Choose a spell first!");
+			return;
+		}
+		
 		_chosenSpell.Cast();
 		GD.Print($"Casted {_chosenSpell}!");
 	}
