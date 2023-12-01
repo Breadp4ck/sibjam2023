@@ -7,6 +7,7 @@
 script = ExtResource("1_obc53")
 
 [node name="SpellCaster" parent="." instance=ExtResource("2_o5v4n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.3, 0)

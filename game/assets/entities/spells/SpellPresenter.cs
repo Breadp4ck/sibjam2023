@@ -40,18 +40,20 @@ public partial class SpellPresenter : Node3D
 	{
 		Node spellNode;
 		Spell spell;
+		
 		switch (spellType)
 		{
 			case SpellType.Cum:
 				spellNode = _spellObject[(int)spellType].Instantiate();
 				AoESpell cumSpell = (AoESpell)spellNode.GetScript();
 				cumSpell.SetDirection(_spellCaster.LookDirection);
+				spell = cumSpell;
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(spellType), spellType, null);
 		}
 
-		return null;
+		return spell;
 	}
 }
 
