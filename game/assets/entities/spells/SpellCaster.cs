@@ -8,9 +8,9 @@ public partial class SpellCaster : Node3D
 	public Vector3 LookDirection => _lookDirection;
 	[Export] private Vector3 _lookDirection;
 	
-	public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent inputEvent)
 	{
-		if (@event.IsActionPressed("cast_spell"))
+		if (inputEvent.IsActionPressed("cast_spell"))
 		{
 			CastSpell();
 		}

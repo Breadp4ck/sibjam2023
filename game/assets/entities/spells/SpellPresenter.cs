@@ -17,22 +17,24 @@ public partial class SpellPresenter : Node3D
 
 	public override void _Input(InputEvent inputEvent)
 	{
-		if (_spellSelectType == SpellSelectType.Keyboard)
+		if (_spellSelectType != SpellSelectType.Keyboard)
 		{
-			for (var i = 0; i < Enum.GetNames(typeof(SpellSelectType)).Length; i++)
+			return;
+		}
+
+		for (var i = 0; i < Enum.GetNames(typeof(SpellSelectType)).Length; i++)
+		{
+			string selectSpellActionName = SelectSpellSignature + (i+1);
+				
+			if (inputEvent.IsActionPressed(selectSpellActionName) == false)
 			{
-				string selectSpellActionName = SelectSpellSignature + (i+1);
-				
-				if (inputEvent.IsActionPressed(selectSpellActionName) == false)
-				{
-					continue;
-				}
-				
-				Spell spell = GetSpell((SpellType)i);
-				_spellCaster.SetSpell(spell);
-				
-				break;
+				continue;
 			}
+				
+			Spell spell = GetSpell((SpellType)i);
+			_spellCaster.SetSpell(spell);
+				
+			break;
 		}
 	}
 	
