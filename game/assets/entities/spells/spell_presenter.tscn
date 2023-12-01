@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6qwfi7s3mlse"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/SpellPresenter.cs" id="1_jghv8"]
+[ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum.tscn" id="2_rnj56"]
+
+[node name="SpellPresenter" type="Node3D"]
+script = ExtResource("1_jghv8")
+_spellObject = Array[PackedScene]([ExtResource("2_rnj56")])
