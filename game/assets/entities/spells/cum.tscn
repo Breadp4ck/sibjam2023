@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl5yaaagfvr6o"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/AoESpell.cs" id="1_6btrp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_psyjy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7cdr1"]
+
+[node name="Cum" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_6btrp")
+_speed = 1.0
+_duration = 2.0
+SpellName = "Сгусток"
+Description = "Спермы"
+ManaCost = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_psyjy")
+mesh = SubResource("SphereMesh_7cdr1")
