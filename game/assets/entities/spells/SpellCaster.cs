@@ -7,6 +7,7 @@ public partial class SpellCaster : Node3D
 
 	public Vector3 LookDirection => _lookDirection;
 	[Export] private Vector3 _lookDirection;
+	[Export] private Camera3D _camera;
 	
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -14,6 +15,11 @@ public partial class SpellCaster : Node3D
 		{
 			CastSpell();
 		}
+	}
+
+	public override void _Process(double delta)
+	{
+		_lookDirection = _camera.Transform.Basis.Z;
 	}
 
 	public void SetSpell(Spell spell)

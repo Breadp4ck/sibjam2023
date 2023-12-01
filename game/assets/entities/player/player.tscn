@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=13 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide.gd" id="6_uxfl0"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
+[ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
+[ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
@@ -69,3 +71,8 @@ JUMP_POWER = 3.0
 [node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
+
+[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
+
+[node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera") instance=ExtResource("11_6aujr")]
+_camera = NodePath("../Camera")
