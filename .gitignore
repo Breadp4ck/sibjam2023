@@ -1,3 +1,4 @@
 /game/rust/target
 /game/.godot
 /game/*.translition
+/game/pocketsphinx/recorded.wav*
