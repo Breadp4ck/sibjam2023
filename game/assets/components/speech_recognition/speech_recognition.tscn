@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4uekr54e48lg"]
+
+[ext_resource type="Script" path="res://assets/components/speech_recognition/speech_recognition.gd" id="1_rgkj7"]
+
+[node name="SpeechRecognition" type="Node"]
+script = ExtResource("1_rgkj7")
+
+[node name="SpeechRecognitionComponent" type="SpeechRecognitionComponent" parent="."]
+windows_pocketsphinx_path = "speech_recognition/windows/pocketsphinx"
+linux_pocketsphinx_path = "speech_recognition/linux/pocketsphinx"
+acoustic_model_path = "speech_recognition/en-us/en-us"
+language_model_path = "speech_recognition/en-us/en-us.lm.bin"
+dictionary_path = "speech_recognition/spells.dict"
+filename_to_record = "speech_recognition/recorded.wav"
+
+[connection signal="speech_parsed" from="SpeechRecognitionComponent" to="." method="_on_speech_recognition_component_speech_parsed"]
