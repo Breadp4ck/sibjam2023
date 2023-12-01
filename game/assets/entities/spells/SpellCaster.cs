@@ -3,16 +3,16 @@ using System;
 
 public partial class SpellCaster : Node3D
 {
-	[Export] private Spell _chosenSpell;
-
-	public Vector3 LookDirection => _lookDirection;
-	[Export] private Vector3 _lookDirection;
 	[Export] private Camera3D _camera;
 
 	[Export] private SpellPresenter _spellPresenter;
 	
-	private SpellType _chosenSpellType;
+	// Objects MUST be in the same order as in 'SpellType' enum!
+	[Export] private PackedScene[] _spellObject;
 	
+	private Spell _chosenSpell;
+	private Vector3 _lookDirection;
+
 	public override void _Input(InputEvent inputEvent)
 	{
 		if (inputEvent.IsActionPressed("cast"))
@@ -26,25 +26,52 @@ public partial class SpellCaster : Node3D
 		_lookDirection = -_camera.Transform.Basis.Z;
 	}
 
-	public void SetSpell(Spell spell)
+	private void SetSpell(Spell spell)
 	{
 		_chosenSpell = spell;
-		_chosenSpellType = spell.SpellType;
 		GD.Print($"{spell} set!");
 	}
 	
 	// Call me outside of this class to cast a spell.
-	public void CastSpell()
+	private void CastSpell()
 	{
-		if (_chosenSpell == null)
+		Spell spell = GetSpell(_spellPresenter.ChosenSpellType);
+		
+		if (spell == null)
 		{
 			GD.Print("Spell is NULL. Choose a spell first!");
 			return;
 		}
-		
-		_chosenSpell.Cast();
-		GD.Print($"Casted {_chosenSpell}!");
 
-		_spellPresenter.SetupSpell(_chosenSpellType);
+		spell.Cast();
+		GD.Print($"Casted {spell}!");
+	}
+	
+	private Spell GetSpell(SpellType spellType)
+	{
+		Node3D spellNode = (Node3D)_spellObject[(int)spellType].Instantiate();
+		GetTree().Root.AddChild(spellNode);
+		spellNode.GlobalPosition = GlobalPosition;
+
+		Spell spell;
+		
+		switch (spellType)
+		{
+			case SpellType.Cum:
+				AoESpell cumSpell = (AoESpell)spellNode;
+				cumSpell.SetDirection(_lookDirection);
+				spell = cumSpell;
+				break;
+			
+			case SpellType.TimeSlow:
+				Spell timeSlowSpell = (Spell)spellNode;
+				spell = timeSlowSpell;
+				break;
+				
+			default:
+				return null;
+		}
+
+		return spell;
 	}
 }

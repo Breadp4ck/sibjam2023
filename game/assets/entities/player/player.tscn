@@ -75,11 +75,9 @@ script = ExtResource("9_7mvlg")
 player = NodePath("../..")
 
 [node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
 _camera = NodePath("../Camera")
 _spellPresenter = NodePath("../SpellPresenter")
-
-[node name="SpellPresenter" parent="." node_paths=PackedStringArray("_spellCaster") instance=ExtResource("10_5wjp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
-_spellCaster = NodePath("../SpellCaster")
 _spellObject = Array[PackedScene]([ExtResource("12_xoixf"), ExtResource("13_50ohs")])
+
+[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]

@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 
 public partial class AoESpell : Spell
 {
-	[Export] private MeshInstance3D _mesh;
-	
 	[Export] private float _speed;
 
 	[Export] private bool _destroyOnCollie;
@@ -26,7 +24,6 @@ public partial class AoESpell : Spell
 	
 	public override async void Cast()
 	{
-		_mesh.Visible = true;
 		_hasToMove = true;
 
 		await Task.Delay((int)(Duration * 1000));

@@ -6,15 +6,13 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_or27i"]
 
-[node name="CumSpell" type="Node3D" node_paths=PackedStringArray("_mesh")]
+[node name="CumSpell" type="Node3D"]
 top_level = true
 script = ExtResource("1_o84ac")
-_mesh = NodePath("MeshInstance3D")
 _speed = 1.0
 Duration = 2.0
 ManaCost = 15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 material_override = SubResource("StandardMaterial3D_40ejl")
 mesh = SubResource("SphereMesh_or27i")
