@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=15 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
+[ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
+[ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
@@ -72,7 +74,12 @@ JUMP_POWER = 3.0
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
 
-[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
-
-[node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera") instance=ExtResource("11_6aujr")]
+[node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 _camera = NodePath("../Camera")
+_spellPresenter = NodePath("../SpellPresenter")
+
+[node name="SpellPresenter" parent="." node_paths=PackedStringArray("_spellCaster") instance=ExtResource("10_5wjp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
+_spellCaster = NodePath("../SpellCaster")
+_spellObject = Array[PackedScene]([ExtResource("12_xoixf"), ExtResource("13_50ohs")])

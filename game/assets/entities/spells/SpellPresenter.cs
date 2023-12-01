@@ -31,26 +31,36 @@ public partial class SpellPresenter : Node3D
 				continue;
 			}
 				
-			Spell spell = GetSpell((SpellType)i);
-			_spellCaster.SetSpell(spell);
-				
+			SetupSpell((SpellType)i);
 			break;
 		}
 	}
 	
+	public void SetupSpell(SpellType spellType)
+	{
+		Spell spell = GetSpell(spellType);
+		_spellCaster.SetSpell(spell);
+	}
+	
 	private Spell GetSpell(SpellType spellType)
 	{
-		Node spellNode;
+		Node spellNode = _spellObject[(int)spellType].Instantiate();
+		AddChild(spellNode);
 		Spell spell;
 		
 		switch (spellType)
 		{
 			case SpellType.Cum:
-				spellNode = _spellObject[(int)spellType].Instantiate();
 				AoESpell cumSpell = (AoESpell)spellNode;
 				cumSpell.SetDirection(_spellCaster.LookDirection);
 				spell = cumSpell;
 				break;
+			
+			case SpellType.TimeSlow:
+				Spell timeSlowSpell = (Spell)spellNode;
+				spell = timeSlowSpell;
+				break;
+				
 			default:
 				throw new ArgumentOutOfRangeException(nameof(spellType), spellType, null);
 		}

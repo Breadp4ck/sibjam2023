@@ -8,10 +8,14 @@ public partial class SpellCaster : Node3D
 	public Vector3 LookDirection => _lookDirection;
 	[Export] private Vector3 _lookDirection;
 	[Export] private Camera3D _camera;
+
+	[Export] private SpellPresenter _spellPresenter;
+	
+	private SpellType _chosenSpellType;
 	
 	public override void _Input(InputEvent inputEvent)
 	{
-		if (inputEvent.IsActionPressed("cast_spell"))
+		if (inputEvent.IsActionPressed("cast"))
 		{
 			CastSpell();
 		}
@@ -19,12 +23,13 @@ public partial class SpellCaster : Node3D
 
 	public override void _Process(double delta)
 	{
-		_lookDirection = _camera.Transform.Basis.Z;
+		_lookDirection = -_camera.Transform.Basis.Z;
 	}
 
 	public void SetSpell(Spell spell)
 	{
 		_chosenSpell = spell;
+		_chosenSpellType = spell.SpellType;
 		GD.Print($"{spell} set!");
 	}
 	
@@ -39,5 +44,7 @@ public partial class SpellCaster : Node3D
 		
 		_chosenSpell.Cast();
 		GD.Print($"Casted {_chosenSpell}!");
+
+		_spellPresenter.SetupSpell(_chosenSpellType);
 	}
 }

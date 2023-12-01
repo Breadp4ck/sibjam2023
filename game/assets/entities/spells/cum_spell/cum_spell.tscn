@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl5yaaagfvr6o"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/AoESpell.cs" id="1_o84ac"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40ejl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_or27i"]
+
+[node name="CumSpell" type="Node3D" node_paths=PackedStringArray("_mesh")]
+top_level = true
+script = ExtResource("1_o84ac")
+_mesh = NodePath("MeshInstance3D")
+_speed = 1.0
+Duration = 2.0
+ManaCost = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_40ejl")
+mesh = SubResource("SphereMesh_or27i")
