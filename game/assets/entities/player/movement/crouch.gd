@@ -4,12 +4,12 @@ extends FiniteState
 @export var collision: CollisionShape3D
 @export var camera: Node3D
 
-@export var WALK_SPEED: float = 10.0
+@export var CROUCH_SPEED: float = 5.0
 
 func _start(_ctx: FiniteStateContext) -> void:
-	camera.position.y = 1.7
-	collision.shape.height = 1.8
-	collision.position.y = 1.8 / 2.0
+	camera.position.y = 1.0
+	collision.shape.height = 1.1
+	collision.position.y = 1.1 / 2.0
 
 # --------------------------------------------------------------------------------------------------
 
@@ -19,17 +19,14 @@ func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
 		
 	elif event.is_action_pressed("slide"):
 		ctx.jump_to("Slide")
-	
-	elif event.is_action_pressed("crouch"):
-		ctx.jump_to("Crouch")
+		
+	elif not Input.is_action_pressed("crouch"):
+			ctx.jump_to("Idle")
 
 # --------------------------------------------------------------------------------------------------
 
 func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
-	if Input.get_vector("move_left", "move_right", "move_forward", "move_back") == Vector2.ZERO:
-		ctx.jump_to("Idle")
-		return
-	
+		
 	if not player.is_on_floor():
 		ctx.jump_to("Fall")
 		return
@@ -40,5 +37,5 @@ func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 	
-	player.velocity.x = direction.x * WALK_SPEED
-	player.velocity.z = direction.z * WALK_SPEED
+	player.velocity.x = direction.x * CROUCH_SPEED
+	player.velocity.z = direction.z * CROUCH_SPEED
