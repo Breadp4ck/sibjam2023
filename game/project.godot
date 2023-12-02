@@ -99,4 +99,5 @@ crouch={
 
 [layer_names]
 
+3d_physics/layer_9="SpellRaycast"
 3d_physics/layer_10="Hitbox"

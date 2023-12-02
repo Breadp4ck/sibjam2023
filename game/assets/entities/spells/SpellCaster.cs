@@ -10,7 +10,6 @@ public partial class SpellCaster : Node3D
 	// Objects MUST be in the same order as in 'SpellType' enum!
 	[Export] private PackedScene[] _spellObject;
 	
-	private Spell _chosenSpell;
 	private Vector3 _lookDirection;
 	
 	private Enemy _target; // Capture me using last raycast hit.
@@ -28,10 +27,9 @@ public partial class SpellCaster : Node3D
 		_lookDirection = -_camera.Transform.Basis.Z;
 	}
 
-	private void SetSpell(Spell spell)
+	public void SetTarget(Enemy target)
 	{
-		_chosenSpell = spell;
-		GD.Print($"{spell} set!");
+		_target = target;
 	}
 	
 	// Call me outside of this class to cast a spell.

@@ -6,13 +6,15 @@ public abstract partial class TargetSpell : Spell
 {
     [Export] private float _speed;
     
-    private bool _hasToMove;
+    protected bool HasToMove;
 
     private Enemy _target;
     
+    protected bool IsApplied;
+    
     public override void _Process(double delta)
     {
-        if (_hasToMove == false)
+        if (HasToMove == false)
         {
             return;
         }
@@ -23,10 +25,10 @@ public abstract partial class TargetSpell : Spell
     
     public override async void Cast()
     {
-        _hasToMove = true;
+        HasToMove = true;
 
         await Task.Delay((int)(Duration * 1000));
-		
+
         QueueFree();
     }
 
@@ -37,6 +39,7 @@ public abstract partial class TargetSpell : Spell
 
     private void OnAreaEntered(Area3D area3D)
     {
+        GD.Print("1");
         OnAreaEnteredInternal(area3D);
     }
 
