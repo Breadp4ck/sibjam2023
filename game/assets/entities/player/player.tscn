@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=17 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -99,7 +99,7 @@ player = NodePath("../..")
 
 [node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
-_camera = NodePath("../Camera")
+_camera = NodePath("../PseudoCamera/Camera3D")
 _spellPresenter = NodePath("../SpellPresenter")
 _spellObject = Array[PackedScene]([ExtResource("12_xoixf"), ExtResource("13_50ohs")])
 
