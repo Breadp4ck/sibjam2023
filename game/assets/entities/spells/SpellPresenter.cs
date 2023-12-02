@@ -8,10 +8,9 @@ using System.Collections.Generic;
 public partial class SpellPresenter : Node3D
 {
 	[Export] private SpellSelectType _spellSelectType;
-	[Export] private SpellCaster _spellCaster;
 
-	// Objects MUST be in the same order as in 'SpellType' enum!
-	[Export] private PackedScene[] _spellObject;
+	public SpellType ChosenSpellType => _chosenSpellType;
+	private SpellType _chosenSpellType;
 
 	private const string SelectSpellSignature = "select_spell_";
 
@@ -31,31 +30,9 @@ public partial class SpellPresenter : Node3D
 				continue;
 			}
 				
-			Spell spell = GetSpell((SpellType)i);
-			_spellCaster.SetSpell(spell);
-				
+			_chosenSpellType = ((SpellType)i);
 			break;
 		}
-	}
-	
-	private Spell GetSpell(SpellType spellType)
-	{
-		Node spellNode;
-		Spell spell;
-		
-		switch (spellType)
-		{
-			case SpellType.Cum:
-				spellNode = _spellObject[(int)spellType].Instantiate();
-				AoESpell cumSpell = (AoESpell)spellNode;
-				cumSpell.SetDirection(_spellCaster.LookDirection);
-				spell = cumSpell;
-				break;
-			default:
-				throw new ArgumentOutOfRangeException(nameof(spellType), spellType, null);
-		}
-
-		return spell;
 	}
 }
 

@@ -1,10 +1,10 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class AoESpell : Spell
 {
 	[Export] private float _speed;
-	[Export] private float _duration;
 
 	[Export] private bool _destroyOnCollie;
 	
@@ -22,9 +22,13 @@ public partial class AoESpell : Spell
 		Move(_direction * (float)delta * _speed);
 	}
 	
-	public override void Cast()
+	public override async void Cast()
 	{
 		_hasToMove = true;
+
+		await Task.Delay((int)(Duration * 1000));
+		
+		QueueFree();
 	}
 
 	public void SetDirection(Vector3 direction)
@@ -35,6 +39,7 @@ public partial class AoESpell : Spell
 	// Direction must be multiplied by delta and speed. 
 	private void Move(Vector3 direction)
 	{
+		GD.Print(_direction);
 		Position += direction;
 	}
 }
