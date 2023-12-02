@@ -22,27 +22,39 @@ public partial class Enemy : CharacterBody3D
 
 	private EnemyState _state = EnemyState.Idle;
 
-	private Vector3 _movementVelocity;
+	private Vector3 _impulse = Vector3.Zero;
 
 	public override void _PhysicsProcess(double delta)
 	{
-		switch (_state)
+		if (IsOnFloor())
 		{
-			case EnemyState.Idle:
-				Idle();
-				break;
-			case EnemyState.Patrol:
-				Patrol();
-				break;
-			case EnemyState.Chase:
-				ChasePlayer();
-				break;
-			case EnemyState.Attack:
-				Attack();
-				break;
-			case EnemyState.Dead: // Do nothing.
-				break;
+			switch (_state)
+			{
+				case EnemyState.Idle:
+					Idle();
+					break;
+				case EnemyState.Patrol:
+					Patrol();
+					break;
+				case EnemyState.Chase:
+					ChasePlayer();
+					break;
+				case EnemyState.Attack:
+					Attack();
+					break;
+				case EnemyState.Dead: // Do nothing.
+					break;
+			}
 		}
+
+		else
+		{
+			Velocity -= new Vector3(0.0f, 20f, 0.0f) * (float)delta;
+		}
+
+		Velocity += _impulse;
+		_impulse = Vector3.Zero;
+		MoveAndSlide();
 	}
 
 	public void SetTarget(Node3D target)
@@ -140,6 +152,11 @@ public partial class Enemy : CharacterBody3D
 	private void MoveTo(Vector3 nextNavigationPoint)
 	{
 		Velocity = (nextNavigationPoint - GlobalPosition).Normalized() * _speed * Timescale.Enemy;
-		MoveAndSlide();
+		//MoveAndSlide();
+	}
+
+	public void ApplyImpulse(Vector3 impulse)
+	{
+		_impulse += impulse;
 	}
 }
