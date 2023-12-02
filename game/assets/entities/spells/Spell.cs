@@ -6,7 +6,7 @@ using System;
 /// <para>All spells inherit from this class.</para>
 /// <para>Impacts all level</para>
 /// </summary>
-public partial class Spell : Node3D
+public abstract partial class Spell : Node3D
 {
 	public SpellType SpellType => Type; 
 	[Export] protected SpellType Type;
@@ -17,7 +17,7 @@ public partial class Spell : Node3D
 	[Export] protected float Duration;
 	[Export] protected uint ManaCost;
 
-	public virtual void Cast() { }
+	public abstract void Cast();
 	
 	public override string ToString()
 	{

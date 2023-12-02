@@ -16,6 +16,7 @@ public partial class HealthComponent : Node
 
 	public void Hit(double damage)
 	{
+		GD.Print("Deal " + damage + " damage.");
 		_health -= damage;
 
 		if (_health <= 0)

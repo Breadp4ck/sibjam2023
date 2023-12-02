@@ -12,6 +12,8 @@ public partial class SpellCaster : Node3D
 	
 	private Spell _chosenSpell;
 	private Vector3 _lookDirection;
+	
+	private Enemy _target; // Capture me using last raycast hit.
 
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -39,7 +41,7 @@ public partial class SpellCaster : Node3D
 		
 		if (spell == null)
 		{
-			GD.Print("Spell is NULL. Choose a spell first!");
+			GD.Print("Will not cast. Spell is NULL.");
 			return;
 		}
 
@@ -57,19 +59,59 @@ public partial class SpellCaster : Node3D
 		
 		switch (spellType)
 		{
-			case SpellType.Cum:
-				AoESpell cumSpell = (AoESpell)spellNode;
-				cumSpell.SetDirection(_lookDirection);
-				spell = cumSpell;
-				break;
-			
-			case SpellType.TimeSlow:
+			case SpellType.TimeTwister:
+				if (TimeTwisterSpell.IsCasting == true)
+				{
+					GD.Print("Can`t use 'TimeTwister' spell while it is casting!");
+					spellNode.QueueFree();
+					return null;
+				}
+				
 				Spell timeSlowSpell = (Spell)spellNode;
 				spell = timeSlowSpell;
 				break;
+			
+			case SpellType.SlowMob:
+				if (_target == null)
+				{
+					GD.Print("Can`t use 'SlowMob' spell without a target!");
+					spellNode.QueueFree();
+					return null;
+				}
+				
+				TargetSpell slowMobSpell = (TargetSpell)spellNode;
+				slowMobSpell.SetTarget(_target);
+				spell = slowMobSpell;
+				break;
+
+			case SpellType.Storm:
+				if (_target == null)
+				{
+					GD.Print("Can`t use 'Storm' spell without a target!");
+					spellNode.QueueFree();
+					return null;
+				}
+				
+				TargetSpell stormSpell = (TargetSpell)spellNode;
+				stormSpell.SetTarget(_target);
+				spell = stormSpell;
+				break;
+
+			case SpellType.Fireball:
+				AoESpell fireball = (AoESpell)spellNode;
+				fireball.SetDirection(_lookDirection);
+				spell = fireball;
+				break;
+				
+			case SpellType.Spurn:
+				AoESpell spurn = (AoESpell)spellNode;
+				spurn.SetDirection(_lookDirection);
+				spell = spurn;
+				break;
 				
 			default:
-				return null;
+				spellNode.QueueFree();
+				throw new ArgumentException(spellType + " is not supported!");
 		}
 
 		return spell;

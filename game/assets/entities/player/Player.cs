@@ -15,6 +15,5 @@ public partial class Player : CharacterBody3D
 
 	private void Die()
 	{
-		
 	}
 }
