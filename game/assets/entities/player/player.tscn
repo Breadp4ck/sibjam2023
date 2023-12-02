@@ -86,6 +86,7 @@ player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 SLIDE_SPEED = 9.0
+SLIDE_FADING = 4.0
 
 [node name="SlideJump" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("8_ew7od")
