@@ -5,6 +5,7 @@ extends FiniteState
 @export var camera: Node3D
 
 @export var SLIDE_SPEED: float = 20.0
+@export var SLIDE_FADING: float = 2.0
 
 # --------------------------------------------------------------------------------------------------
 
@@ -36,3 +37,7 @@ func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
 			ctx.jump_to("Walk")
 		else:
 			ctx.jump_to("Idle")
+			
+	elif not player.is_on_floor():
+		ctx.jump_to("SlideFall")
+	
