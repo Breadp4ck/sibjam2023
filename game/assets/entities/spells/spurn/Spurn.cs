@@ -16,8 +16,11 @@ public partial class Spurn : AoESpell
             GD.Print("Failed to get Enemy.");
             return;
         }
+
+        Vector3 kek = enemy.GlobalPosition - GlobalPosition;
         
-        enemy.Velocity = (enemy.GlobalPosition - GlobalPosition).Normalized() * _spurnForce;
-        enemy.MoveAndSlide();
+        kek.Y = 0.5f;
+        kek = kek.Normalized();
+        enemy.ApplyImpulse(kek * _spurnForce);
     }
 }
