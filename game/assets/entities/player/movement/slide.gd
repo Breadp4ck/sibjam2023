@@ -3,6 +3,7 @@ extends FiniteState
 @export var player: CharacterBody3D
 @export var collision: CollisionShape3D
 @export var camera: Node3D
+@export var shape_cast : ShapeCast3D
 
 @export var SLIDE_SPEED: float = 20.0
 @export var SLIDE_FADING: float = 2.0
@@ -28,16 +29,22 @@ func _start(ctx: FiniteStateContext) -> void:
 
 # --------------------------------------------------------------------------------------------------
 
-func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
+func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
+	if Input.is_action_pressed("jump"):
 		ctx.jump_to("SlideJump")
 		
 	elif not Input.is_action_pressed("slide"):
-		if Input.get_vector("move_left", "move_right", "move_forward", "move_back") == Vector2.ZERO:
-			ctx.jump_to("Walk")
+		shape_cast.force_shapecast_update()
+		shape_cast.get_collision_count()
+		if shape_cast.is_colliding():
+			return
 		else:
-			ctx.jump_to("Idle")
+			if Input.get_vector("move_left", "move_right", "move_forward", "move_back") == Vector2.ZERO:
+				ctx.jump_to("Walk")
+			elif Input.is_action_pressed("crouch"):
+				ctx.jump_to("Crouch")
+			else:
+				ctx.jump_to("Idle")
 			
 	elif not player.is_on_floor():
 		ctx.jump_to("SlideFall")
-	
