@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=17 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
