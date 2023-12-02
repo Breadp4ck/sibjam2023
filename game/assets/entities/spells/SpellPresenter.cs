@@ -21,7 +21,7 @@ public partial class SpellPresenter : Node3D
 			return;
 		}
 
-		for (var i = 0; i < Enum.GetNames(typeof(SpellSelectType)).Length; i++)
+		for (var i = 0; i < Enum.GetNames(typeof(SpellType)).Length; i++)
 		{
 			string selectSpellActionName = SelectSpellSignature + (i+1);
 				
@@ -31,6 +31,7 @@ public partial class SpellPresenter : Node3D
 			}
 				
 			_chosenSpellType = ((SpellType)i);
+			GD.Print($"Spell {_chosenSpellType} selected!");
 			break;
 		}
 	}

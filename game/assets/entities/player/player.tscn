@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=15 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -11,8 +11,6 @@
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
-[ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
-[ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -36,19 +34,28 @@ top_level = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
+visible = false
 mesh = SubResource("SphereMesh_sywkj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
+visible = false
 mesh = SubResource("SphereMesh_sywkj")
 
 [node name="PidController" type="PidController" parent="PseudoCamera" node_paths=PackedStringArray("parent", "object")]
 parent = NodePath("..")
 object = NodePath("../Camera3D")
 
+[node name="SpellCaster" parent="PseudoCamera" node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+_camera = NodePath("../Camera3D")
+_spellPresenter = NodePath("../../SpellPresenter")
+
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
+
+[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
 
 [node name="Movement" type="FiniteStateMachine" parent="." node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
@@ -96,11 +103,3 @@ JUMP_POWER = 3.0
 [node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
-
-[node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
-_camera = NodePath("../Camera")
-_spellPresenter = NodePath("../SpellPresenter")
-_spellObject = Array[PackedScene]([ExtResource("12_xoixf"), ExtResource("13_50ohs")])
-
-[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]

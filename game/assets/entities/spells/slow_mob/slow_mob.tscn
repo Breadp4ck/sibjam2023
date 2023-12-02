@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://csck5o4eginr7"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/TargetSpell.cs" id="1_unmgw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mge0q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66byt"]
+albedo_color = Color(0, 1, 0.6, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pnott"]
+
+[node name="SlowMob" type="Area3D"]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("1_unmgw")
+Type = 1
+Duration = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_mge0q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("StandardMaterial3D_66byt")
+mesh = SubResource("SphereMesh_pnott")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

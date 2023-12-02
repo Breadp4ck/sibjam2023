@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://e30p1fmalevx"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/storm/MiniStorm.cs" id="1_kgnii"]
+
+[node name="MiniStorm" type="Node3D"]
+script = ExtResource("1_kgnii")
+_damage = 1.0
+Type = 2

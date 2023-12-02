@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://jrtrfgei1jel"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/time_twister_spell/TimeTwisterSpell.cs" id="1_3qdxx"]
+
+[node name="TimeTwisterSpell" type="Node3D"]
+script = ExtResource("1_3qdxx")
+_playerNewTimescale = 1.5
+_enemyNewTimescale = 0.3
+Duration = 2.0

@@ -1,5 +1,8 @@
 ﻿public enum SpellType
 {
-    Cum,
-    TimeSlow,
+    TimeTwister,
+    SlowMob,
+    Storm,
+    Fireball,
+    Spurn
 }
