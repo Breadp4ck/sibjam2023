@@ -19,7 +19,7 @@ func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
 		
 	elif event.is_action_pressed("slide"):
 		ctx.jump_to("Slide")
-		
+
 	elif event.is_action_pressed("crouch"):
 		ctx.jump_to("Crouch")
 
