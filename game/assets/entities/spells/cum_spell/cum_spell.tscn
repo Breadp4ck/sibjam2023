@@ -7,7 +7,6 @@
 [sub_resource type="SphereMesh" id="SphereMesh_or27i"]
 
 [node name="CumSpell" type="Node3D"]
-top_level = true
 script = ExtResource("1_o84ac")
 _speed = 1.0
 Duration = 2.0
