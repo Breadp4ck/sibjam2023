@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dehodl12notn5"]
+[gd_scene load_steps=12 format=3 uid="uid://dehodl12notn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
 [ext_resource type="Texture2D" uid="uid://bxihw70oy7j1s" path="res://assets/textures/kenney_prototype/orange/texture_02.png" id="2_aohws"]
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="3_qh05b"]
+[ext_resource type="Script" path="res://assets/entities/enemy/Dummy.cs" id="4_kf83d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a35bt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,6 +25,10 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bouj7"]
 albedo_texture = ExtResource("2_aohws")
 uv1_triplanar = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yn04i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_77ax0"]
 
 [node name="Backrooms" type="Node3D"]
 
@@ -75,3 +80,13 @@ size = Vector3(3, 1, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_qh05b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2)
+
+[node name="Dummy" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.54782, 3.93772)
+script = ExtResource("4_kf83d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy"]
+shape = SubResource("CapsuleShape3D_yn04i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy"]
+mesh = SubResource("CapsuleMesh_77ax0")
