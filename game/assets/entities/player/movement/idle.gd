@@ -2,7 +2,7 @@ extends FiniteState
 
 @export var player: CharacterBody3D
 @export var collision: CollisionShape3D
-@export var camera: Camera3D
+@export var camera: Node3D
 
 func _start(_ctx: FiniteStateContext) -> void:
 	player.velocity = Vector3.ZERO

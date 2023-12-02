@@ -1,4 +1,4 @@
-extends Camera3D
+extends Node3D
 
 @export var sensetive_h: float = 0.2
 @export var sensetive_v: float = 0.2

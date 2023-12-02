@@ -15,7 +15,9 @@ grow_vertical = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
 size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
 [node name="Backrooms" parent="ViewportContainer/SubViewport" instance=ExtResource("2_kjf6a")]
 

@@ -2,7 +2,7 @@ extends FiniteState
 
 @export var player: CharacterBody3D
 @export var collision: CollisionShape3D
-@export var camera: Camera3D
+@export var camera: Node3D
 
 @export var SLIDE_SPEED: float = 20.0
 
