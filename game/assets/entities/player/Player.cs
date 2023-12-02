@@ -12,4 +12,9 @@ public partial class Player : CharacterBody3D
 	{
 		MoveAndSlide();
 	}
+
+	private void Die()
+	{
+		
+	}
 }

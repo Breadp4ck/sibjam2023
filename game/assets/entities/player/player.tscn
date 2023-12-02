@@ -86,6 +86,7 @@ player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 SLIDE_SPEED = 9.0
+SLIDE_FADING = 4.0
 
 [node name="SlideJump" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("8_ew7od")
@@ -96,8 +97,9 @@ JUMP_POWER = 3.0
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
 
-[node name="SpellCaster" parent="." node_paths=PackedStringArray("_spellPresenter") instance=ExtResource("11_6aujr")]
+[node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
+_camera = NodePath("../PseudoCamera/Camera3D")
 _spellPresenter = NodePath("../SpellPresenter")
 _spellObject = Array[PackedScene]([ExtResource("12_xoixf"), ExtResource("13_50ohs")])
 
