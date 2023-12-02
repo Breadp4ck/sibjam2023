@@ -62,8 +62,6 @@ impl INode3D for PidController {
 
         self.integral_sum += current_error;
 
-        godot_print!("{}", self.integral_sum);
-
         let output =
             Vector3::splat(self.p) * current_error + Vector3::splat(self.i) * self.integral_sum;
         // - if self.set {

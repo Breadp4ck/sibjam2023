@@ -10,7 +10,7 @@ var camera_rotation_v: float = 0.0
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		camera_rotation_v += -clampf(event.relative.y * sensetive_v, -90.0, 90.0)
+		camera_rotation_v = clampf(camera_rotation_v - event.relative.y * sensetive_v, -90.0, 90.0)
 		camera_rotation_h += -event.relative.x * sensetive_h
 
 # --------------------------------------------------------------------------------------------------
