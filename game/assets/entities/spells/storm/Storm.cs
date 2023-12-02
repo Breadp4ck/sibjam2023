@@ -8,7 +8,7 @@ public partial class Storm : TargetSpell
     
     protected override void OnAreaEnteredInternal(Area3D area3D)
     {
-        Node3D miniSpell = _miniStormSpell.Instantiate() as Node3D;
+        MiniStorm miniSpell = _miniStormSpell.Instantiate() as MiniStorm;
 
         if (miniSpell == null)
         {
@@ -17,8 +17,11 @@ public partial class Storm : TargetSpell
         
         GetTree().Root.AddChild(miniSpell);
         miniSpell.GlobalPosition = GlobalPosition;
+        miniSpell.Cast();
         
         HitboxComponent hitboxComponent = (HitboxComponent)area3D;
         hitboxComponent.Hit(_damage);
+        
+        QueueFree();
     }
 }

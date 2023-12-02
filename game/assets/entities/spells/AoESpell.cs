@@ -6,7 +6,7 @@ public abstract partial class AoESpell : Spell
 {
 	[Export] private float _speed;
 
-	[Export] private bool _destroyOnCollie;
+	[Export] private bool _destroyOnCollide;
 	
 	private Vector3 _direction;
 
@@ -47,7 +47,7 @@ public abstract partial class AoESpell : Spell
 	{
 		OnAreaEnteredInternal(area3D);
 
-		if (_destroyOnCollie == true)
+		if (_destroyOnCollide == true)
 		{
 			QueueFree();
 		}
