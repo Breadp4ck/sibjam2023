@@ -19,7 +19,12 @@ func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
 	
 	elif event.is_action_pressed("jump"):
 		ctx.jump_to("Leap")
+		
+	elif event.is_action_pressed("crouch"):
+		ctx.jump_to("Crouch")
 
+	elif event.is_action_pressed("crouch"):
+		ctx.jump_to("Crouch")
 # --------------------------------------------------------------------------------------------------
 
 func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
