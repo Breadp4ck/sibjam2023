@@ -39,6 +39,14 @@ uv1_triplanar = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m5jnm"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnxbk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqemf"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_df2ar"]
+size = Vector3(5, 1, 5)
+
 [node name="Backrooms" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -133,3 +141,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1215, 0, 16.1477)
 
 [node name="PatrolPosition3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55255, 0, -0.693844)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+physics_material_override = SubResource("PhysicsMaterial_xnxbk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_oqemf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_df2ar")
