@@ -6,10 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/health_component/HealthComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/health_component/HealthComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/hitbox_component/HitboxComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/hitbox_component/HitboxComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/spells/fireball/fireball.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/fireball/fireball.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/player/movement/walk.gd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/movement/walk.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/Spell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/Spell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/SpellPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/SpellPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/SpellRaycast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/SpellRaycast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/TargetSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/TargetSpell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/fireball/Fireball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/fireball/Fireball.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/slow_mob/SlowMob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/slow_mob/SlowMob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/slow_mob/slow_mob.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/slow_mob/slow_mob.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/spells/spurn/Spurn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/spurn/Spurn.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/spells/spurn/spurn.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/spurn/spurn.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/storm/MiniStorm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/storm/MiniStorm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/storm/Storm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/storm/Storm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/time_twister_spell/TimeTwisterSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/time_twister_spell/TimeTwisterSpell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/world/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/world/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/singletone/timescale/Timescale.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/singletone/timescale/Timescale.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,31 +48,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;new-spells&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "inventory",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\bossv\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\bossv\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\bossv\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\bossv\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\bossv\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\bossv\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../Godot/Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;$PROJECT_DIR$&quot; --editor" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -68,7 +85,7 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../Godot/Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;$PROJECT_DIR$&quot;" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />

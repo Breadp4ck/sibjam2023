@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 /// <summary>
 /// <para>Global spell.</para>>

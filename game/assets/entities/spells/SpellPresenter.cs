@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// This class decides how and what to set in 'SpellCaster' 
@@ -29,11 +28,28 @@ public partial class SpellPresenter : Node3D
 			{
 				continue;
 			}
-				
-			_chosenSpellType = ((SpellType)i);
-			GD.Print($"Spell {_chosenSpellType} selected!");
+			
+			SpellType wantedSpellType = (SpellType)i;
+
+			if (TryChooseSpell(wantedSpellType) == false)
+			{
+				GD.Print($"You don't have {wantedSpellType} spell!");
+			}
+			
 			break;
 		}
+	}
+	
+	private bool TryChooseSpell(SpellType spellType)
+	{
+		if (Inventory.HasSpell(spellType) == false)
+		{
+			return false;
+		}
+		
+		_chosenSpellType = spellType;
+		GD.Print($"Spell {_chosenSpellType} selected!");
+		return true;
 	}
 }
 
