@@ -40,5 +40,5 @@ func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 	
-	player.velocity.x = direction.x * WALK_SPEED
-	player.velocity.z = direction.z * WALK_SPEED
+	player.velocity.x = direction.x * player.get("WalkSpeed")
+	player.velocity.z = direction.z * player.get("WalkSpeed")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dehodl12notn5"]
+[gd_scene load_steps=21 format=3 uid="uid://dehodl12notn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
 [ext_resource type="Texture2D" uid="uid://bxihw70oy7j1s" path="res://assets/textures/kenney_prototype/orange/texture_02.png" id="2_aohws"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://assets/entities/enemy/Enemy.cs" id="4_cfld0"]
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="5_k4xac"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="6_tml27"]
+[ext_resource type="PackedScene" uid="uid://b838kd1w7kvox" path="res://assets/entities/pickable_spells/pickable_spell.tscn" id="7_he0uy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a35bt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -47,8 +48,8 @@ size = Vector3(5, 1, 5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m5jnm"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_r8ky7"]
-radius = 1.27443
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omxb5"]
+radius = 0.7
 
 [node name="Backrooms" type="Node3D"]
 
@@ -146,12 +147,12 @@ shape = SubResource("CapsuleShape3D_m5jnm")
 
 [node name="HealthComponent" parent="Dummy" instance=ExtResource("6_tml27")]
 
-[node name="Area3D" type="Area3D" parent="Dummy"]
+[node name="TargetRaycastArea" type="Area3D" parent="Dummy"]
 collision_layer = 256
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/Area3D"]
-shape = SubResource("SphereShape3D_r8ky7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/TargetRaycastArea"]
+shape = SubResource("CapsuleShape3D_omxb5")
 
 [node name="PatrolPosition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03458, 0, -17.0192)
@@ -161,3 +162,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1215, 0, 16.1477)
 
 [node name="PatrolPosition3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55255, 0, -0.693844)
+
+[node name="PickableSpell" parent="." instance=ExtResource("7_he0uy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8686, 1.11892, 10.8412)
