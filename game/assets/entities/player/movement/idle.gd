@@ -19,6 +19,9 @@ func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
 	
 	elif event.is_action_pressed("jump"):
 		ctx.jump_to("Leap")
+		
+	elif event.is_action_pressed("crouch"):
+		ctx.jump_to("Crouch")
 
 # --------------------------------------------------------------------------------------------------
 
