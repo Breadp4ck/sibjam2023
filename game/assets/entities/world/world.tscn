@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://crthv77lfgu3b"]
+[gd_scene load_steps=5 format=3 uid="uid://crthv77lfgu3b"]
 
 [ext_resource type="Script" path="res://assets/entities/world/World.cs" id="1_obc53"]
+[ext_resource type="Shader" path="res://assets/entities/world/world.gdshader" id="2_6mdib"]
 [ext_resource type="PackedScene" uid="uid://dehodl12notn5" path="res://assets/entities/levels/backrooms/backrooms.tscn" id="2_kjf6a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqbs"]
+shader = ExtResource("2_6mdib")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 16
+shader_parameter/dither_size = 1
+shader_parameter/coeff = 0.048
 
 [node name="World" type="Node"]
 script = ExtResource("1_obc53")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_bxqbs")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
