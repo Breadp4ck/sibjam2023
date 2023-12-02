@@ -14,10 +14,10 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 collision_layer = 0
 collision_mask = 512
 script = ExtResource("1_4o81i")
-_spurnForce = 500.0
+_spurnForce = 20.0
 _destroyOnCollie = true
 Type = 4
-Duration = 1.0
+Duration = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

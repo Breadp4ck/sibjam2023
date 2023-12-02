@@ -14,8 +14,8 @@ collision_layer = 0
 collision_mask = 512
 script = ExtResource("1_xfx4e")
 _damage = 1.0
-_speed = 15.0
-_destroyOnCollide = true
+_speed = 50.0
+_destroyOnCollie = true
 Type = 3
 Duration = 5.0
 
