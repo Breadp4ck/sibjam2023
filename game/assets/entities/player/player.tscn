@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
+[ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_is8yj"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
 [ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
 [ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
@@ -36,10 +37,12 @@ top_level = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
+visible = false
 mesh = SubResource("SphereMesh_sywkj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
+visible = false
 mesh = SubResource("SphereMesh_sywkj")
 
 [node name="PidController" type="PidController" parent="PseudoCamera" node_paths=PackedStringArray("parent", "object")]
@@ -96,6 +99,12 @@ JUMP_POWER = 3.0
 [node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
+
+[node name="Crouch" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
+script = ExtResource("10_is8yj")
+player = NodePath("../..")
+collision = NodePath("../../Collision")
+camera = NodePath("../../PseudoCamera")
 
 [node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
