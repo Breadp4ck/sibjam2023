@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dehodl12notn5"]
+[gd_scene load_steps=19 format=3 uid="uid://dehodl12notn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
 [ext_resource type="Texture2D" uid="uid://bxihw70oy7j1s" path="res://assets/textures/kenney_prototype/orange/texture_02.png" id="2_aohws"]

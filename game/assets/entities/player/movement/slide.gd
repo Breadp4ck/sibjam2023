@@ -7,6 +7,7 @@ extends FiniteState
 
 @export var SLIDE_SPEED: float = 20.0
 @export var SLIDE_FADING: float = 2.0
+@export var SLIDE_DURATION: float = 4.0
 
 # --------------------------------------------------------------------------------------------------
 
@@ -30,6 +31,8 @@ func _start(ctx: FiniteStateContext) -> void:
 # --------------------------------------------------------------------------------------------------
 
 func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
+	SLIDE_DURATION -= float(_delta)
+	print(SLIDE_DURATION)
 	if Input.is_action_pressed("jump"):
 		ctx.jump_to("SlideJump")
 		
@@ -37,7 +40,7 @@ func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
 		shape_cast.force_shapecast_update()
 		shape_cast.get_collision_count()
 		if shape_cast.is_colliding():
-			return
+			ctx.jump_to("Crouch")
 		else:
 			if Input.get_vector("move_left", "move_right", "move_forward", "move_back") == Vector2.ZERO:
 				ctx.jump_to("Walk")
