@@ -35,6 +35,11 @@ public partial class SpellCaster : Node3D
 	// Call me outside of this class to cast a spell.
 	private void CastSpell()
 	{
+		if (_spellPresenter.ChosenSpellType == null)
+		{
+			return;
+		}
+		
 		Spell spell = GetSpell(_spellPresenter.ChosenSpellType);
 		
 		if (spell == null)
@@ -47,7 +52,7 @@ public partial class SpellCaster : Node3D
 		GD.Print($"Casted {spell}!");
 	}
 	
-	private Spell GetSpell(SpellType spellType)
+	private Spell GetSpell(SpellType? spellType)
 	{
 		Node3D spellNode = (Node3D)_spellObject[(int)spellType].Instantiate();
 		GetTree().Root.AddChild(spellNode);

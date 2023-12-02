@@ -8,8 +8,8 @@ public partial class SpellPresenter : Node3D
 {
 	[Export] private SpellSelectType _spellSelectType;
 
-	public SpellType ChosenSpellType => _chosenSpellType;
-	private SpellType _chosenSpellType;
+	public SpellType? ChosenSpellType => _chosenSpellType;
+	private SpellType? _chosenSpellType;
 
 	private const string SelectSpellSignature = "select_spell_";
 
