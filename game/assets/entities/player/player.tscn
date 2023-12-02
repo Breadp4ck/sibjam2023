@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=13 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -14,14 +14,37 @@
 [ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
 [ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
+albedo_color = Color(1, 0.141176, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sywkj"]
+material = SubResource("StandardMaterial3D_2vt5i")
+radius = 0.05
+height = 0.05
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4txfr")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="PseudoCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 script = ExtResource("1_oms4q")
+
+[node name="Camera3D" type="Camera3D" parent="PseudoCamera"]
+top_level = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
+mesh = SubResource("SphereMesh_sywkj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
+mesh = SubResource("SphereMesh_sywkj")
+
+[node name="PidController" type="PidController" parent="PseudoCamera" node_paths=PackedStringArray("parent", "object")]
+parent = NodePath("..")
+object = NodePath("../Camera3D")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -34,27 +57,26 @@ initial_state = NodePath("Idle")
 script = ExtResource("1_e7nmj")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
-camera = NodePath("../../Camera")
+camera = NodePath("../../PseudoCamera")
 
 [node name="Walk" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
 script = ExtResource("2_hvfwp")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
-camera = NodePath("../../Camera")
-WALK_SPEED = 7.0
+camera = NodePath("../../PseudoCamera")
 
 [node name="Leap" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
 script = ExtResource("3_cmuim")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
-camera = NodePath("../../Camera")
+camera = NodePath("../../PseudoCamera")
 JUMP_POWER = 6.0
 
 [node name="Fall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
 script = ExtResource("4_yhsxb")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
-camera = NodePath("../../Camera")
+camera = NodePath("../../PseudoCamera")
 FALL_WALK_SPEED = 7.0
 FALL_SOAR = 2.0
 
@@ -62,7 +84,7 @@ FALL_SOAR = 2.0
 script = ExtResource("6_uxfl0")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
-camera = NodePath("../../Camera")
+camera = NodePath("../../PseudoCamera")
 SLIDE_SPEED = 9.0
 SLIDE_FADING = 4.0
 

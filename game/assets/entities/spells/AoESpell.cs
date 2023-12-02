@@ -39,7 +39,6 @@ public partial class AoESpell : Spell
 	// Direction must be multiplied by delta and speed. 
 	private void Move(Vector3 direction)
 	{
-		GD.Print(_direction);
 		Position += direction;
 	}
 }
