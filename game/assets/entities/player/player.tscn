@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=21 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
 [ext_resource type="Script" path="res://assets/entities/player/camera.gd" id="1_oms4q"]
+[ext_resource type="PackedScene" uid="uid://c4uekr54e48lg" path="res://assets/components/speech_recognition/speech_recognition.tscn" id="2_fwr6h"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/walk.gd" id="2_hvfwp"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/leap.gd" id="3_cmuim"]
 [ext_resource type="Script" path="res://assets/entities/spells/SpellRaycast.cs" id="4_hnmun"]
@@ -10,14 +11,11 @@
 [ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableRaycast.cs" id="5_2ak8n"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide.gd" id="6_uxfl0"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
+[ext_resource type="Script" path="res://assets/components/speech_recognition/Speech.cs" id="8_h682d"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_fteug"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
-[ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
-[ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
-[ext_resource type="PackedScene" uid="uid://c1nptww8k5mnx" path="res://assets/entities/particles/rain.tscn" id="14_cdnav"]
-[ext_resource type="PackedScene" uid="uid://djbr80sjqadcb" path="res://assets/entities/particles/lightning.tscn" id="15_6rqo6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -31,8 +29,11 @@ height = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_itaav"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("1_4txfr")
+_spellPresenter = NodePath("SpellPresenter")
+
+[node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
 
 [node name="PseudoCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -82,6 +83,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
 
 [node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
+_spellSelectType = 1
+
+[node name="Speech" type="Node3D" parent="." node_paths=PackedStringArray("_spellPresenter")]
+script = ExtResource("8_h682d")
+_spellPresenter = NodePath("../SpellPresenter")
 
 [node name="Movement" type="FiniteStateMachine" parent="." node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
@@ -141,3 +147,5 @@ shape_cast = NodePath("../../ShapeCast")
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 shape = SubResource("SphereShape3D_itaav")
+
+[connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]

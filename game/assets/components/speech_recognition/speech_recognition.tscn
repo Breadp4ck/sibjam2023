@@ -6,11 +6,11 @@
 script = ExtResource("1_rgkj7")
 
 [node name="SpeechRecognitionComponent" type="SpeechRecognitionComponent" parent="."]
-windows_pocketsphinx_path = "speech_recognition/windows/pocketsphinx"
-linux_pocketsphinx_path = "speech_recognition/linux/pocketsphinx"
-acoustic_model_path = "speech_recognition/en-us/en-us"
-language_model_path = "speech_recognition/en-us/en-us.lm.bin"
-dictionary_path = "speech_recognition/spells.dict"
-filename_to_record = "speech_recognition/recorded.wav"
+windows_pocketsphinx_path = "pocketsphinx/windows/pocketsphinx"
+linux_pocketsphinx_path = "pocketsphinx/linux/pocketsphinx"
+acoustic_model_path = "pocketsphinx/en-us/en-us"
+language_model_path = "pocketsphinx/en-us/en-us.lm.bin"
+dictionary_path = "pocketsphinx/spells.dict"
+filename_to_record = "pocketsphinx/recorded.wav"
 
 [connection signal="speech_parsed" from="SpeechRecognitionComponent" to="." method="_on_speech_recognition_component_speech_parsed"]

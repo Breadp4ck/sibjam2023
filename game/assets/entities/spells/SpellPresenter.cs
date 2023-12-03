@@ -6,6 +6,7 @@ using System;
 /// </summary>
 public partial class SpellPresenter : Node3D
 {
+	public SpellSelectType SpellSelectType => _spellSelectType;
 	[Export] private SpellSelectType _spellSelectType;
 
 	public SpellType? ChosenSpellType => _chosenSpellType;
@@ -20,6 +21,23 @@ public partial class SpellPresenter : Node3D
 			return;
 		}
 
+		SelectViaKeyboard(inputEvent);
+	}
+	
+	public bool TryChooseSpell(SpellType spellType)
+	{
+		if (Inventory.HasSpell(spellType) == false)
+		{
+			return false;
+		}
+		
+		_chosenSpellType = spellType;
+		GD.Print($"Spell {_chosenSpellType} selected!");
+		return true;
+	}
+	
+	private void SelectViaKeyboard(InputEvent inputEvent)
+	{
 		for (var i = 0; i < Enum.GetNames(typeof(SpellType)).Length; i++)
 		{
 			string selectSpellActionName = SelectSpellSignature + (i+1);
@@ -38,18 +56,6 @@ public partial class SpellPresenter : Node3D
 			
 			break;
 		}
-	}
-	
-	private bool TryChooseSpell(SpellType spellType)
-	{
-		if (Inventory.HasSpell(spellType) == false)
-		{
-			return false;
-		}
-		
-		_chosenSpellType = spellType;
-		GD.Print($"Spell {_chosenSpellType} selected!");
-		return true;
 	}
 }
 
