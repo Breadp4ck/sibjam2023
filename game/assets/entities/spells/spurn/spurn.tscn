@@ -15,7 +15,6 @@ collision_layer = 0
 collision_mask = 512
 script = ExtResource("1_4o81i")
 _spurnForce = 20.0
-_destroyOnCollie = true
 Type = 4
 Duration = 0.1
 

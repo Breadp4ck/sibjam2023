@@ -88,7 +88,7 @@ script = ExtResource("4_yhsxb")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
-FALL_WALK_SPEED = 7.0
+FALL_WALK_SPEED = 9.0
 FALL_SOAR = 2.0
 
 [node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
@@ -97,17 +97,19 @@ player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
-SLIDE_SPEED = 9.0
-SLIDE_FADING = 4.0
+SLIDE_SPEED = 10.0
+SLIDE_DURATION = 4.0
 
 [node name="SlideJump" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("8_ew7od")
 player = NodePath("../..")
 JUMP_POWER = 3.0
 
-[node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
+[node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "camera")]
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
+camera = NodePath("../../PseudoCamera")
+FALL_SLIDE_SPEED = 10.0
 
 [node name="Crouch" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
 script = ExtResource("10_fteug")
