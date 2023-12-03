@@ -3,6 +3,10 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
+	public SpellSelectType SpellSelectType => _spellPresenter.SpellSelectType;
+	
+	[Export] private SpellPresenter _spellPresenter;
+
 	public float WalkSpeed => _walkSpeed * Timescale.Player;
 	[Export] private float _walkSpeed = 10.0f;
 	
@@ -18,5 +22,14 @@ public partial class Player : CharacterBody3D
 
 	private void Die()
 	{
+		GD.Print("Player is dead!");
+
+		// Animator play.
+		Destroy();
+	}
+
+	private void Destroy()
+	{
+		QueueFree();
 	}
 }

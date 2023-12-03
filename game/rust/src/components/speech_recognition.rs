@@ -116,36 +116,39 @@ impl SpeechRecognitionComponent {
             .default_input_config()
             .expect("Error retieving input config");
 
+        let mut my_cfg: cpal::StreamConfig = cfg.clone().into();
+        my_cfg.sample_rate = cpal::SampleRate(16000);
+
         let stream = match cfg.sample_format() {
             cpal::SampleFormat::I8 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, i8)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, i8)
             }
             cpal::SampleFormat::I16 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, i16)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, i16)
             }
             cpal::SampleFormat::I32 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, i32)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, i32)
             }
             cpal::SampleFormat::U8 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, u8)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, u8)
             }
             cpal::SampleFormat::U16 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, u16)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, u16)
             }
             cpal::SampleFormat::U32 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, u32)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, u32)
             }
             cpal::SampleFormat::F32 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, f32)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, f32)
             }
             cpal::SampleFormat::I64 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, i64)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, i64)
             }
             cpal::SampleFormat::U64 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, u64)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, u64)
             }
             cpal::SampleFormat::F64 => {
-                generate_input_stream!(self, CPAL_STREAM_CONFIG, data, writer_2, err_fn, f64)
+                generate_input_stream!(self, my_cfg, data, writer_2, err_fn, f64)
             }
             _ => todo!(),
         };
@@ -267,7 +270,7 @@ impl INode for SpeechRecognitionComponent {
         if let Ok(tokens) = self.tokens_receiver.try_recv() {
             godot_print!("{tokens:?}");
             self.parsing = false;
-            self.base.emit_signal("speech_parsed".into(), &[]);
+            self.base.emit_signal("speech_parsed".into(), &[Variant::from(tokens[0].clone())]);
         }
     }
 }

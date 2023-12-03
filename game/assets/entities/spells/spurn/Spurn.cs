@@ -4,7 +4,7 @@ public partial class Spurn : AoESpell
 {
     [Export] private float _spurnForce;
     
-    protected override async void OnAreaEnteredInternal(Area3D area3D)
+    protected override void OnAreaEnteredInternal(Area3D area3D)
     {
         Enemy enemy = area3D.GetParent<Enemy>();
         
