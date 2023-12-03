@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c8uonrpun5ejy"]
+
+[ext_resource type="Texture2D" uid="uid://c0ubd7kp80nxk" path="res://assets/textures/brushlike/bricks/bricks.png" id="1_p1yxs"]
+[ext_resource type="Texture2D" uid="uid://d27b5611xo7t8" path="res://assets/textures/brushlike/waterlike_height.png" id="2_urjnb"]
+[ext_resource type="Texture2D" uid="uid://dyjh3nerqdvh6" path="res://assets/textures/brushlike/bricks/TH_Large_Red_Bricks_normal.png" id="3_wskmt"]
+[ext_resource type="Texture2D" uid="uid://dk2ji4ym55q6j" path="res://assets/textures/brushlike/bricks/TH_Large_Red_Bricks_roughness.png" id="4_apgae"]
+
+[resource]
+diffuse_mode = 3
+albedo_color = Color(0.654902, 0.47451, 0.345098, 1)
+albedo_texture = ExtResource("1_p1yxs")
+metallic = 0.88
+metallic_specular = 0.6
+roughness_texture = ExtResource("4_apgae")
+emission = Color(0.0784314, 0.0588235, 0.0470588, 1)
+normal_enabled = true
+normal_texture = ExtResource("3_wskmt")
+heightmap_texture = ExtResource("2_urjnb")
+uv1_scale = Vector3(0.6, 0.6, 0.6)
+uv1_triplanar = true

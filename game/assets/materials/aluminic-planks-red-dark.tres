@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cxyyq7hgsva1x"]
+
+[ext_resource type="Texture2D" uid="uid://4wft5ve56jmr" path="res://assets/textures/brushlike/aluminic-planks.png" id="1_kr6u4"]
+[ext_resource type="Texture2D" uid="uid://d27b5611xo7t8" path="res://assets/textures/brushlike/waterlike_height.png" id="2_kgccy"]
+[ext_resource type="Texture2D" uid="uid://cgmxnrdon0ci7" path="res://assets/textures/brushlike/Aluminum_Corrugated_normal.png" id="3_62lyl"]
+[ext_resource type="Texture2D" uid="uid://ra06olmu12qq" path="res://assets/textures/brushlike/Aluminum_Corrugated_roughness.png" id="4_lruck"]
+
+[resource]
+diffuse_mode = 3
+albedo_color = Color(0.611765, 0.14902, 0.207843, 1)
+albedo_texture = ExtResource("1_kr6u4")
+metallic = 0.88
+metallic_specular = 0.6
+roughness_texture = ExtResource("4_lruck")
+emission = Color(0.0784314, 0.0588235, 0.0470588, 1)
+normal_enabled = true
+normal_texture = ExtResource("3_62lyl")
+heightmap_texture = ExtResource("2_kgccy")
+uv1_triplanar = true

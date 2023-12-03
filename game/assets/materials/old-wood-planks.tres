@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://inxeywhwoo02"]
+
+[ext_resource type="Texture2D" uid="uid://beufsldyyre5g" path="res://assets/textures/brushlike/old-wood-planks/old-wood-planks.png" id="1_232uq"]
+[ext_resource type="Texture2D" uid="uid://d27b5611xo7t8" path="res://assets/textures/brushlike/waterlike_height.png" id="2_wog0b"]
+[ext_resource type="Texture2D" uid="uid://brypnqt3x8tvy" path="res://assets/textures/brushlike/old-wood-planks/TH_Rough_Wood_normal.png" id="3_13hcx"]
+[ext_resource type="Texture2D" uid="uid://bd4psgvlfuorl" path="res://assets/textures/brushlike/old-wood-planks/TH_Rough_Wood_roughness.png" id="4_hsok1"]
+
+[resource]
+diffuse_mode = 3
+albedo_color = Color(0.305882, 0.258824, 0.247059, 1)
+albedo_texture = ExtResource("1_232uq")
+metallic_specular = 0.27
+roughness_texture = ExtResource("4_hsok1")
+emission = Color(0.0784314, 0.0588235, 0.0470588, 1)
+normal_enabled = true
+normal_texture = ExtResource("3_13hcx")
+heightmap_texture = ExtResource("2_wog0b")
+uv1_triplanar = true
