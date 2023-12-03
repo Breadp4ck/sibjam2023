@@ -24,6 +24,11 @@ public partial class SpellCaster : Node3D
 
 	public override void _Process(double delta)
 	{
+		if (_target != null && IsInstanceValid(_target) == false)
+		{
+			_target = null;
+		}
+		
 		_lookDirection = -_camera.Transform.Basis.Z;
 	}
 
