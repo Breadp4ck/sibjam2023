@@ -6,17 +6,17 @@ public static class Inventory
     private static readonly Dictionary<SpellType, uint> SpellsLevel = new();
 
     // ====================> USE ME FOR DEBUG <====================
-    // static Inventory()
-    // {
-    //     SpellsLevel = new Dictionary<SpellType, uint>()
-    //     {
-    //         {SpellType.Fireball, 1},
-    //         {SpellType.SlowMob, 1},
-    //         {SpellType.Storm, 1},
-    //         {SpellType.TimeTwister, 1},
-    //         {SpellType.Spurn, 1},
-    //     };
-    // }
+    static Inventory()
+    {
+        SpellsLevel = new Dictionary<SpellType, uint>()
+        {
+            {SpellType.Fireball, 1},
+            {SpellType.SlowMob, 1},
+            {SpellType.Storm, 1},
+            {SpellType.TimeTwister, 1},
+            {SpellType.Spurn, 1},
+        };
+    }
     
     public static bool HasSpell(SpellType spellType)
     {

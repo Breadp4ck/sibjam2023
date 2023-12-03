@@ -21,6 +21,6 @@ public partial class PickableRaycast : RayCast3D
         }
 
         CurrentPickableSpell = pickableSpell;
-        GD.Print("PickableSpell is in range. Press F or ?smth? to pick it up.");
+        GD.Print($"PickableSpell ({pickableSpell.Name}) is in range. Press F or ?smth? to pick it up.");
     }
 }

@@ -64,16 +64,13 @@ public partial class Enemy : CharacterBody3D
 		_speed = speed;
 	}
 
-	// Vlad, call me in animator after ATTACK animation is finished.
-	public void DealDamage()
-	{
-		
-	}
-
 	private void Die()
 	{
 		GD.Print(this + " dead!");
 		_state = EnemyState.Dead;
+		
+		// Animator play.
+		Destroy();
 	}
 
 	// Vlad, call me after DEATH animation is finished.

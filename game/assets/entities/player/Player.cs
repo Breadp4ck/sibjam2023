@@ -22,5 +22,14 @@ public partial class Player : CharacterBody3D
 
 	private void Die()
 	{
+		GD.Print("Player is dead!");
+
+		// Animator play.
+		Destroy();
+	}
+
+	private void Destroy()
+	{
+		QueueFree();
 	}
 }
