@@ -153,3 +153,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55255, 0, -0.693844)
 
 [node name="PickableSpell" parent="." instance=ExtResource("7_he0uy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8686, 1.11892, 10.8412)
+
+[connection signal="Dead" from="Dummy/HealthComponent" to="Dummy" method="Die"]

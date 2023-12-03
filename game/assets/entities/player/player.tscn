@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=27 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_fteug"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
+[ext_resource type="Script" path="res://assets/entities/player/Weapon.cs" id="18_8gtre"]
+[ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="18_albsl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -25,9 +27,28 @@ material = SubResource("StandardMaterial3D_2vt5i")
 radius = 0.05
 height = 0.05
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_14kkl"]
+size = Vector3(1, 0.962891, 1.34119)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc7ht"]
+albedo_color = Color(1, 0, 0.266667, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_v5frw"]
+material = SubResource("StandardMaterial3D_rc7ht")
+text = "WEAPON
+WEAPON
+WEAPON
+WEAPON
+WEAPON
+"
+horizontal_alignment = 3
+autowrap_mode = 2
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_itaav"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("1_4txfr")
@@ -63,6 +84,7 @@ _spellPresenter = NodePath("../../SpellPresenter")
 
 [node name="Spellraycast" type="RayCast3D" parent="PseudoCamera" node_paths=PackedStringArray("_spellCaster")]
 transform = Transform3D(4, 0, 0, 0, -4.37114e-08, -4, 0, 1, -1.74846e-07, 0, 0, 0)
+visible = false
 target_position = Vector3(0, -20, 0)
 collision_mask = 512
 collide_with_areas = true
@@ -73,11 +95,37 @@ _spellCaster = NodePath("../SpellCaster")
 
 [node name="PickableRaycast" type="RayCast3D" parent="PseudoCamera"]
 transform = Transform3D(100, 0, 0, 0, -1.31134e-07, -300, 0, 3, -1.31134e-05, 0, 0, 0)
+visible = false
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("5_2ak8n")
+
+[node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+collision_layer = 0
+collision_mask = 512
+monitoring = false
+script = ExtResource("18_8gtre")
+_damage = 2
+_attackDurationSeconds = 0.2
+_attackCooldownSeconds = 1.0
+_mesh = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PseudoCamera/Weapon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35211, -1.05736)
+shape = SubResource("BoxShape3D_14kkl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Weapon"]
+transform = Transform3D(1.458, 0, 0, 0, 0.93359, 0, 0, 0, 1, 0.0203929, 1.36105, -1.69537)
+visible = false
+mesh = SubResource("TextMesh_v5frw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PseudoCamera/Weapon/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2901)
+mesh = SubResource("TextMesh_v5frw")
+skeleton = NodePath("../..")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -150,4 +198,16 @@ shape_cast = NodePath("../../ShapeCast")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 shape = SubResource("SphereShape3D_itaav")
 
+[node name="HitboxComponent" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape3D_jfsaf")
+
+[node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
+
 [connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
+[connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]
+[connection signal="Dead" from="HealthComponent" to="." method="Die"]
