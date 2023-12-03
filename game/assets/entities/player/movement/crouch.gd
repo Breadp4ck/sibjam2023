@@ -19,9 +19,6 @@ func _handle_input(ctx: FiniteStateContext, event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		ctx.jump_to("Leap")
 		
-	elif event.is_action_pressed("slide"):
-		ctx.jump_to("Slide")
-		
 
 # --------------------------------------------------------------------------------------------------
 

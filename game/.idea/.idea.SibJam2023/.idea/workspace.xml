@@ -48,6 +48,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -119,6 +120,7 @@
       <workItem from="1701488397622" duration="4823000" />
       <workItem from="1701514427239" duration="5355000" />
       <workItem from="1701526474625" duration="2350000" />
+      <workItem from="1701575083871" duration="2053000" />
     </task>
     <servers />
   </component>

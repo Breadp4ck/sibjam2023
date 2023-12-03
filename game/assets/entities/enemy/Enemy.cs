@@ -149,7 +149,7 @@ public partial class Enemy : CharacterBody3D
 	private void MoveTo(Vector3 nextNavigationPoint)
 	{
 		Velocity = (nextNavigationPoint - GlobalPosition).Normalized() * _speed * Timescale.Enemy;
-		//MoveAndSlide();
+		MoveAndSlide();
 	}
 
 	public void ApplyImpulse(Vector3 impulse)
