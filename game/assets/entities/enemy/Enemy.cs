@@ -1,8 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
 
 public partial class Enemy : CharacterBody3D
 {
@@ -11,6 +8,7 @@ public partial class Enemy : CharacterBody3D
 	// Set me in editor or using SetTarget method (e.g. EnemySpawner spawns and invokes this method).
 	[Export] private Node3D _target;
 	
+	public float Speed => _speed;	
 	[Export] private float _speed;
 	[Export] private float _attackRange;
 	[Export] private float _viewDistance;
@@ -21,30 +19,49 @@ public partial class Enemy : CharacterBody3D
 
 	private EnemyState _state = EnemyState.Idle;
 
+	private Vector3 _impulse = Vector3.Zero;
+
 	public override void _PhysicsProcess(double delta)
 	{
-		switch (_state)
+		if (IsOnFloor())
 		{
-			case EnemyState.Idle:
-				Idle();
-				break;
-			case EnemyState.Patrol:
-				Patrol();
-				break;
-			case EnemyState.Chase:
-				ChasePlayer();
-				break;
-			case EnemyState.Attack:
-				Attack();
-				break;
-			case EnemyState.Dead: // Do nothing.
-				break;
+			switch (_state)
+			{
+				case EnemyState.Idle:
+					Idle();
+					break;
+				case EnemyState.Patrol:
+					Patrol();
+					break;
+				case EnemyState.Chase:
+					ChasePlayer();
+					break;
+				case EnemyState.Attack:
+					Attack();
+					break;
+				case EnemyState.Dead: // Do nothing.
+					break;
+			}
 		}
+
+		else
+		{
+			Velocity -= new Vector3(0.0f, 20f, 0.0f) * (float)delta;
+		}
+
+		Velocity += _impulse;
+		_impulse = Vector3.Zero;
+		MoveAndSlide();
 	}
 
 	public void SetTarget(Node3D target)
 	{
 		_target = target;
+	}
+
+	public void SetSpeed(float speed)
+	{
+		_speed = speed;
 	}
 
 	// Vlad, call me in animator after ATTACK animation is finished.
@@ -131,7 +148,12 @@ public partial class Enemy : CharacterBody3D
 
 	private void MoveTo(Vector3 nextNavigationPoint)
 	{
-		Velocity = (nextNavigationPoint - GlobalPosition).Normalized() * _speed;
-		MoveAndSlide();
+		Velocity = (nextNavigationPoint - GlobalPosition).Normalized() * _speed * Timescale.Enemy;
+		//MoveAndSlide();
+	}
+
+	public void ApplyImpulse(Vector3 impulse)
+	{
+		_impulse += impulse;
 	}
 }

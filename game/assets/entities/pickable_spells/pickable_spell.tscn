@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b838kd1w7kvox"]
+
+[ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableSpell.cs" id="1_3m7uw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_04wka"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rkby"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vkpr8"]
+
+[node name="PickableSpell" type="Area3D"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("1_3m7uw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_04wka")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_7rkby")
+mesh = SubResource("SphereMesh_vkpr8")

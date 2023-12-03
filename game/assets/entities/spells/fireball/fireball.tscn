@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw2ac62ymfwlq"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/fireball/Fireball.cs" id="1_xfx4e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t241y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hscld"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_708l7"]
+
+[node name="Fireball" type="Area3D"]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("1_xfx4e")
+_damage = 1.0
+_speed = 30.0
+_destroyOnCollide = true
+Type = 3
+Duration = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t241y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hscld")
+mesh = SubResource("SphereMesh_708l7")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

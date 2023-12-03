@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://boxnd6fpno5vc"]
+
+[ext_resource type="Script" path="res://assets/entities/spells/storm/Storm.cs" id="1_f5n4e"]
+[ext_resource type="PackedScene" uid="uid://e30p1fmalevx" path="res://assets/entities/spells/storm/mini_storm.tscn" id="2_8mass"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6rp3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30w8d"]
+albedo_color = Color(0.333333, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_brrp4"]
+
+[node name="Storm" type="Area3D"]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("1_f5n4e")
+_miniStormSpell = ExtResource("2_8mass")
+_damage = 2
+_speed = 7.5
+Type = 2
+Duration = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6rp3w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("StandardMaterial3D_30w8d")
+mesh = SubResource("SphereMesh_brrp4")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

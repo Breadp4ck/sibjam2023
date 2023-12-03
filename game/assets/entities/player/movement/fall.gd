@@ -19,8 +19,10 @@ func _physics_update(ctx: FiniteStateContext, delta: float) -> void:
 	if player.is_on_floor():
 		if Input.is_action_pressed("slide"):
 			ctx.jump_to("Slide")
+		elif Input.is_action_pressed("crouch"):
+			ctx.jump_to("Crouch")
 		else:
-			ctx.jump_to("Walk")
+			ctx.jump_to("Idle")
 		return
 	
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")

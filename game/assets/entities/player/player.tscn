@@ -5,11 +5,14 @@
 [ext_resource type="Script" path="res://assets/entities/player/camera.gd" id="1_oms4q"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/walk.gd" id="2_hvfwp"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/leap.gd" id="3_cmuim"]
+[ext_resource type="Script" path="res://assets/entities/spells/SpellRaycast.cs" id="4_hnmun"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/fall.gd" id="4_yhsxb"]
+[ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableRaycast.cs" id="5_2ak8n"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide.gd" id="6_uxfl0"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
+[ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_fteug"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
 [ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
 [ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
@@ -25,6 +28,8 @@ radius = 0.05
 height = 0.05
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_itaav"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4txfr")
@@ -50,9 +55,33 @@ mesh = SubResource("SphereMesh_sywkj")
 parent = NodePath("..")
 object = NodePath("../Camera3D")
 
+[node name="SpellCaster" parent="PseudoCamera" node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+_camera = NodePath("../Camera3D")
+_spellPresenter = NodePath("../../SpellPresenter")
+
+[node name="Spellraycast" type="RayCast3D" parent="PseudoCamera" node_paths=PackedStringArray("_spellCaster")]
+transform = Transform3D(4, 0, 0, 0, -4.37114e-08, -4, 0, 1, -1.74846e-07, 0, 0, 0)
+target_position = Vector3(0, -20, 0)
+collision_mask = 512
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
+script = ExtResource("4_hnmun")
+_spellCaster = NodePath("../SpellCaster")
+
+[node name="PickableRaycast" type="RayCast3D" parent="PseudoCamera"]
+transform = Transform3D(1, 0, 0, 0, -1.31134e-07, -1, 0, 3, -4.37114e-08, 0, 0, 0)
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("5_2ak8n")
+
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
+
+[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
 
 [node name="Movement" type="FiniteStateMachine" parent="." node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
@@ -84,11 +113,12 @@ camera = NodePath("../../PseudoCamera")
 FALL_WALK_SPEED = 7.0
 FALL_SOAR = 2.0
 
-[node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
+[node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
 script = ExtResource("6_uxfl0")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
+shape_cast = NodePath("../../ShapeCast")
 SLIDE_SPEED = 9.0
 SLIDE_FADING = 4.0
 
@@ -101,15 +131,13 @@ JUMP_POWER = 3.0
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
 
-[node name="SpellCaster" parent="." node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
-_camera = NodePath("../PseudoCamera/Camera3D")
-_spellPresenter = NodePath("../SpellPresenter")
-_spellObject = Array[PackedScene]([ExtResource("12_xoixf"), ExtResource("13_50ohs")])
+[node name="Crouch" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
+script = ExtResource("10_fteug")
+player = NodePath("../..")
+collision = NodePath("../../Collision")
+camera = NodePath("../../PseudoCamera")
+shape_cast = NodePath("../../ShapeCast")
 
-[node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
-visible = false
-
-[node name="GPUParticles3D" parent="." instance=ExtResource("14_cdnav")]
-
-[node name="GPUParticles3D2" parent="." instance=ExtResource("15_6rqo6")]
+[node name="ShapeCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("SphereShape3D_itaav")

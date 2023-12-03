@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// This class decides how and what to set in 'SpellCaster' 
@@ -9,8 +8,8 @@ public partial class SpellPresenter : Node3D
 {
 	[Export] private SpellSelectType _spellSelectType;
 
-	public SpellType ChosenSpellType => _chosenSpellType;
-	private SpellType _chosenSpellType;
+	public SpellType? ChosenSpellType => _chosenSpellType;
+	private SpellType? _chosenSpellType;
 
 	private const string SelectSpellSignature = "select_spell_";
 
@@ -21,7 +20,7 @@ public partial class SpellPresenter : Node3D
 			return;
 		}
 
-		for (var i = 0; i < Enum.GetNames(typeof(SpellSelectType)).Length; i++)
+		for (var i = 0; i < Enum.GetNames(typeof(SpellType)).Length; i++)
 		{
 			string selectSpellActionName = SelectSpellSignature + (i+1);
 				
@@ -29,10 +28,28 @@ public partial class SpellPresenter : Node3D
 			{
 				continue;
 			}
-				
-			_chosenSpellType = ((SpellType)i);
+			
+			SpellType wantedSpellType = (SpellType)i;
+
+			if (TryChooseSpell(wantedSpellType) == false)
+			{
+				GD.Print($"You don't have {wantedSpellType} spell!");
+			}
+			
 			break;
 		}
+	}
+	
+	private bool TryChooseSpell(SpellType spellType)
+	{
+		if (Inventory.HasSpell(spellType) == false)
+		{
+			return false;
+		}
+		
+		_chosenSpellType = spellType;
+		GD.Print($"Spell {_chosenSpellType} selected!");
+		return true;
 	}
 }
 
