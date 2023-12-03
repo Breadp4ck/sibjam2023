@@ -6,6 +6,7 @@ extends FiniteState
 @export var FALL_GRAVITY: float = 9.81
 @export var FALL_SOAR: float = 1.0
 @export var FALL_SLIDE_SPEED: float = 20.0
+@export var MAX_VELOCITY: float = 15.0
 
 var CameraDirection: Basis
 
@@ -61,3 +62,5 @@ func _physics_update(ctx: FiniteStateContext, delta: float) -> void:
 	
 	player.velocity.y -= FALL_GRAVITY * FALL_SOAR * delta
 	
+	player.velocity.x = clampf(player.velocity.x, -MAX_VELOCITY, MAX_VELOCITY)
+	player.velocity.z = clampf(player.velocity.z, -MAX_VELOCITY, MAX_VELOCITY)
