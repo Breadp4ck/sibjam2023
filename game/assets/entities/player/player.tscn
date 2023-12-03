@@ -72,8 +72,9 @@ script = ExtResource("4_hnmun")
 _spellCaster = NodePath("../SpellCaster")
 
 [node name="PickableRaycast" type="RayCast3D" parent="PseudoCamera"]
-transform = Transform3D(1, 0, 0, 0, -1.31134e-07, -1, 0, 3, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.31134e-07, -300, 0, 3, -1.31134e-05, 0, 0, 0)
 collision_mask = 128
+hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("5_2ak8n")
@@ -83,7 +84,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
 
 [node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
-_spellSelectType = 1
 
 [node name="Speech" type="Node3D" parent="." node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("8_h682d")

@@ -9,7 +9,7 @@ public partial class Speech : Node
     // Must match spells.dict file.
     private Dictionary<string, SpellType> _spellTypeBySpeech = new()
     {
-        {"fire", SpellType.TimeTwister},
+        {"time", SpellType.TimeTwister},
         {"slow", SpellType.SlowMob},
         {"storm", SpellType.Storm},
         {"fire", SpellType.Fireball},
@@ -19,7 +19,7 @@ public partial class Speech : Node
     // From Signal
     private void OnSpeechParsed(string text)
     {
-        GD.Print("Catch " + text);
+        GD.Print("Parsed " + text);
 
         if (text == string.Empty)
         {
