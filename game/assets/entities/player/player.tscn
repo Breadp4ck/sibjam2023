@@ -110,7 +110,6 @@ script = ExtResource("5_2ak8n")
 
 [node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
-visible = false
 collision_layer = 0
 collision_mask = 512
 monitoring = false
