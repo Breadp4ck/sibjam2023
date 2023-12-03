@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://xih81spniu1v"]
 
-[ext_resource type="Script" path="res://assets/entities/enemy/Zombie/Zombie.cs" id="1_qelof"]
+[ext_resource type="Script" path="res://assets/entities/enemy/Enemy.cs" id="1_okldt"]
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="2_n6ggd"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="3_1ox7k"]
 [ext_resource type="Script" path="res://assets/entities/enemy/Zombie/HitArea.cs" id="4_4rik2"]
@@ -21,10 +21,9 @@ height = 1.0
 
 [node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "_patrolPoints")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_qelof")
+script = ExtResource("1_okldt")
 _navigationAgent = NodePath("NavigationAgent3D")
 _speed = 2.0
-_attackRange = 1.0
 _viewDistance = 5.0
 _forgetDistanceIfChasing = 15.0
 _patrolPoints = []
