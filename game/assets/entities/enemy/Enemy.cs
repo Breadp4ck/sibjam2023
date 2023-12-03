@@ -6,7 +6,9 @@ public partial class Enemy : CharacterBody3D
 {
 	protected Vector3 Impulse = Vector3.Zero;
 	protected EnemyState State = EnemyState.Idle;
-
+	
+	[Export] public Vector3 RealPosition; // Offset from the 0 coords to 'real' enemy position.
+	
 	[Export] private NavigationAgent3D _navigationAgent;
 	
 	// Set me in editor or using SetTarget method (e.g. EnemySpawner spawns and invokes this method).
@@ -20,7 +22,7 @@ public partial class Enemy : CharacterBody3D
 	[Export] private float _forgetDistanceIfChasing;
 	[Export] private float _runAwayDistance;
 	[Export] private float _startAttackTimeSeconds;
-	[Export] private float _endAttackTimeSeconds;
+	[Export] protected float EndAttackTimeSeconds;
 	[Export] private float _attackCooldownSeconds;
 
 	[Export] private HitArea _hitArea;
@@ -32,10 +34,12 @@ public partial class Enemy : CharacterBody3D
 	private float _gravityForce = 20f;
 
 	protected bool BlockStateMachine;
-	private bool _isAttackOnCooldown;
+	protected bool IsAttackOnCooldown;
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		LookAt(new Vector3(Target.GlobalPosition.X, GlobalPosition.Y, Target.GlobalPosition.Z), Vector3.Up);
+
 		if (IsOnFloor() && BlockStateMachine == false)
 		{
 			switch (State)
@@ -105,9 +109,17 @@ public partial class Enemy : CharacterBody3D
 
 	#region StateMachine
 
-	protected void Idle()
+	protected virtual void Idle()
 	{
 		State = EnemyState.Patrol;
+		
+		if (_patrolPoints.Length == 0)
+		{
+			SetViewDistance(50);
+			SetForgetDistanceIfChasing(50);
+			State = EnemyState.Chase;
+			return;
+		}
 		
 		int randomIndex = Random.Shared.Next(0, _patrolPoints.Length);
 		_selectedPatrolPoint = _patrolPoints[randomIndex];
@@ -141,13 +153,13 @@ public partial class Enemy : CharacterBody3D
 			return;
 		}
 		
-		if (Target.GlobalPosition.DistanceTo(GlobalPosition) <= _attackRange && _isAttackOnCooldown == false)
+		if (Target.GlobalPosition.DistanceTo(GlobalPosition) <= _attackRange && IsAttackOnCooldown == false)
 		{
 			State = EnemyState.StartAttack;
 			return;
 		}
 		
-		if (Target.GlobalPosition.DistanceTo(GlobalPosition) <= _runAwayDistance && _isAttackOnCooldown == true)
+		if (Target.GlobalPosition.DistanceTo(GlobalPosition) <= _runAwayDistance && IsAttackOnCooldown == true)
 		{
 			State = EnemyState.Runaway;
 			return;
@@ -156,14 +168,12 @@ public partial class Enemy : CharacterBody3D
 		_navigationAgent.TargetPosition = Target.GlobalPosition;
 		Vector3 nextNavigationPoint = _navigationAgent.GetNextPathPosition();
 		MoveTo(nextNavigationPoint);
-		
-		LookAt(new Vector3(Target.GlobalPosition.X, GlobalPosition.Y, Target.GlobalPosition.Z), Vector3.Up);
 	}
 	
 	protected virtual void Runaway()
 	{
 		float distanceToPlayer = Target.GlobalPosition.DistanceTo(GlobalPosition);
-		if (distanceToPlayer > _runAwayDistance && _isAttackOnCooldown == false)
+		if (distanceToPlayer > _runAwayDistance && IsAttackOnCooldown == false)
 		{
 			State = EnemyState.Chase;
 			return;
@@ -173,8 +183,6 @@ public partial class Enemy : CharacterBody3D
 		{
 			MoveTo(GlobalPosition - Target.GlobalPosition);
 		}
-		
-		LookAt(new Vector3(Target.GlobalPosition.X, GlobalPosition.Y, Target.GlobalPosition.Z), Vector3.Up);
 	}
 	
 	protected virtual async void StartAttack()
@@ -194,8 +202,6 @@ public partial class Enemy : CharacterBody3D
 				State = EnemyState.Chase;
 				return;
 			}
-			
-			LookAt(new Vector3(Target.GlobalPosition.X, GlobalPosition.Y, Target.GlobalPosition.Z), Vector3.Up);
 		}
 		
 		BlockStateMachine = false;
@@ -214,18 +220,18 @@ public partial class Enemy : CharacterBody3D
 		AttackInternal();
 		State = EnemyState.EndAttack;
 		
-		_isAttackOnCooldown = true;
+		IsAttackOnCooldown = true;
 		await Task.Delay((int)(_attackCooldownSeconds * 1000));
-		_isAttackOnCooldown = false;
+		IsAttackOnCooldown = false;
 	}
 	
 	protected virtual async void EndAttack()
 	{
 		BlockStateMachine = true;
-		await Task.Delay((int)(_endAttackTimeSeconds * 1000));
+		await Task.Delay((int)(EndAttackTimeSeconds * 1000));
 		BlockStateMachine = false;
 
-		State = EnemyState.Chase;
+		State = EnemyState.Chase; // TODO: Can be switched to Idle?
 	}
 	
 	#endregion
@@ -236,9 +242,14 @@ public partial class Enemy : CharacterBody3D
 		MoveAndSlide();
 	}
 
-	private void CanAttack()
+	private void SetViewDistance(float viewDistance)
 	{
-		
+		_viewDistance = viewDistance;
+	}
+
+	private void SetForgetDistanceIfChasing(float forgetDistanceIfChasing)
+	{
+		_forgetDistanceIfChasing = forgetDistanceIfChasing;
 	}
 	
 	public void ApplyImpulse(Vector3 impulse)

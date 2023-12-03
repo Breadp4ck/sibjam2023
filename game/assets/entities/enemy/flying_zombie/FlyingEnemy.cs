@@ -4,7 +4,6 @@ using System;
 public partial class FlyingEnemy : Enemy
 {
     [Export] private PackedScene _projectile;
-    [Export] private Vector3 _realPosition; // Offset from the 0 coords to 'real' enemy position.
 
     public override void _PhysicsProcess(double delta)
     {
@@ -14,7 +13,6 @@ public partial class FlyingEnemy : Enemy
             return;
         }
         
-        GD.Print(State);
         switch (State)
         {
             case EnemyState.Idle:
@@ -47,16 +45,16 @@ public partial class FlyingEnemy : Enemy
 
     protected override void AttackInternal()
     {
-        Projectile miniSpell = _projectile.Instantiate() as Projectile;
+        Projectile projectile = _projectile.Instantiate() as Projectile;
         
-        if (miniSpell == null)
+        if (projectile == null)
         {
             return;
         }
 
-        GetTree().Root.AddChild(miniSpell);
-        miniSpell.GlobalPosition = GlobalPosition + _realPosition;
-        miniSpell.SetDirection(Target.GlobalPosition - GlobalPosition);
-        miniSpell.Cast();
+        GetTree().Root.AddChild(projectile);
+        projectile.GlobalPosition = GlobalPosition + RealPosition;
+        projectile.SetDirection(Target.GlobalPosition + Vector3.Up - projectile.GlobalPosition);
+        projectile.Cast();
     }
 }

@@ -6,4 +6,5 @@
     Fireball,
     Spurn,
     FlyEnemyProjectile,
+    BossProjectile,
 }

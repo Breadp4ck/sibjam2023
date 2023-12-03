@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
 [ext_resource type="Texture2D" uid="uid://bxihw70oy7j1s" path="res://assets/textures/kenney_prototype/orange/texture_02.png" id="2_aohws"]
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="3_qh05b"]
+[ext_resource type="PackedScene" uid="uid://b83spc5req7g5" path="res://assets/entities/enemy/boss/boss.tscn" id="7_g5bk4"]
 [ext_resource type="PackedScene" uid="uid://b838kd1w7kvox" path="res://assets/entities/pickable_spells/pickable_spell.tscn" id="7_he0uy"]
-[ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="7_t2307"]
 [ext_resource type="PackedScene" uid="uid://cbt5fn78uv58p" path="res://assets/entities/world/cassette_player/cassette_player.tscn" id="9_ssjfp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_gi6b4"]
@@ -108,9 +108,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8686, 1.11892, 10.8412)
 [node name="CassettePlayer2" parent="." instance=ExtResource("9_ssjfp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414448, 2.74655, 1.49622)
 
-[node name="FlyingZombie" parent="." node_paths=PackedStringArray("Target", "_patrolPoints") instance=ExtResource("7_t2307")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 7)
+[node name="Boss" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("7_g5bk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.5, 9)
 Target = NodePath("../Player")
-_endAttackTimeSeconds = 0.5
-_attackCooldownSeconds = 4.0
-_patrolPoints = [NodePath("../PatrolPosition"), NodePath("../PatrolPosition2"), NodePath("../PatrolPosition3")]

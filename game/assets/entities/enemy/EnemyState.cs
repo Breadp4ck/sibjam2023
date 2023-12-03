@@ -8,4 +8,6 @@ public enum EnemyState
 	Attack,
 	EndAttack,
 	Dead,
+	SpawnHorcrux,
+	SpawnMonsters,
 }

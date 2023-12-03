@@ -26,7 +26,6 @@ _viewDistance = 5.0
 _forgetDistanceIfChasing = 15.0
 _runAwayDistance = -1.0
 _startAttackTimeSeconds = 1.0
-_endAttackTimeSeconds = 1.0
 _hitArea = NodePath("HitArea")
 _patrolPoints = []
 
