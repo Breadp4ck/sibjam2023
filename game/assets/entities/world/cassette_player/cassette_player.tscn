@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbt5fn78uv58p"]
+
+[ext_resource type="Script" path="res://assets/entities/world/cassette_player/CassettePlayer.cs" id="1_fgyo1"]
+[ext_resource type="AudioStream" uid="uid://bqx64y84esin3" path="res://assets/entities/world/NightlessNight.wav" id="2_ol540"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2al0m"]
+radius = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wppch"]
+albedo_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qysff"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ut4w"]
+albedo_color = Color(0.933333, 1, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_pgrtf"]
+material = SubResource("StandardMaterial3D_1ut4w")
+text = "TAPE RECORDER"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvxjn"]
+albedo_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_caopw"]
+
+[node name="CassettePlayer" type="Area3D" node_paths=PackedStringArray("_audioPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource("1_fgyo1")
+_audioPlayer = NodePath("AudioStreamPlayer3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2al0m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.348033, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wppch")
+mesh = SubResource("BoxMesh_qysff")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.711345, 0, 0, 0, 2.12478, 0, 0, 0, 1, -4.88758e-06, 0.282019, 0.543163)
+mesh = SubResource("TextMesh_pgrtf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.711345, 0, 0, 0, 2.12478, 0, 0, 0, 1, -4.88758e-06, -0.158824, 0.543163)
+mesh = SubResource("TextMesh_pgrtf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.711345, 0, 8.74228e-08, 0, 2.12478, 0, -6.21877e-08, 0, -1, -4.90164e-06, -0.158824, -0.53348)
+mesh = SubResource("TextMesh_pgrtf")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.711345, 0, 8.74228e-08, 0, 2.12478, 0, -6.21877e-08, 0, -1, 0, 0.282, -0.533)
+mesh = SubResource("TextMesh_pgrtf")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.711345, 0, 8.74228e-08, 0, 2.12478, 0, -6.21877e-08, 0, -1, -7.89183e-09, 0.620885, -0.442728)
+mesh = SubResource("TextMesh_pgrtf")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.711345, 0, -1.74846e-07, 0, 2.12478, 0, 1.24375e-07, 0, 1, -1.20843e-07, 0.620885, 0.429618)
+mesh = SubResource("TextMesh_pgrtf")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.535294, 0, 0, 0, 0.330117, 0, 0.515808, 0)
+material_override = SubResource("StandardMaterial3D_fvxjn")
+mesh = SubResource("BoxMesh_caopw")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ol540")
+max_distance = 10.0
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
