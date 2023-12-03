@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://xih81spniu1v"]
+[gd_scene load_steps=10 format=3 uid="uid://xih81spniu1v"]
 
 [ext_resource type="Script" path="res://assets/entities/enemy/Enemy.cs" id="1_okldt"]
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="2_n6ggd"]
@@ -17,15 +17,17 @@ radius = 0.7
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g4a1r"]
 height = 1.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_2ndww"]
-
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "_patrolPoints")]
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "_hitArea", "_patrolPoints")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_okldt")
 _navigationAgent = NodePath("NavigationAgent3D")
 _speed = 2.0
 _viewDistance = 5.0
 _forgetDistanceIfChasing = 15.0
+_runAwayDistance = -1.0
+_startAttackTimeSeconds = 1.0
+_endAttackTimeSeconds = 1.0
+_hitArea = NodePath("HitArea")
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -58,15 +60,12 @@ shape = SubResource("CapsuleShape3D_x776u")
 transform = Transform3D(0.0351262, 0, -0.999383, 0, 1, 0, 0.999383, 0, 0.0351262, 0.0742639, 0, -1.89461)
 collision_layer = 0
 collision_mask = 1024
+monitoring = false
 script = ExtResource("4_4rik2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.888901, 0.269651, 0)
 shape = SubResource("CylinderShape3D_g4a1r")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HitArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675259, 0.306855, 0)
-mesh = SubResource("SphereMesh_2ndww")
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]

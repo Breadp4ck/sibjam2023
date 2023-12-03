@@ -4,5 +4,6 @@
     SlowMob,
     Storm,
     Fireball,
-    Spurn
+    Spurn,
+    FlyEnemyProjectile,
 }
