@@ -9,6 +9,5 @@ public partial class HitArea : Area3D
     {
         HitboxComponent hitboxComponent = (HitboxComponent)area3D;
         hitboxComponent.Hit(_damage);
-        GD.Print(hitboxComponent.Name);
     }
 }
