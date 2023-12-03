@@ -4,6 +4,7 @@ extends FiniteState
 @export var collision: CollisionShape3D
 @export var camera: Node3D
 @export var shape_cast : ShapeCast3D
+@export var shape_cast_walls : ShapeCast3D
 
 @export var SLIDE_SPEED: float = 20.0
 @export var SLIDE_DURATION: float = 3.0
@@ -71,15 +72,15 @@ func _physics_update(ctx: FiniteStateContext, _delta: float) -> void:
 	if t > 0.3:
 		player.velocity.x += direction.x * TURN_RATE
 		player.velocity.z += direction.z * TURN_RATE
-		
-	shape_cast.force_shapecast_update()
-	shape_cast.get_collision_count()
-	if shape_cast.is_colliding():
-		ctx.jump_to("Idle")
+	
+	shape_cast_walls.force_shapecast_update()
+	shape_cast_walls.get_collision_count()
+	if shape_cast_walls.is_colliding():
+		ctx.jump_to("Crouch")
 	
 	if Input.is_action_pressed("jump"):
 		ctx.jump_to("SlideJump")
-		
+	
 	elif not Input.is_action_pressed("slide"):
 		shape_cast.force_shapecast_update()
 		shape_cast.get_collision_count()

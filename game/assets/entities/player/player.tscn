@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=28 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -47,6 +47,9 @@ autowrap_mode = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_itaav"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c660s"]
+height = 0.1
 radius = 0.55
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
@@ -59,12 +62,10 @@ _spellPresenter = NodePath("SpellPresenter")
 
 [node name="PseudoCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-visible = false
 script = ExtResource("1_oms4q")
 
 [node name="Camera3D" type="Camera3D" parent="PseudoCamera"]
 top_level = true
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
@@ -173,12 +174,13 @@ camera = NodePath("../../PseudoCamera")
 FALL_WALK_SPEED = 9.0
 FALL_SOAR = 2.0
 
-[node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
+[node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast", "shape_cast_walls")]
 script = ExtResource("6_uxfl0")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
+shape_cast_walls = NodePath("../../ShapeCastWalls")
 SLIDE_SPEED = 10.0
 SLIDE_DURATION = 4.0
 
@@ -202,7 +204,13 @@ shape_cast = NodePath("../../ShapeCast")
 
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285248, 1.6, 0)
+visible = false
 shape = SubResource("SphereShape3D_itaav")
+
+[node name="ShapeCastWalls" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452309, 0)
+shape = SubResource("CylinderShape3D_c660s")
+target_position = Vector3(0, 0, 0)
 
 [node name="HitboxComponent" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
