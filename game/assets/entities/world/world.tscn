@@ -6,9 +6,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqbs"]
 shader = ExtResource("2_6mdib")
-shader_parameter/enabled = true
-shader_parameter/dithering = true
-shader_parameter/colors = 16
+shader_parameter/enabled = false
+shader_parameter/dithering = false
+shader_parameter/colors = 12
 shader_parameter/dither_size = 1
 shader_parameter/coeff = 0.048
 

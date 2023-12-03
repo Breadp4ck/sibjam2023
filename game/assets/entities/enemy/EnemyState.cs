@@ -1,8 +1,8 @@
-﻿public enum EnemyState
+public enum EnemyState
 {
-    Idle,
-    Patrol,
-    Chase,
-    Attack,
-    Dead,
+	Idle,
+	Patrol,
+	Chase,
+	Attack,
+	Dead,
 }
