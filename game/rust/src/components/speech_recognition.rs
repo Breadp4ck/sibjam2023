@@ -74,6 +74,19 @@ struct PocketSphinxCmdData {
 
 type Tokens = Vec<String>;
 
+macro_rules! generate_input_stream {
+    ($self:ident, $config:expr, $data:ident, $writer:expr, $err_fn:expr, $sample_format:ty) => {
+        $self
+            .device
+            .build_input_stream(
+                &$config,
+                move |$data, _: &_| write_input_data::<$sample_format, i16>($data, &$writer),
+                $err_fn,
+                None,
+            )
+            .unwrap()
+    };
+}
 #[godot_api]
 impl SpeechRecognitionComponent {
     /// Start record process. If the record process or parsing process are already begun, then
@@ -98,15 +111,44 @@ impl SpeechRecognitionComponent {
         // Run the input stream on a separate thread.
         let writer_2 = writer.clone();
 
-        let stream = self
+        let cfg = self
             .device
-            .build_input_stream(
-                &CPAL_STREAM_CONFIG,
-                move |data, _: &_| write_input_data::<i16, i16>(data, &writer_2),
-                err_fn,
-                None,
-            )
-            .unwrap();
+            .default_input_config()
+            .expect("Error retieving input config");
+
+        let stream = match cfg.sample_format() {
+            cpal::SampleFormat::I8 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, i8)
+            }
+            cpal::SampleFormat::I16 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, i16)
+            }
+            cpal::SampleFormat::I32 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, i32)
+            }
+            cpal::SampleFormat::U8 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, u8)
+            }
+            cpal::SampleFormat::U16 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, u16)
+            }
+            cpal::SampleFormat::U32 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, u32)
+            }
+            cpal::SampleFormat::F32 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, f32)
+            }
+            cpal::SampleFormat::I64 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, i64)
+            }
+            cpal::SampleFormat::U64 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, u64)
+            }
+            cpal::SampleFormat::F64 => {
+                generate_input_stream!(self, cfg.into(), data, writer_2, err_fn, f64)
+            }
+            _ => todo!(),
+        };
 
         stream.play().unwrap();
 
@@ -225,7 +267,7 @@ impl INode for SpeechRecognitionComponent {
         if let Ok(tokens) = self.tokens_receiver.try_recv() {
             godot_print!("{tokens:?}");
             self.parsing = false;
-            self.base.emit_signal("speech_parsed".into(), &[]);
+            self.base.emit_signal("speech_parsed".into(), &[Variant::from(tokens[0].clone())]);
         }
     }
 }

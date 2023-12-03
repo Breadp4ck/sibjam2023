@@ -1,7 +1,4 @@
-using Godot;
-using System;
-
-public static partial class Timescale
+public static class Timescale
 {
     public static float Enemy => _enemy;
     private static float _enemy = 1.0f;
