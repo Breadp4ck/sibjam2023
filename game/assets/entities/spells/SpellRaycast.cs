@@ -20,6 +20,6 @@ public partial class SpellRaycast : RayCast3D
 		}
 		
 		_spellCaster.SetTarget(enemy);
-		GD.Print(enemy + " is new target!");
+		GD.Print(enemy.Name + " is new target!");
 	}
 }
