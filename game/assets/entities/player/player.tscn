@@ -47,6 +47,7 @@ autowrap_mode = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_itaav"]
+radius = 0.55
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
 
@@ -58,10 +59,12 @@ _spellPresenter = NodePath("SpellPresenter")
 
 [node name="PseudoCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+visible = false
 script = ExtResource("1_oms4q")
 
 [node name="Camera3D" type="Camera3D" parent="PseudoCamera"]
 top_level = true
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
@@ -76,9 +79,11 @@ mesh = SubResource("SphereMesh_sywkj")
 [node name="PidController" type="PidController" parent="PseudoCamera" node_paths=PackedStringArray("parent", "object")]
 parent = NodePath("..")
 object = NodePath("../Camera3D")
+visible = false
 
 [node name="SpellCaster" parent="PseudoCamera" node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
 _camera = NodePath("../Camera3D")
 _spellPresenter = NodePath("../../SpellPresenter")
 
@@ -104,6 +109,7 @@ script = ExtResource("5_2ak8n")
 
 [node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+visible = false
 collision_layer = 0
 collision_mask = 512
 monitoring = false
@@ -195,7 +201,7 @@ camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
 
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285248, 1.6, 0)
 shape = SubResource("SphereShape3D_itaav")
 
 [node name="HitboxComponent" type="Area3D" parent="."]
