@@ -203,7 +203,6 @@ shape_cast = NodePath("../../ShapeCast")
 
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285248, 1.6, 0)
-visible = false
 shape = SubResource("SphereShape3D_itaav")
 
 [node name="ShapeCastWalls" type="ShapeCast3D" parent="."]

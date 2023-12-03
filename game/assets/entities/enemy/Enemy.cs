@@ -8,7 +8,8 @@ public partial class Enemy : CharacterBody3D
 	// Set me in editor or using SetTarget method (e.g. EnemySpawner spawns and invokes this method).
 	[Export] private Node3D _target;
 	
-	public float Speed => _speed;	
+	public float Speed => _speed;
+	public float AttackRange => _attackRange;
 	[Export] private float _speed;
 	[Export] private float _attackRange;
 	[Export] private float _viewDistance;
@@ -131,7 +132,7 @@ public partial class Enemy : CharacterBody3D
 		LookAt(new Vector3(_target.GlobalPosition.X, GlobalPosition.Y, _target.GlobalPosition.Z), Vector3.Up);
 	}
 	
-	private void Attack()
+	protected virtual void Attack()
 	{
 		if (_target.GlobalPosition.DistanceTo(GlobalPosition) > _attackRange)
 		{

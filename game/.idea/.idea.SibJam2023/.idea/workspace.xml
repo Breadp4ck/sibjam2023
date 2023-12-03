@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/entities/player/movement/slide.gd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/movement/slide.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/player/movement/slide_fall.gd" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/movement/slide_fall.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/player.tscn" afterDir="false" />
     </list>
@@ -34,7 +36,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;inventory&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;monster&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -102,6 +104,9 @@
       <workItem from="1701526474625" duration="2350000" />
       <workItem from="1701575083871" duration="2053000" />
       <workItem from="1701598235321" duration="1000" />
+      <workItem from="1701611285821" duration="1521000" />
+      <workItem from="1701614823338" duration="2703000" />
+      <workItem from="1701618061771" duration="1591000" />
     </task>
     <servers />
   </component>
