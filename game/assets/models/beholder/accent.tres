@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brvjt5potbrcj"]
 
-[ext_resource type="Texture2D" uid="uid://c3isjwkvixsmk" path="res://assets/textures/Galvanized_Metal_normal.png" id="1_7uoid"]
+[ext_resource type="Texture2D" path="res://assets/textures/Galvanized_Metal_normal.png" id="1_7uoid"]
 
 [resource]
 albedo_color = Color(0.854902, 0.337255, 0.462745, 1)
