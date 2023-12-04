@@ -219,6 +219,7 @@ _healthComponent = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_jfsaf")
 
 [node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
+_maxHealth = 100.0
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3

@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://dy55rfw7cbvvs"]
+
+[ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="1_67tjl"]
+[ext_resource type="Script" path="res://assets/entities/enemy/Enemy.cs" id="1_jrucy"]
+[ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="2_n3b2o"]
+[ext_resource type="Script" path="res://assets/entities/enemy/Zombie/HitArea.cs" id="3_7jcyd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7f6sj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nirpr"]
+albedo_color = Color(0, 0.666667, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ahaml"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wj3db"]
+radius = 0.6
+height = 1.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gixq6"]
+radius = 0.759444
+height = 1.6318
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6p0wk"]
+height = 1.0
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "HitArea", "_patrolPoints")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_jrucy")
+_navigationAgent = NodePath("NavigationAgent3D")
+_speed = 4.0
+_viewDistance = 10.0
+_forgetDistanceIfChasing = 15.0
+_attackCooldownSeconds = 3.0
+HitArea = NodePath("HitArea")
+_patrolPoints = []
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("SphereShape3D_7f6sj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_nirpr")
+mesh = SubResource("SphereMesh_ahaml")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.15
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("1_67tjl")]
+collision_layer = 512
+collision_mask = 0
+_healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.531445, 0)
+shape = SubResource("CapsuleShape3D_wj3db")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_n3b2o")]
+
+[node name="TargetRaycastArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetRaycastArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.542152, 0)
+shape = SubResource("CapsuleShape3D_gixq6")
+
+[node name="HitArea" type="Area3D" parent="."]
+transform = Transform3D(0.0351262, 0, -0.999383, 0, 1, 0, 0.999383, 0, 0.0351262, 0, -0.7, -1.895)
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource("3_7jcyd")
+_damage = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.888901, 0.269651, 0)
+shape = SubResource("CylinderShape3D_6p0wk")
+
+[connection signal="Dead" from="HealthComponent" to="." method="Die"]
+[connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]

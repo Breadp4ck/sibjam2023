@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b83spc5req7g5"]
+[gd_scene load_steps=16 format=3 uid="uid://b83spc5req7g5"]
 
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="1_8lcvc"]
 [ext_resource type="Script" path="res://assets/entities/enemy/boss/Boss.cs" id="1_vwhwh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="4_lrvtg"]
 [ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="5_4py2w"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="5_ax4me"]
+[ext_resource type="PackedScene" uid="uid://dy55rfw7cbvvs" path="res://assets/entities/enemy/Enemy.tscn" id="6_0ewfq"]
 [ext_resource type="PackedScene" uid="uid://doowxoqxkj6gk" path="res://assets/models/boss/boss.gltf" id="10_tmxtp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4b0nm"]
@@ -26,7 +27,7 @@ radius = 2.2
 script = ExtResource("1_vwhwh")
 _bossProjectile = ExtResource("2_c0uk2")
 _horcruxScene = ExtResource("3_pm15s")
-_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w"), ExtResource("4_lrvtg")])
+_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w"), ExtResource("6_0ewfq")])
 _horcruxSpawnPositions = [NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition2"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition3")]
 _enemySpawners = [NodePath("EnemySpawnPositions/EnemySpawner"), NodePath("EnemySpawnPositions/EnemySpawner2"), NodePath("EnemySpawnPositions/EnemySpawner3"), NodePath("EnemySpawnPositions/EnemySpawner4")]
 _hitboxComponent = NodePath("HitboxComponent")
@@ -54,7 +55,6 @@ path_height_offset = 0.15
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
 collision_layer = 512
 collision_mask = 0
-monitorable = false
 _healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
