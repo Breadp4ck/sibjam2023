@@ -26,26 +26,25 @@ radius = 0.7
 height = 8.0
 radius = 2.2
 
-[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("_horcruxSpawnPositions", "_enemySpawners", "_hitboxComponent", "_navigationAgent", "_hitArea", "_patrolPoints")]
+[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("_horcruxSpawnPositions", "_enemySpawners", "_hitboxComponent", "_navigationAgent", "HitArea", "_patrolPoints")]
 script = ExtResource("1_vwhwh")
 _bossProjectile = ExtResource("2_c0uk2")
 _horcruxScene = ExtResource("3_pm15s")
-_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w")])
+_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w"), ExtResource("4_lrvtg")])
 _horcruxSpawnPositions = [NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition2"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition3")]
 _enemySpawners = [NodePath("EnemySpawnPositions/EnemySpawner"), NodePath("EnemySpawnPositions/EnemySpawner2"), NodePath("EnemySpawnPositions/EnemySpawner3"), NodePath("EnemySpawnPositions/EnemySpawner4")]
 _hitboxComponent = NodePath("HitboxComponent")
-_realPosition = Vector3(0, 5, 0)
 _horcruxSpawnCount = 3
 _monsterSpawnCount = 2
 _horcruxSpawnCooldownSeconds = 15.0
 _monsterSpawnCooldownSeconds = 10.0
+RealPosition = Vector3(0, 5, 0)
 _navigationAgent = NodePath("NavigationAgent3D")
 _attackRange = 50.0
 _viewDistance = 50.0
 _forgetDistanceIfChasing = 999.0
-_startAttackTimeSeconds = 1.0
 _attackCooldownSeconds = 3.0
-_hitArea = NodePath("HitArea")
+HitArea = NodePath("HitArea")
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -64,6 +63,7 @@ path_height_offset = 0.15
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
 collision_layer = 512
 collision_mask = 0
+monitorable = false
 _healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]

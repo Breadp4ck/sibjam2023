@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/boss/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/boss/Boss.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/boss/Horcrux.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/boss/Horcrux.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/boss/boss.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/boss/boss.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/boss/horcrux.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/boss/horcrux.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/flying_zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/flying_zombie.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/SpellRaycast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/SpellRaycast.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +39,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;monster&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ui__settings__switch&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -47,15 +50,15 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\bossv\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\bossv\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\bossv\\AppData\\Local\\Symbols\\src&quot;
+      &quot;C:\\Users\\super\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\super\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\super\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../Godot/Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;$PROJECT_DIR$&quot; --editor" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -68,7 +71,7 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../Godot/Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Godot_v4.2-stable_mono_win64/Godot_v4.2-stable_mono_win64.exe" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;$PROJECT_DIR$&quot;" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -108,6 +111,7 @@
       <workItem from="1701614823338" duration="2703000" />
       <workItem from="1701618061771" duration="1591000" />
       <workItem from="1701658959357" duration="3266000" />
+      <workItem from="1701670702267" duration="6338000" />
     </task>
     <servers />
   </component>
