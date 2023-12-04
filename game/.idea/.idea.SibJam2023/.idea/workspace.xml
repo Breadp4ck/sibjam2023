@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/SpellPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/SpellPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +36,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;monster&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;UI&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -108,6 +108,7 @@
       <workItem from="1701614823338" duration="2703000" />
       <workItem from="1701618061771" duration="1591000" />
       <workItem from="1701658959357" duration="3266000" />
+      <workItem from="1701680658935" duration="3457000" />
     </task>
     <servers />
   </component>
