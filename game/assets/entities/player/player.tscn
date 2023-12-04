@@ -69,6 +69,7 @@ script = ExtResource("1_oms4q")
 
 [node name="Camera3D" type="Camera3D" parent="PseudoCamera"]
 top_level = true
+far = 95.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
