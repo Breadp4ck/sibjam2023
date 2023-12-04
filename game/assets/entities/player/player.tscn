@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=30 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://assets/entities/player/movement/fall.gd" id="4_yhsxb"]
 [ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableRaycast.cs" id="5_2ak8n"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide.gd" id="6_uxfl0"]
+[ext_resource type="Script" path="res://assets/entities/interactable/InteractRaycast.cs" id="7_m4xbj"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
 [ext_resource type="Script" path="res://assets/components/speech_recognition/Speech.cs" id="8_h682d"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
@@ -102,13 +103,22 @@ script = ExtResource("4_hnmun")
 _spellCaster = NodePath("../SpellCaster")
 
 [node name="PickableRaycast" type="RayCast3D" parent="PseudoCamera"]
-transform = Transform3D(100, 0, 0, 0, -1.31134e-07, -300, 0, 3, -1.31134e-05, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.74846e-07, -300, 0, 4, -1.31134e-05, 0, 0, 0)
 visible = false
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("5_2ak8n")
+
+[node name="InteractRaycast" type="RayCast3D" parent="PseudoCamera"]
+transform = Transform3D(100, 0, 0, 0, -1.74846e-07, -300, 0, 4, -1.31134e-05, 0, 0, 0)
+visible = false
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("7_m4xbj")
 
 [node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
@@ -140,6 +150,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
 
 [node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
+_spellSelectType = 1
 
 [node name="Speech" type="Node3D" parent="." node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("8_h682d")

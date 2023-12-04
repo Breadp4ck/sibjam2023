@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dehodl12notn5"]
+[gd_scene load_steps=15 format=3 uid="uid://dehodl12notn5"]
 
 [ext_resource type="Environment" uid="uid://c8q4wwr8cnji2" path="res://assets/entities/levels/backrooms/envs/fog.tres" id="1_1x53r"]
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="3_qh05b"]
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="7_gytr3"]
 [ext_resource type="PackedScene" uid="uid://b838kd1w7kvox" path="res://assets/entities/pickable_spells/pickable_spell.tscn" id="7_he0uy"]
+[ext_resource type="PackedScene" uid="uid://cql5va2epsq7d" path="res://assets/entities/interactable/spell_select_type_switcher.tscn" id="8_i0pss"]
 [ext_resource type="PackedScene" uid="uid://cbt5fn78uv58p" path="res://assets/entities/world/cassette_player/cassette_player.tscn" id="9_ssjfp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_gi6b4"]
@@ -112,3 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414448, 2.74655, 1.49622)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2226, 1.5, 9.41381)
 Target = NodePath("../Player")
 _patrolPoints = [NodePath("../PatrolPosition"), NodePath("../PatrolPosition2"), NodePath("../PatrolPosition3")]
+
+[node name="SpellSelectTypeSwitcher" parent="." instance=ExtResource("8_i0pss")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 1, 15)

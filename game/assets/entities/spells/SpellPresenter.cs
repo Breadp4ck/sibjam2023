@@ -25,6 +25,11 @@ public partial class SpellPresenter : Node3D
 		SelectViaKeyboard(inputEvent);
 	}
 	
+	public void SetSpellSelectType(SpellSelectType spellSelectType)
+	{
+		_spellSelectType = spellSelectType;
+	}
+	
 	public bool TryChooseSpell(SpellType spellType)
 	{
 		if (Inventory.HasSpell(spellType) == false)

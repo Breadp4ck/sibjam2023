@@ -7,7 +7,6 @@ public partial class FlyingEnemy : Enemy
 
     public override void _PhysicsProcess(double delta)
     {
-
         if (BlockStateMachine == true)
         {
             return;

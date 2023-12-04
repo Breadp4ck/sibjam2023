@@ -42,7 +42,6 @@ public partial class Enemy : CharacterBody3D
 
 		if (IsOnFloor() && BlockStateMachine == false)
 		{
-			GD.Print(State);
 			switch (State)
 			{
 				case EnemyState.Idle:
