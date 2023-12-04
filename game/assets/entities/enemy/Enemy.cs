@@ -35,11 +35,14 @@ public partial class Enemy : CharacterBody3D
 
 	protected bool BlockStateMachine;
 	protected bool IsAttackOnCooldown;
-	
-	public override void _PhysicsProcess(double delta)
+
+	public override void _Process(double delta)
 	{
 		LookAt(new Vector3(Target.GlobalPosition.X, GlobalPosition.Y, Target.GlobalPosition.Z), Vector3.Up);
+	}
 
+	public override void _PhysicsProcess(double delta)
+	{
 		if (IsOnFloor() && BlockStateMachine == false)
 		{
 			switch (State)

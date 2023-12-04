@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public abstract partial class AoESpell : Spell
 {
-	[Export] private float _speed;
+	[Export] protected float Speed;
 
 	[Export] private bool _destroyOnCollide;
 	
@@ -19,7 +19,7 @@ public abstract partial class AoESpell : Spell
 			return;
 		}
 		
-		Move(_direction * (float)delta * _speed);
+		Move(_direction * (float)delta * Speed);
 	}
 	
 	public override async void Cast()

@@ -22,6 +22,11 @@ public static class Inventory
     {
         return SpellsLevel.ContainsKey(spellType);
     }
+
+    public static uint GetLevel(SpellType spellType)
+    {
+        return SpellsLevel.ContainsKey(spellType) == false ? 0 : SpellsLevel[spellType];
+    }
     
     public static void AddSpell(SpellType spellType)
     {

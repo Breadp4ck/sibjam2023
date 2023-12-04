@@ -34,6 +34,8 @@ public partial class Boss : Enemy
         }
     }
 
+    public override void _Process(double delta) { }
+
     public override void _PhysicsProcess(double delta)
     {
         if (BlockStateMachine == true)
@@ -93,7 +95,7 @@ public partial class Boss : Enemy
     private void SpawnHorcrux()
     {
         GD.Print("Boss is invulnerable.");
-        _hitboxComponent.SetDeferred("monitorable", true);
+        _hitboxComponent.SetDeferred("monitorable", false);
 
         _canSpawnHorcrux = false;
 

@@ -17,6 +17,8 @@ public abstract partial class Spell : Node3D
 	[Export] protected uint ManaCost;
 
 	public abstract void Cast();
+
+	public virtual void UpgradeByLevel(uint level) { }
 	
 	public override string ToString()
 	{

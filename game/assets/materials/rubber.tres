@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://1xf1bddvgxmq"]
+
+[ext_resource type="Texture2D" uid="uid://4wft5ve56jmr" path="res://assets/textures/brushlike/aluminic-planks.png" id="1_f0nfw"]
+
+[resource]
+diffuse_mode = 3
+albedo_color = Color(0.0196078, 0.0352941, 0.0431373, 1)
+albedo_texture = ExtResource("1_f0nfw")
+metallic = 0.88
+metallic_specular = 0.6
+emission = Color(0.0784314, 0.0588235, 0.0470588, 1)
+normal_enabled = true
+uv1_triplanar = true

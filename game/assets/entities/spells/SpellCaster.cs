@@ -122,6 +122,7 @@ public partial class SpellCaster : Node3D
 				throw new ArgumentException(spellType + " is not supported!");
 		}
 
+		spell.UpgradeByLevel(Inventory.GetLevel(spell.SpellType));
 		return spell;
 	}
 }

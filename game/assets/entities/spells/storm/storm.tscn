@@ -15,8 +15,7 @@ collision_layer = 0
 collision_mask = 512
 script = ExtResource("1_f5n4e")
 _miniStormSpell = ExtResource("2_8mass")
-_damage = 2
-_speed = 7.5
+_damage = 1
 Type = 2
 Duration = 5.0
 

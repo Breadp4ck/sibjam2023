@@ -6,6 +6,26 @@ public partial class SlowMob : TargetSpell
 	[Export] private float _durationAfterApplied;
 	[Export] private float _newSpeed;
 
+	public override void UpgradeByLevel(uint level)
+	{
+		if (level == 1)
+		{
+			_durationAfterApplied = 1.25f;
+			_newSpeed = 2f;
+		}
+		else if (level == 2)
+		{
+			_durationAfterApplied = 1.75f;
+			_newSpeed = 1f;
+			Speed = 10;
+		}
+		else
+		{
+			_durationAfterApplied = 2.5f;
+			_newSpeed = 0.4f;
+		}
+	}
+	
 	public override async void Cast()
 	{
 		HasToMove = true;
