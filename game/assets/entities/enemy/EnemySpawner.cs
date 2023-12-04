@@ -7,17 +7,19 @@ public partial class EnemySpawner : Node3D
     [Export] private PackedScene _enemyScene;
     
     [Export] private bool _autoSpawn;
+    [Export] private uint _maxEnemies;
     [Export] private float _spawnIntervalSeconds;
 
     [Export] private string _pathToPlayerInScene; // Path to player RELATIVE to this node!!! SANYAAAAAAAAAAAAAAAAAAAAAAA
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         if (_autoSpawn == false)
         {
             return;
         }
 
+        await Task.Delay(200); // Avoids a bug.
         AutoSpawn();
     }
 
@@ -37,9 +39,12 @@ public partial class EnemySpawner : Node3D
 
     private async void AutoSpawn()
     {
-        while (true)
+        uint enemiesSpawned = 0;
+        while (enemiesSpawned < _maxEnemies)
         {
             Spawn(_enemyScene, GetParent().GetNode<Player>(_pathToPlayerInScene));
+            enemiesSpawned++;
+
             await Task.Delay((int)(_spawnIntervalSeconds * 1000));
         }
     }

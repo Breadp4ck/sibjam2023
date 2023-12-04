@@ -127,5 +127,6 @@ _killsToOpen = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 10)
 _enemyScene = ExtResource("11_jgqoo")
 _autoSpawn = true
+_maxEnemies = 2
 _spawnIntervalSeconds = 2.0
 _pathToPlayerInScene = "Player"
