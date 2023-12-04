@@ -33,20 +33,20 @@ func _physics_update(ctx: FiniteStateContext, delta: float) -> void:
 		input = Vector2(0, 1)
 		
 	if Input.is_action_pressed("move_left"):
-		input.x = cos(PI * 135 / 180)
-		input.y = -sin(PI * 135 / 180)
+		input.x = cos(PI * 120 / 180)
+		input.y = -sin(PI * 120 / 180)
 		
 	if Input.is_action_pressed("move_right"):
-		input.x = cos(PI * 45 / 180)
-		input.y = -sin(PI * 45 / 180)
+		input.x = cos(PI * 60 / 180)
+		input.y = -sin(PI * 60 / 180)
 		
 	if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_back"):
-		input.x = cos(PI * 135 / 180)
-		input.y = sin(PI * 135 / 180)
+		input.x = cos(PI * 120 / 180)
+		input.y = sin(PI * 120 / 180)
 		
 	if Input.is_action_pressed("move_right") and Input.is_action_pressed("move_back"):
-		input.x = cos(PI * 45 / 180)
-		input.y = sin(PI * 45 / 180)
+		input.x = cos(PI * 60 / 180)
+		input.y = sin(PI * 60 / 180)
 	
 	var direction := (CameraDirection * Vector3(input.x, 0, input.y))
 	direction.y = 0

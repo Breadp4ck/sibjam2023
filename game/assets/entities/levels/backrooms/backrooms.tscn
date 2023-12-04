@@ -1,12 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dehodl12notn5"]
+[gd_scene load_steps=14 format=3 uid="uid://dehodl12notn5"]
 
 [ext_resource type="Environment" uid="uid://c8q4wwr8cnji2" path="res://assets/entities/levels/backrooms/envs/fog.tres" id="1_1x53r"]
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
 [ext_resource type="Texture2D" uid="uid://bxihw70oy7j1s" path="res://assets/textures/kenney_prototype/orange/texture_02.png" id="2_aohws"]
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="3_qh05b"]
-[ext_resource type="Script" path="res://assets/entities/enemy/Enemy.cs" id="4_cfld0"]
-[ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="5_k4xac"]
-[ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="6_tml27"]
+[ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="7_gytr3"]
 [ext_resource type="PackedScene" uid="uid://b838kd1w7kvox" path="res://assets/entities/pickable_spells/pickable_spell.tscn" id="7_he0uy"]
 [ext_resource type="PackedScene" uid="uid://cbt5fn78uv58p" path="res://assets/entities/world/cassette_player/cassette_player.tscn" id="9_ssjfp"]
 [ext_resource type="Material" uid="uid://cu46b100244nd" path="res://assets/entities/particles/deep_ocean_material.tres" id="10_n4a7n"]
@@ -31,21 +29,6 @@ size = Vector3(5, 1, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_df2ar"]
 size = Vector3(5, 1, 5)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yn04i"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_77ax0"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m5jnm"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_omxb5"]
-radius = 0.7
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_abowq"]
-material = ExtResource("10_n4a7n")
-size = Vector2(200, 200)
-subdivide_width = 100
-subdivide_depth = 100
 
 [node name="Backrooms" type="Node3D"]
 
@@ -111,53 +94,14 @@ mesh = SubResource("BoxMesh_df2ar")
 [node name="Player" parent="." instance=ExtResource("3_qh05b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.823061, 0.6, 16.3302)
 
-[node name="Dummy" type="CharacterBody3D" parent="." node_paths=PackedStringArray("_navigationAgent", "_target", "_patrolPoints")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.54782, 3.93772)
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-script = ExtResource("4_cfld0")
-_navigationAgent = NodePath("NavigationAgent3D")
-_target = NodePath("../Player")
-_speed = 4.0
-_attackRange = 1.0
-_viewDistance = 5.0
-_forgetDistanceIfChasing = 15.0
-_patrolPoints = [NodePath("../PatrolPosition"), NodePath("../PatrolPosition2"), NodePath("../PatrolPosition3")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy"]
-shape = SubResource("CapsuleShape3D_yn04i")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy"]
-mesh = SubResource("CapsuleMesh_77ax0")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Dummy"]
-path_height_offset = 0.15
-
-[node name="HitboxComponent" parent="Dummy" node_paths=PackedStringArray("_healthComponent") instance=ExtResource("5_k4xac")]
-collision_layer = 512
-collision_mask = 0
-_healthComponent = NodePath("../HealthComponent")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/HitboxComponent"]
-shape = SubResource("CapsuleShape3D_m5jnm")
-
-[node name="HealthComponent" parent="Dummy" instance=ExtResource("6_tml27")]
-
-[node name="TargetRaycastArea" type="Area3D" parent="Dummy"]
-collision_layer = 256
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/TargetRaycastArea"]
-shape = SubResource("CapsuleShape3D_omxb5")
-
 [node name="PatrolPosition" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03458, 0, -17.0192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03458, 1, -17.0192)
 
 [node name="PatrolPosition2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1215, 0, 16.1477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1215, 1, 16.1477)
 
 [node name="PatrolPosition3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55255, 0, -0.693844)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55255, 1, -0.693844)
 
 [node name="PickableSpell" parent="." instance=ExtResource("7_he0uy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8686, 1.11892, 10.8412)
@@ -165,8 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8686, 1.11892, 10.8412)
 [node name="CassettePlayer2" parent="." instance=ExtResource("9_ssjfp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414448, 2.74655, 1.49622)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.31362, 0)
-mesh = SubResource("PlaneMesh_abowq")
-
-[connection signal="Dead" from="Dummy/HealthComponent" to="Dummy" method="Die"]
+[node name="Zombie" parent="." node_paths=PackedStringArray("Target", "_patrolPoints") instance=ExtResource("7_gytr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2226, 1.5, 9.41381)
+Target = NodePath("../Player")
+_patrolPoints = [NodePath("../PatrolPosition"), NodePath("../PatrolPosition2"), NodePath("../PatrolPosition3")]
