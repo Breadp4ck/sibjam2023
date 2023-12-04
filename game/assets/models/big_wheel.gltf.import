@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b68qj0i534k2y"
-path="res://.godot/imported/boombox.gltf-5e6a480dafcfc0398fa43ed605c520d1.scn"
+uid="uid://da0m34840yk6j"
+path="res://.godot/imported/big_wheel.gltf-7d1258e051c808eeacb35e447957d5e8.scn"
 
 [deps]
 
-source_file="res://assets/models/boombox.gltf"
-dest_files=["res://.godot/imported/boombox.gltf-5e6a480dafcfc0398fa43ed605c520d1.scn"]
+source_file="res://assets/models/big_wheel.gltf"
+dest_files=["res://.godot/imported/big_wheel.gltf-7d1258e051c808eeacb35e447957d5e8.scn"]
 
 [params]
 
@@ -31,21 +31,18 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"Placeholder1": {
+"Base": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/rubber.tres"
+}
 },
-"Placeholder2": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/black.tres"
-},
-"Placeholder3": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/wooden-plastic.tres"
-},
-"Placeholder4": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/metall.tres"
+"nodes": {
+"PATH:Torus": {
+"generate/physics": true,
+"physics/body_type": 1,
+"physics/shape_type": 5,
+"primitive/height": 0.2,
+"primitive/radius": 0.45
 }
 }
 }

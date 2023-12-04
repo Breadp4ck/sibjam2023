@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b68qj0i534k2y"
-path="res://.godot/imported/boombox.gltf-5e6a480dafcfc0398fa43ed605c520d1.scn"
+uid="uid://uc78uy3i57nn"
+path="res://.godot/imported/cargo_blue.gltf-ff7e3711a4a6c4ccf784847927d74884.scn"
 
 [deps]
 
-source_file="res://assets/models/boombox.gltf"
-dest_files=["res://.godot/imported/boombox.gltf-5e6a480dafcfc0398fa43ed605c520d1.scn"]
+source_file="res://assets/models/cargo_blue.gltf"
+dest_files=["res://.godot/imported/cargo_blue.gltf-ff7e3711a4a6c4ccf784847927d74884.scn"]
 
 [params]
 
@@ -33,19 +33,17 @@ _subresources={
 "materials": {
 "Placeholder1": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/rubber.tres"
+"use_external/path": "res://assets/materials/aluminic-planks-blue-dark.tres"
 },
 "Placeholder2": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/black.tres"
+"use_external/path": "res://assets/materials/aluminic-planks-blue.tres"
+}
 },
-"Placeholder3": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/wooden-plastic.tres"
-},
-"Placeholder4": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/materials/metall.tres"
+"nodes": {
+"PATH:Cargo": {
+"generate/physics": true,
+"physics/shape_type": 1
 }
 }
 }
