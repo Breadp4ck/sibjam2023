@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b83spc5req7g5"]
+[gd_scene load_steps=15 format=3 uid="uid://b83spc5req7g5"]
 
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="1_8lcvc"]
 [ext_resource type="Script" path="res://assets/entities/enemy/boss/Boss.cs" id="1_vwhwh"]
@@ -9,13 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="4_lrvtg"]
 [ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="5_4py2w"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="5_ax4me"]
+[ext_resource type="PackedScene" uid="uid://doowxoqxkj6gk" path="res://assets/models/boss/boss.gltf" id="10_tmxtp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4b0nm"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g63uj"]
-albedo_color = Color(1, 0.360784, 0.360784, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_eb17y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uxl7u"]
 
@@ -26,36 +22,30 @@ radius = 0.7
 height = 8.0
 radius = 2.2
 
-[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("_horcruxSpawnPositions", "_enemySpawners", "_hitboxComponent", "_navigationAgent", "_hitArea", "_patrolPoints")]
+[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("_horcruxSpawnPositions", "_enemySpawners", "_hitboxComponent", "_navigationAgent", "HitArea", "_patrolPoints")]
 script = ExtResource("1_vwhwh")
 _bossProjectile = ExtResource("2_c0uk2")
 _horcruxScene = ExtResource("3_pm15s")
-_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w")])
+_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w"), ExtResource("4_lrvtg")])
 _horcruxSpawnPositions = [NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition2"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition3")]
 _enemySpawners = [NodePath("EnemySpawnPositions/EnemySpawner"), NodePath("EnemySpawnPositions/EnemySpawner2"), NodePath("EnemySpawnPositions/EnemySpawner3"), NodePath("EnemySpawnPositions/EnemySpawner4")]
 _hitboxComponent = NodePath("HitboxComponent")
-_realPosition = Vector3(0, 5, 0)
 _horcruxSpawnCount = 3
 _monsterSpawnCount = 2
 _horcruxSpawnCooldownSeconds = 15.0
 _monsterSpawnCooldownSeconds = 10.0
+RealPosition = Vector3(0, 5, 0)
 _navigationAgent = NodePath("NavigationAgent3D")
 _attackRange = 50.0
 _viewDistance = 50.0
 _forgetDistanceIfChasing = 999.0
-_startAttackTimeSeconds = 1.0
 _attackCooldownSeconds = 3.0
-_hitArea = NodePath("HitArea")
+HitArea = NodePath("HitArea")
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
 shape = SubResource("CapsuleShape3D_4b0nm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
-material_override = SubResource("StandardMaterial3D_g63uj")
-mesh = SubResource("CapsuleMesh_eb17y")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.15
@@ -64,6 +54,7 @@ path_height_offset = 0.15
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
 collision_layer = 512
 collision_mask = 0
+monitorable = false
 _healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
@@ -119,6 +110,9 @@ visible = false
 [node name="HorcruxSpawnPosition3" type="Node3D" parent="HorcruxSpawnPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 visible = false
+
+[node name="boss" parent="." instance=ExtResource("10_tmxtp")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.127757, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]
