@@ -12,6 +12,7 @@ public partial class Weapon : Area3D
 
     private bool _canAttack = true;
     
+    // TODO: delete me
     public override void _Input(InputEvent inputEvent)
     {
         if (inputEvent.IsActionPressed("attack") == false)

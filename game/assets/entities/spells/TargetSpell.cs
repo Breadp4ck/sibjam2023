@@ -18,7 +18,7 @@ public abstract partial class TargetSpell : Spell
             return;
         }
 		
-        Vector3 direction = (_target.GlobalPosition - GlobalPosition).Normalized();
+        Vector3 direction = (_target.GlobalPosition + _target.RealPosition - GlobalPosition).Normalized();
         Move(direction * (float)delta * _speed);
     }
     
