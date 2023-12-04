@@ -1,0 +1,57 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cypp1t2vuhgw3"
+path="res://.godot/imported/petrol-station.gltf-a90853dd9cac7c7d7fa725a355c9efff.scn"
+
+[deps]
+
+source_file="res://assets/models/petrol-station.gltf"
+dest_files=["res://.godot/imported/petrol-station.gltf-a90853dd9cac7c7d7fa725a355c9efff.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"Placeholder1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/aluminic-planks-red.tres"
+},
+"Placeholder2": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/aluminic-planks-white.tres"
+},
+"Placeholder3": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/asphalt.tres"
+}
+},
+"nodes": {
+"PATH:Plane_006": {
+"generate/physics": true,
+"physics/shape_type": 3,
+"primitive/position": Vector3(0, 1.5, 0),
+"primitive/size": Vector3(1.5, 3, 0.6)
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

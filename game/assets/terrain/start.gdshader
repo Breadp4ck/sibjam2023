@@ -7,7 +7,6 @@ uniform sampler2D mterrain_normals:filter_nearest;
 uniform sampler2D mterrain_Terrain:filter_nearest;
 
 uniform sampler2DArray albedo_tex;
-uniform sampler2DArray normal_tex;
 
 uniform vec3 region_world_position;
 uniform float region_size;
