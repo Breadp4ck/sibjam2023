@@ -344,6 +344,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 9.39679)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("18_uhr2r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45069, 0, -4.08453)
+
 _killsToOpen = 48
 
 [node name="Player" parent="." node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent") instance=ExtResource("19_b6158")]

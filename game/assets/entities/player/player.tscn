@@ -356,11 +356,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="GUI/DeathScreen"]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5gwpy")
 
 [node name="CenterContainer" type="CenterContainer" parent="GUI/DeathScreen"]
+layout_mode = 0
 offset_left = -141.0
 offset_top = 274.0
 offset_right = 1258.0

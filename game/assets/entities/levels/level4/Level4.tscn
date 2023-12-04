@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b1tw38gxyn8hb"]
+[gd_scene load_steps=21 format=3 uid="uid://b1tw38gxyn8hb"]
 
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="1_fnvyw"]
 [ext_resource type="PackedScene" uid="uid://craylftkig3ns" path="res://assets/models/rock.gltf" id="2_q6l2j"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://mps8ru1q0rg4" path="res://assets/models/junkbox_large.gltf" id="7_u5qiv"]
 [ext_resource type="PackedScene" uid="uid://ck8ul36t10yhw" path="res://assets/models/grid_tile_big.gltf" id="8_4mh7j"]
 [ext_resource type="PackedScene" uid="uid://ktlfq8bxm44a" path="res://assets/models/stairs_desk.gltf" id="9_akmky"]
-[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="11_0d681"]
 [ext_resource type="PackedScene" uid="uid://cn85e0rqj1dj0" path="res://assets/models/junkbox.gltf" id="11_cho16"]
 [ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="11_rej8x"]
 [ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="12_nka58"]

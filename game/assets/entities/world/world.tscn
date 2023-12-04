@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://crthv77lfgu3b"]
+[gd_scene load_steps=12 format=3 uid="uid://crthv77lfgu3b"]
 
 [ext_resource type="Script" path="res://assets/entities/world/World.cs" id="1_obc53"]
 [ext_resource type="Shader" path="res://assets/entities/world/world.gdshader" id="2_6mdib"]
-[ext_resource type="PackedScene" uid="uid://dehodl12notn5" path="res://assets/entities/levels/backrooms/backrooms.tscn" id="2_kjf6a"]
+[ext_resource type="PackedScene" uid="uid://dggow3wnhk5yy" path="res://assets/entities/levels/level1/Level1.tscn" id="3_8dcek"]
+[ext_resource type="PackedScene" uid="uid://cu0iwv5ta77o2" path="res://assets/entities/levels/level2/Level2.tscn" id="4_7ubs3"]
+[ext_resource type="PackedScene" uid="uid://dp82l8fynfary" path="res://assets/entities/levels/level3/Level3.tscn" id="5_ki3k2"]
+[ext_resource type="PackedScene" uid="uid://b1tw38gxyn8hb" path="res://assets/entities/levels/level4/Level4.tscn" id="6_4wg10"]
+[ext_resource type="PackedScene" uid="uid://che6lhtm53sif" path="res://assets/entities/levels/level5/Level5.tscn" id="7_6eav8"]
+[ext_resource type="PackedScene" uid="uid://bmw8verfxhid5" path="res://assets/entities/levels/level6/Level6.tscn" id="8_qgtka"]
+[ext_resource type="PackedScene" uid="uid://cp1k4ppiyyil6" path="res://assets/entities/levels/level7/Level7.tscn" id="9_e6w4q"]
+[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="10_k8frv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqbs"]
 shader = ExtResource("2_6mdib")
@@ -30,6 +37,25 @@ audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Backrooms" parent="ViewportContainer/SubViewport" instance=ExtResource("2_kjf6a")]
+[node name="Level1" parent="." instance=ExtResource("3_8dcek")]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Level2" parent="." instance=ExtResource("4_7ubs3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="Level3" parent="." instance=ExtResource("5_ki3k2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+
+[node name="Level4" parent="." instance=ExtResource("6_4wg10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 450, 0)
+
+[node name="Level5" parent="." instance=ExtResource("7_6eav8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 0)
+
+[node name="Level6" parent="." instance=ExtResource("8_qgtka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 0)
+
+[node name="Level7" parent="." instance=ExtResource("9_e6w4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 900, 0)
+
+[node name="Player" parent="." instance=ExtResource("10_k8frv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.901644, 16)
