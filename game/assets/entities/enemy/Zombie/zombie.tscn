@@ -4,13 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="2_n6ggd"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="3_1ox7k"]
 [ext_resource type="Script" path="res://assets/entities/enemy/Zombie/HitArea.cs" id="4_4rik2"]
+[ext_resource type="PackedScene" uid="uid://16hm2yyxuvxt" path="res://assets/entities/particles/rocket_fire.tscn" id="5_7ir7v"]
+[ext_resource type="PackedScene" uid="uid://dwhpowfde8prr" path="res://assets/models/churger/churger.gltf" id="6_2x3mr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dycl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88co1"]
-albedo_color = Color(0, 1, 0.266667, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_v8opj"]
+radius = 0.595017
+height = 2.06362
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3l7hc"]
 radius = 1.10212
@@ -36,11 +35,8 @@ _attackCooldownSeconds = 2.0
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.00206767, 0.0288595, -0.999581, -0.997443, 0.0714626, 3.67336e-10, 0.0714327, 0.997026, 0.0289335, 0.037788, 0.132844, -0.0840704)
 shape = SubResource("CapsuleShape3D_4dycl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_88co1")
-mesh = SubResource("CapsuleMesh_v8opj")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.15
@@ -71,6 +67,18 @@ script = ExtResource("4_4rik2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.888901, 0.269651, 0)
 shape = SubResource("CylinderShape3D_g4a1r")
+
+[node name="GPUParticles3D" parent="." instance=ExtResource("5_7ir7v")]
+transform = Transform3D(8.02916e-05, -0.0144665, -0.499791, 0.499992, 0.00277504, -1.14793e-11, 0.00277388, -0.499783, 0.0144668, 0.0544163, 0.395362, 0.490396)
+
+[node name="GPUParticles3D2" parent="." instance=ExtResource("5_7ir7v")]
+transform = Transform3D(0.18377, 0.164689, -0.0400799, -0.159714, 0.188045, 0.040381, 0.0567486, -0.00407803, 0.24344, -0.501445, 0.127309, 0.0450425)
+
+[node name="GPUParticles3D3" parent="." instance=ExtResource("5_7ir7v")]
+transform = Transform3D(0.00868006, -0.182211, -0.238167, -4.40803e-10, 0.238267, -0.182288, 0.299874, 0.00527422, 0.00689391, 0.568513, 0.118957, 0.0436183)
+
+[node name="churger" parent="." instance=ExtResource("6_2x3mr")]
+transform = Transform3D(0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, 0.0263551, 0.132844, -0.479052)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]
