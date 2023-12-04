@@ -32,12 +32,12 @@ public partial class SlowMob : TargetSpell
 		
 		var timePassedSeconds = 0f;
 		const int stepMs = 50;
-        
+		
 		// Wait for whole Duration or until IsApplied is true - then wait for applied duration.
 		while (timePassedSeconds < Duration)
 		{
 			timePassedSeconds += stepMs / 1000f;
-            
+			
 			if (IsApplied == true)
 			{
 				await Task.Delay((int)(_durationAfterApplied * 1000));
