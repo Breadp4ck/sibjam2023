@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=29 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -6,18 +6,27 @@
 [ext_resource type="PackedScene" uid="uid://c4uekr54e48lg" path="res://assets/components/speech_recognition/speech_recognition.tscn" id="2_fwr6h"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/walk.gd" id="2_hvfwp"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/leap.gd" id="3_cmuim"]
+[ext_resource type="PackedScene" uid="uid://dlbrucxji3qgd" path="res://assets/models/dagger/dagger.gltf" id="4_6epea"]
 [ext_resource type="Script" path="res://assets/entities/spells/SpellRaycast.cs" id="4_hnmun"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/fall.gd" id="4_yhsxb"]
 [ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableRaycast.cs" id="5_2ak8n"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide.gd" id="6_uxfl0"]
+[ext_resource type="Script" path="res://assets/entities/interactable/InteractRaycast.cs" id="7_m4xbj"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
 [ext_resource type="Script" path="res://assets/components/speech_recognition/Speech.cs" id="8_h682d"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_fteug"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
+[ext_resource type="Script" path="res://assets/components/hitbox_component/HitboxComponent.cs" id="18_5wssi"]
 [ext_resource type="Script" path="res://assets/entities/player/Weapon.cs" id="18_8gtre"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="18_albsl"]
+[ext_resource type="Script" path="res://assets/entities/player/GUI.cs" id="20_qnes2"]
+[ext_resource type="Texture2D" uid="uid://cu1604xcpobn6" path="res://assets/entities/particles/spark_01.png" id="21_djg8j"]
+[ext_resource type="Texture2D" uid="uid://bgew7h8k3uluy" path="res://assets/entities/particles/spark_02.png" id="22_miqbo"]
+[ext_resource type="Texture2D" uid="uid://bnipe4a0hyk8d" path="res://assets/entities/particles/spark_03.png" id="23_cnck6"]
+[ext_resource type="Texture2D" uid="uid://dcwxyexuprb67" path="res://assets/entities/particles/spark_04.png" id="24_i5k0o"]
+[ext_resource type="Texture2D" uid="uid://b185d4pinjenn" path="res://assets/entities/particles/spark_05.png" id="25_sfekx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -28,21 +37,7 @@ radius = 0.05
 height = 0.05
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_14kkl"]
-size = Vector3(1, 0.962891, 1.34119)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc7ht"]
-albedo_color = Color(1, 0, 0.266667, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_v5frw"]
-material = SubResource("StandardMaterial3D_rc7ht")
-text = "WEAPON
-WEAPON
-WEAPON
-WEAPON
-WEAPON
-"
-horizontal_alignment = 3
-autowrap_mode = 2
+size = Vector3(1, 2.66357, 2.86719)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
@@ -54,9 +49,10 @@ radius = 0.55
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent")]
 script = ExtResource("1_4txfr")
 _spellPresenter = NodePath("SpellPresenter")
+_hitboxComponent = NodePath("HitboxComponent")
 
 [node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
 
@@ -71,6 +67,9 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
 visible = false
 mesh = SubResource("SphereMesh_sywkj")
+
+[node name="dagger" parent="PseudoCamera/Camera3D" instance=ExtResource("4_6epea")]
+transform = Transform3D(0.00437548, -0.969261, 0.245996, 0.200643, 0.241847, 0.949343, -0.979655, 0.0452036, 0.195534, 0.447369, -0.371294, -0.886809)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
@@ -100,7 +99,7 @@ script = ExtResource("4_hnmun")
 _spellCaster = NodePath("../SpellCaster")
 
 [node name="PickableRaycast" type="RayCast3D" parent="PseudoCamera"]
-transform = Transform3D(100, 0, 0, 0, -1.31134e-07, -300, 0, 3, -1.31134e-05, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.74846e-07, -300, 0, 4, -1.31134e-05, 0, 0, 0)
 visible = false
 collision_mask = 128
 hit_from_inside = true
@@ -108,7 +107,16 @@ collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("5_2ak8n")
 
-[node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
+[node name="InteractRaycast" type="RayCast3D" parent="PseudoCamera"]
+transform = Transform3D(100, 0, 0, 0, -1.74846e-07, -300, 0, 4, -1.31134e-05, 0, 0, 0)
+visible = false
+collision_mask = 64
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("7_m4xbj")
+
+[node name="Weapon" type="Area3D" parent="PseudoCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
 collision_layer = 0
 collision_mask = 512
@@ -117,27 +125,17 @@ script = ExtResource("18_8gtre")
 _damage = 2
 _attackDurationSeconds = 0.2
 _attackCooldownSeconds = 1.0
-_mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PseudoCamera/Weapon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35211, -1.05736)
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.60131, -2.08853)
 shape = SubResource("BoxShape3D_14kkl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Weapon"]
-transform = Transform3D(1.458, 0, 0, 0, 0.93359, 0, 0, 0, 1, 0.0203929, 1.36105, -1.69537)
-visible = false
-mesh = SubResource("TextMesh_v5frw")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="PseudoCamera/Weapon/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2901)
-mesh = SubResource("TextMesh_v5frw")
-skeleton = NodePath("../..")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
 
 [node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
+_spellSelectType = 1
 
 [node name="Speech" type="Node3D" parent="." node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("8_h682d")
@@ -203,7 +201,6 @@ shape_cast = NodePath("../../ShapeCast")
 
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285248, 1.6, 0)
-visible = false
 shape = SubResource("SphereShape3D_itaav")
 
 [node name="ShapeCastWalls" type="ShapeCast3D" parent="."]
@@ -211,15 +208,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452309, 0)
 shape = SubResource("CylinderShape3D_c660s")
 target_position = Vector3(0, 0, 0)
 
-[node name="HitboxComponent" type="Area3D" parent="."]
+[node name="HitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("_healthComponent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 1024
 collision_mask = 0
+script = ExtResource("18_5wssi")
+_healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape3D_jfsaf")
 
 [node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 647.0
+script = ExtResource("20_qnes2")
+_spellTextures = Array[Texture2D]([ExtResource("21_djg8j"), ExtResource("22_miqbo"), ExtResource("23_cnck6"), ExtResource("24_i5k0o"), ExtResource("25_sfekx")])
+
+[node name="HUD" type="Control" parent="GUI"]
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -94.0
+offset_right = -991.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="GUI/HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("21_djg8j")
 
 [connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
 [connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]

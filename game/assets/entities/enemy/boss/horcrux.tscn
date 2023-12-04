@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cydike41drmh3"]
+
+[ext_resource type="Script" path="res://assets/entities/enemy/boss/Horcrux.cs" id="1_b0fne"]
+[ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="2_bajv0"]
+[ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="3_wogky"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcqfl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7qci"]
+albedo_color = Color(1, 0, 0.898039, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x0ksc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_84gt6"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[node name="Horcrux" type="Area3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_b0fne")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bcqfl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_p7qci")
+mesh = SubResource("BoxMesh_x0ksc")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("2_bajv0")]
+collision_layer = 512
+collision_mask = 0
+_healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("BoxShape3D_84gt6")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_wogky")]
+_maxHealth = 1.0
+
+[connection signal="Dead" from="HealthComponent" to="." method="Die"]

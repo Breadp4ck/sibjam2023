@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class SpellRaycast : RayCast3D
@@ -12,14 +13,22 @@ public partial class SpellRaycast : RayCast3D
 		}
 
 		Area3D area = GetCollider() as Area3D;
-		Enemy enemy = area?.GetParent<Enemy>();
-		
+		Enemy enemy;
+		try
+		{
+			enemy = area?.GetParent<Enemy>();
+		}
+		catch (Exception e)
+		{
+			return;
+			// ignored
+		}
+
 		if (enemy == null)
 		{
 			return;
 		}
 		
 		_spellCaster.SetTarget(enemy);
-		GD.Print(enemy.Name + " is new target!");
 	}
 }

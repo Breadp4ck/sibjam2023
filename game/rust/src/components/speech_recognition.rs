@@ -5,9 +5,12 @@ use std::sync::mpsc::{channel, Receiver, Sender};
 use std::sync::{Arc, Mutex};
 
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
-use cpal::{FromSample, Sample};
+use cpal::{FromSample, Sample, SampleRate};
 use godot::engine::Os;
 use godot::prelude::*;
+
+#[cfg(target_os = "windows")]
+use std::os::windows::process::CommandExt;
 
 /// Cpal stream config with parameters for PocketSphinx purposes
 static CPAL_STREAM_CONFIG: cpal::StreamConfig = cpal::StreamConfig {
@@ -80,7 +83,14 @@ macro_rules! generate_input_stream {
             .device
             .build_input_stream(
                 &$config,
-                move |$data, _: &_| write_input_data::<$sample_format, i16>($data, &$writer),
+                move |$data, _: &_| {
+                    write_input_data::<$sample_format, i16>(
+                        $data,
+                        &$writer,
+                        $config.sample_rate,
+                        $config.channels,
+                    )
+                },
                 $err_fn,
                 None,
             )
@@ -116,8 +126,7 @@ impl SpeechRecognitionComponent {
             .default_input_config()
             .expect("Error retieving input config");
 
-        let mut my_cfg: cpal::StreamConfig = cfg.clone().into();
-        my_cfg.sample_rate = cpal::SampleRate(16000);
+        let my_cfg: cpal::StreamConfig = cfg.clone().into();
 
         let stream = match cfg.sample_format() {
             cpal::SampleFormat::I8 => {
@@ -213,7 +222,9 @@ impl INode for SpeechRecognitionComponent {
         std::thread::spawn(move || loop {
             match &rx_command.recv() {
                 Ok(data) => {
-                    let output = Command::new(&data.pocketsphinx_path)
+                    let mut command = Command::new(&data.pocketsphinx_path);
+
+                    command
                         .arg("single")
                         .arg(&data.filename_path)
                         .arg("-hmm")
@@ -221,9 +232,12 @@ impl INode for SpeechRecognitionComponent {
                         .arg("-lm")
                         .arg(&data.language_model_path)
                         .arg("-dict")
-                        .arg(&data.dictionary_path)
-                        .output()
-                        .expect("failed to execute process");
+                        .arg(&data.dictionary_path);
+
+                    #[cfg(target_os = "windows")]
+                    command.creation_flags(0x08000000);
+
+                    let output = command.output().expect("failed to execute process");
 
                     tx_tokens
                         .send(vec![String::from_utf8(output.stdout).unwrap()])
@@ -270,7 +284,8 @@ impl INode for SpeechRecognitionComponent {
         if let Ok(tokens) = self.tokens_receiver.try_recv() {
             godot_print!("{tokens:?}");
             self.parsing = false;
-            self.base.emit_signal("speech_parsed".into(), &[Variant::from(tokens[0].clone())]);
+            self.base
+                .emit_signal("speech_parsed".into(), &[Variant::from(tokens[0].clone())]);
         }
     }
 }
@@ -278,16 +293,24 @@ impl INode for SpeechRecognitionComponent {
 type WavWriterHandle = Arc<Mutex<Option<hound::WavWriter<BufWriter<File>>>>>;
 
 /// Write wav data via writer.
-fn write_input_data<T, U>(input: &[T], writer: &WavWriterHandle)
-where
+fn write_input_data<T, U>(
+    input: &[T],
+    writer: &WavWriterHandle,
+    sample_rate: SampleRate,
+    channels: u16,
+) where
     T: Sample,
     U: Sample + hound::Sample + FromSample<T>,
 {
     if let Ok(mut guard) = writer.try_lock() {
         if let Some(writer) = guard.as_mut() {
-            for &sample in input.iter() {
-                let sample: U = U::from_sample(sample);
-                writer.write_sample(sample).ok();
+            let coeff = (sample_rate.0 as f32 / 16000 as f32).ceil() as u32 * channels as u32;
+
+            for (i, &sample) in input.iter().enumerate() {
+                if i % coeff as usize == 0 {
+                    let sample: U = U::from_sample(sample);
+                    writer.write_sample(sample).ok();
+                }
             }
         }
     }
