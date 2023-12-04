@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjyyqqch3gpon"]
+[gd_scene load_steps=9 format=3 uid="uid://cjyyqqch3gpon"]
 
 [ext_resource type="Script" path="res://assets/entities/spells/spurn/Spurn.cs" id="1_4o81i"]
+[ext_resource type="Texture2D" uid="uid://bgew7h8k3uluy" path="res://assets/entities/particles/spark_02.png" id="2_0ynac"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxeeu"]
 albedo_color = Color(1, 0.666667, 0, 1)
@@ -8,6 +9,31 @@ albedo_color = Color(1, 0.666667, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_7xc1y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mavio"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_morfb"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v544g"]
+transparency = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.654902, 0, 1)
+albedo_texture = ExtResource("2_0ynac")
+emission_enabled = true
+emission = Color(0.290196, 0.192157, 0.105882, 1)
+emission_energy_multiplier = 11.16
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qqrgx"]
+material = SubResource("StandardMaterial3D_v544g")
+size = Vector2(0.1, 0.1)
 
 [node name="Spurn" type="Area3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
@@ -26,5 +52,15 @@ mesh = SubResource("BoxMesh_7xc1y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mavio")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304292, 0, 0)
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.63
+trail_lifetime = 1.81
+process_material = SubResource("ParticleProcessMaterial_morfb")
+draw_pass_1 = SubResource("QuadMesh_qqrgx")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
