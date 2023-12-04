@@ -28,7 +28,7 @@ top_radius = 25.0
 bottom_radius = 25.0
 height = 1.0
 
-[node name="Level3" type="Node3D"]
+[node name="Level4" type="Node3D"]
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 20, -46.4831)
