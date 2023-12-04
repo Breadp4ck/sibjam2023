@@ -24,7 +24,9 @@ _attackRange = 3.0
 _viewDistance = 7.0
 _forgetDistanceIfChasing = 15.0
 _runAwayDistance = 4.5
-_startAttackTimeSeconds = 1.0
+StartAttackTimeSeconds = 1.0
+EndAttackTimeSeconds = 0.5
+_attackCooldownSeconds = 2.0
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -54,6 +56,6 @@ collision_mask = 0
 shape = SubResource("CapsuleShape3D_13pr2")
 
 [node name="beholder" parent="." instance=ExtResource("5_r6e43")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
