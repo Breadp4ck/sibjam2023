@@ -36,7 +36,6 @@ public partial class Zombie : Enemy
 	protected override async void AttackInternal()
 	{
 		HitArea.Monitoring = true;
-		
 
 		Vector3 direction = Target.GlobalPosition - GlobalPosition;
 

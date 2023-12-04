@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bmw8verfxhid5"]
+[gd_scene load_steps=27 format=3 uid="uid://bmw8verfxhid5"]
 
 [ext_resource type="PackedScene" uid="uid://mps8ru1q0rg4" path="res://assets/models/junkbox_large.gltf" id="1_474ec"]
 [ext_resource type="PackedScene" uid="uid://cm7buvpa5tb6l" path="res://assets/models/grid_tile.gltf" id="2_wd5bc"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://ktlfq8bxm44a" path="res://assets/models/stairs_desk.gltf" id="17_63qkq"]
 [ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="17_bq8cq"]
 [ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="18_uhr2r"]
-[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="19_b6158"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="20_65cd7"]
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="21_kqsld"]
 [ext_resource type="PackedScene" uid="uid://buta0kfnkmkcg" path="res://assets/entities/enemy/Enemy.tscn" id="22_fqq7m"]
@@ -344,13 +343,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 9.39679)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("18_uhr2r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45069, 0, -4.08453)
-
 _killsToOpen = 48
-
-[node name="Player" parent="." node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent") instance=ExtResource("19_b6158")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 16.5)
-_spellPresenter = NodePath("")
-_hitboxComponent = NodePath("")
 
 [node name="EnemySpawner7" parent="." instance=ExtResource("20_65cd7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74776, 0.673255, -19.2144)

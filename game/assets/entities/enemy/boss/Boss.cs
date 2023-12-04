@@ -25,8 +25,21 @@ public partial class Boss : Enemy
 	
 	private uint _horcruxLeft;
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
+		Target = (Player)GetTree().Root.GetChild(0).GetChild(0);
+		
+		BlockStateMachine = true;
+		while (true)
+		{
+			if (Target.GlobalPosition.DistanceTo(GlobalPosition) < 50)
+			{
+				break;
+			}
+
+			await Task.Delay(1000);
+		}
+		
 		for (var i = 0; i < _enemySpawners.Length; i++)
 		{
 			EnemySpawner spawner = _enemySpawners[i];

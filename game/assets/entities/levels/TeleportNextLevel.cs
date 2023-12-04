@@ -1,17 +1,29 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class TeleportNextLevel : Area3D
 {
-    [Export] private Node3D _teleportDestination;
+    [Export] private Vector3 _teleportDestination;
     [Export] private uint _killsToOpen;
 
     [Export] private Node3D _particles;
     
     private bool _canTeleport;
     
-    public override void _Ready()
+    public override async void _Ready()
     {
+        Player player = (Player)GetTree().Root.GetChild(0).GetChild(0);
+        while (true)
+        {
+            if (player.GlobalPosition.DistanceTo(GlobalPosition) < 50)
+            {
+                break;
+            }
+
+            await Task.Delay(1000);
+        }
+        
         HealthComponent.Died += OnEnemyDied;
     }
     
@@ -37,6 +49,6 @@ public partial class TeleportNextLevel : Area3D
             
         }
         
-        area3D.GetParent<Player>().GlobalPosition = _teleportDestination.GlobalPosition;
+        area3D.GetParent<Player>().GlobalPosition += _teleportDestination;
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=39 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bnipe4a0hyk8d" path="res://assets/entities/particles/spark_03.png" id="23_cnck6"]
 [ext_resource type="Texture2D" uid="uid://dcwxyexuprb67" path="res://assets/entities/particles/spark_04.png" id="24_i5k0o"]
 [ext_resource type="Texture2D" uid="uid://b185d4pinjenn" path="res://assets/entities/particles/spark_05.png" id="25_sfekx"]
+[ext_resource type="AudioStream" uid="uid://q1hbp0pmpy2e" path="res://assets/music/loop.wav" id="28_cbs6p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -255,6 +256,7 @@ offset_right = 1155.0
 offset_bottom = 651.0
 
 [node name="Spells" type="MarginContainer" parent="GUI/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -372,6 +374,11 @@ offset_bottom = 398.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "YOU DIED!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_cbs6p")
+volume_db = -6.0
+autoplay = true
 
 [connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
 [connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]

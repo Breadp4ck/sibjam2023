@@ -172,6 +172,7 @@ _teleportBackPosition = NodePath("../TpBackPosition")
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("12_w2ajy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.343178, 0, -11.8139)
+_killsToOpen = 23
 
 [node name="TpBackPosition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 16)

@@ -7,6 +7,6 @@ public partial class TeleportBackZone : Area3D
     
     private void OnAreaEntered(Area3D area3D)
     {
-        area3D.GetParent<Player>().GlobalPosition = _teleportBackPosition.GlobalPosition;
+        area3D.GetParent<Node3D>().GlobalPosition = _teleportBackPosition.GlobalPosition;
     }
 }

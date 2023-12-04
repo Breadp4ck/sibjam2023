@@ -43,7 +43,6 @@ public partial class GUI : Control
 	
 	private void OnManaChanged(int mana)
 	{
-		GD.Print("PIZDA");
 		_manaBar.Value = 100 - mana;
 	}
 }

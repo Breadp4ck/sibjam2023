@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://crthv77lfgu3b"]
+[gd_scene load_steps=11 format=3 uid="uid://crthv77lfgu3b"]
 
 [ext_resource type="Script" path="res://assets/entities/world/World.cs" id="1_obc53"]
-[ext_resource type="Shader" path="res://assets/entities/world/world.gdshader" id="2_6mdib"]
 [ext_resource type="PackedScene" uid="uid://dggow3wnhk5yy" path="res://assets/entities/levels/level1/Level1.tscn" id="3_8dcek"]
 [ext_resource type="PackedScene" uid="uid://cu0iwv5ta77o2" path="res://assets/entities/levels/level2/Level2.tscn" id="4_7ubs3"]
 [ext_resource type="PackedScene" uid="uid://dp82l8fynfary" path="res://assets/entities/levels/level3/Level3.tscn" id="5_ki3k2"]
@@ -10,32 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://bmw8verfxhid5" path="res://assets/entities/levels/level6/Level6.tscn" id="8_qgtka"]
 [ext_resource type="PackedScene" uid="uid://cp1k4ppiyyil6" path="res://assets/entities/levels/level7/Level7.tscn" id="9_e6w4q"]
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="10_k8frv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxqbs"]
-shader = ExtResource("2_6mdib")
-shader_parameter/enabled = false
-shader_parameter/dithering = false
-shader_parameter/colors = 12
-shader_parameter/dither_size = 1
-shader_parameter/coeff = 0.048
+[ext_resource type="Environment" uid="uid://c8q4wwr8cnji2" path="res://assets/entities/levels/backrooms/envs/fog.tres" id="10_x11hc"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_obc53")
 
-[node name="ViewportContainer" type="SubViewportContainer" parent="."]
-material = SubResource("ShaderMaterial_bxqbs")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="ViewportContainer"]
-handle_input_locally = false
-audio_listener_enable_3d = true
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("10_k8frv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.098356, 16)
 
 [node name="Level1" parent="." instance=ExtResource("3_8dcek")]
 
@@ -57,5 +37,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 0)
 [node name="Level7" parent="." instance=ExtResource("9_e6w4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 900, 0)
 
-[node name="Player" parent="." instance=ExtResource("10_k8frv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.901644, 16)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 0)
+light_color = Color(0.168627, 0.364706, 0.411765, 1)
+light_energy = 0.5
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.842387, 0.538874, 0, -0.538874, -0.842387, 0, 10, 0)
+light_color = Color(0.917647, 0.815686, 0.815686, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("10_x11hc")

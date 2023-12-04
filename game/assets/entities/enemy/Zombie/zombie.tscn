@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="2_n6ggd"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="3_1ox7k"]
 [ext_resource type="Script" path="res://assets/entities/enemy/Zombie/HitArea.cs" id="4_4rik2"]
-[ext_resource type="PackedScene" uid="uid://16hm2yyxuvxt" path="res://assets/entities/particles/rocket_fire.tscn" id="5_7ir7v"]
+[ext_resource type="PackedScene" path="res://assets/entities/particles/rocket_fire.tscn" id="5_7ir7v"]
 [ext_resource type="PackedScene" uid="uid://dwhpowfde8prr" path="res://assets/models/churger/churger.gltf" id="6_2x3mr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dycl"]
@@ -21,7 +21,7 @@ radius = 0.7
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g4a1r"]
 height = 1.0
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "_patrolPoints")]
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "HitArea", "_patrolPoints")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_sqsdn")
 _chargeSpeed = 8.0
@@ -32,6 +32,7 @@ _viewDistance = 5.0
 _forgetDistanceIfChasing = 15.0
 EndAttackTimeSeconds = 2.0
 _attackCooldownSeconds = 2.0
+HitArea = NodePath("HitArea")
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

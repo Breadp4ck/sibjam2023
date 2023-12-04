@@ -21,13 +21,13 @@ public partial class EnemySpawner : Node3D
             return;
         }
 
-        _player = GetTree().Root.GetNode<Player>(_pathToPlayerInScene);
-
+        _player = (Player)GetTree().Root.GetChild(0).GetChild(0);
 
         while (true)
         {
             if (_player.GlobalPosition.DistanceTo(GlobalPosition) < 50)
             {
+                GD.Print("PZIDA");
                 break;
             }
 
@@ -57,7 +57,7 @@ public partial class EnemySpawner : Node3D
         uint enemiesSpawned = 0;
         while (enemiesSpawned < _maxEnemies)
         {
-            Spawn(_enemyScene, GetTree().Root.GetNode<Player>("/" + _pathToPlayerInScene));
+            Spawn(_enemyScene, _player);
             enemiesSpawned++;
 
             await Task.Delay((int)(_spawnIntervalSeconds * 1000));

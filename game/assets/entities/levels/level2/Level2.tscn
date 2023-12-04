@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cu0iwv5ta77o2"]
+[gd_scene load_steps=16 format=3 uid="uid://cu0iwv5ta77o2"]
 
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="2_u0eua"]
 [ext_resource type="PackedScene" uid="uid://dj61lycasaeyh" path="res://assets/models/grid_tile_large.gltf" id="3_rjqyn"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="8_e60a3"]
 [ext_resource type="PackedScene" uid="uid://craylftkig3ns" path="res://assets/models/rock.gltf" id="8_l7i51"]
 [ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="9_733rx"]
-[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="10_edwn4"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="11_ypyn6"]
 [ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="12_cxweo"]
 
@@ -229,9 +228,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 19)
 [node name="TeleportNextLevel" parent="." instance=ExtResource("9_733rx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
 _killsToOpen = 38
-
-[node name="Player" parent="." instance=ExtResource("10_edwn4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 21.0755)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("11_ypyn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3347, 0.615907, 9.28601)

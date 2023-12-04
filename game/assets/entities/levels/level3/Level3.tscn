@@ -228,9 +228,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 12)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
 _killsToOpen = 38
 
-[node name="Player" parent="." instance=ExtResource("10_p75xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 23.0455)
-
 [node name="EnemySpawner" parent="." instance=ExtResource("11_qec81")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9848, 0.578804, -12.3376)
 _enemyScene = ExtResource("12_2vb3i")

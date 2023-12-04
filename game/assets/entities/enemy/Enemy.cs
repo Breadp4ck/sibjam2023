@@ -133,6 +133,9 @@ public partial class Enemy : CharacterBody3D
 	
 	protected void Patrol()
 	{	
+		State = EnemyState.Chase;
+		return;
+		
 		if (Target.GlobalPosition.DistanceTo(GlobalPosition) <= _viewDistance)
 		{
 			State = EnemyState.Chase;
