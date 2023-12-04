@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://mdrne18vyxmg"]
+
+[ext_resource type="Texture2D" uid="uid://bugvw41xn4mbo" path="res://assets/textures/TH_Gray_Rocks_normal.png" id="1_bjtgm"]
+
+[resource]
+albedo_color = Color(0.368627, 0.654902, 0.298039, 1)
+normal_enabled = true
+normal_texture = ExtResource("1_bjtgm")
