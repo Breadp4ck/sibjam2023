@@ -13,11 +13,11 @@ albedo_color = Color(1, 0, 0, 1)
 collision_layer = 0
 collision_mask = 512
 script = ExtResource("1_xfx4e")
-_damage = 1.0
+_damage = 2.0
 _destroyOnCollide = true
 Type = 3
 Duration = 5.0
-ManaCost = 10
+ManaCost = 30
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_t241y")
