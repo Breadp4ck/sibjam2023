@@ -52,7 +52,7 @@ shape = SubResource("CapsuleShape3D_4b0nm")
 path_height_offset = 0.15
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("1_8lcvc")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, -0.355848)
 collision_layer = 512
 collision_mask = 0
 _healthComponent = NodePath("../HealthComponent")
@@ -64,6 +64,7 @@ shape = SubResource("CapsuleShape3D_uxl7u")
 
 [node name="TargetRaycastArea" type="Area3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
+visible = false
 collision_layer = 256
 collision_mask = 0
 
@@ -71,6 +72,7 @@ collision_mask = 0
 shape = SubResource("CapsuleShape3D_b54k5")
 
 [node name="HitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.421017)
 collision_layer = 0
 collision_mask = 1024
 script = ExtResource("3_026hh")
@@ -112,7 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 visible = false
 
 [node name="boss" parent="." instance=ExtResource("10_tmxtp")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.127757, 0)
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, -0.127757, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]

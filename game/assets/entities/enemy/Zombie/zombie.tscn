@@ -13,6 +13,8 @@ albedo_color = Color(0, 1, 0.266667, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v8opj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3l7hc"]
+radius = 1.10212
+height = 2.82704
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x776u"]
 radius = 0.7
