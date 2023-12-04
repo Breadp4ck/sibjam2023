@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://dju03wmkjhhst"
+path="res://.godot/imported/roughness.png-c79e037f6a9bc892d6f1e32bbfe88ff3.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/textures/terrain/roughness.png"
+dest_files=["res://.godot/imported/roughness.png-c79e037f6a9bc892d6f1e32bbfe88ff3.ctexarray"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=4
+slices/vertical=2
