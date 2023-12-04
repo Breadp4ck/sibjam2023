@@ -1,7 +1,10 @@
+using System;
 using Godot;
 
 public partial class HealthComponent : Node
 {
+	public static event Action<Enemy> Died;
+	
 	[Export] private double _maxHealth = 2;
 
 	[Signal] public delegate void DeadEventHandler();
@@ -18,9 +21,24 @@ public partial class HealthComponent : Node
 		GD.Print("Deal " + damage + " damage.");
 		_health -= damage;
 
-		if (_health <= 0)
+		if (_health > 0)
 		{
-			EmitSignal(SignalName.Dead);
+			return;
 		}
+		
+		EmitSignal(SignalName.Dead);
+
+		Enemy enemy;
+		try
+		{
+			enemy = GetParent<Enemy>();
+		}
+		catch (Exception)
+		{
+			return;
+			// ignored
+		}
+
+		Died?.Invoke(enemy);
 	}
 }
