@@ -14,7 +14,7 @@ public abstract partial class Spell : Node3D
 	[Export] protected string Description;
 
 	[Export] protected float Duration;
-	[Export] protected uint ManaCost;
+	[Export] public int ManaCost;
 
 	public abstract void Cast();
 

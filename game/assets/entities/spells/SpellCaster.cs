@@ -3,10 +3,14 @@ using System;
 
 public partial class SpellCaster : Node3D
 {
+	public event Action<int> ManaLostEvent;
+	
 	[Export] private Camera3D _camera;
 
 	[Export] private SpellPresenter _spellPresenter;
-	
+
+	[Export] private int _mana = 100;
+
 	// Objects MUST be in the same order as in 'SpellType' enum!
 	[Export] private PackedScene[] _spellObject;
 	
@@ -53,8 +57,17 @@ public partial class SpellCaster : Node3D
 			return;
 		}
 
-		spell.Cast();
-		GD.Print($"Casted {spell}!");
+		if (_mana < spell.ManaCost)
+		{
+			GD.Print("Not enough mana for cast");
+		}
+		else
+		{
+			spell.Cast();
+			_mana -= spell.ManaCost;
+			ManaLostEvent?.Invoke(spell.ManaCost);
+			GD.Print($"Casted {spell}!");
+		}
 	}
 	
 	private Spell GetSpell(SpellType? spellType)
