@@ -46,10 +46,8 @@ text = "LEVEL ONE"
 font_size = 2000
 outline_size = 100
 
-[node name="Player" parent="." node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent") instance=ExtResource("1_eqay0")]
+[node name="Player" parent="." instance=ExtResource("1_eqay0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 16.5)
-_spellPresenter = NodePath("")
-_hitboxComponent = NodePath("")
 
 [node name="cargo" parent="." instance=ExtResource("2_twq5j")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 12, 0, -1)
