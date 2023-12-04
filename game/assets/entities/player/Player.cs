@@ -22,11 +22,6 @@ public partial class Player : CharacterBody3D
 		MoveAndSlide();
 	}
 
-	public void Hit(uint damage)
-	{
-		_hitboxComponent.Hit(damage);
-	}
-	
 	private void Die()
 	{
 		GD.Print("Player is dead!");

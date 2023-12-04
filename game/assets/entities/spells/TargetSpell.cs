@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 public abstract partial class TargetSpell : Spell
 {
-    [Export] private float _speed;
+    [Export] protected float Speed;
     
     protected bool HasToMove;
 
@@ -19,7 +19,7 @@ public abstract partial class TargetSpell : Spell
         }
 		
         Vector3 direction = (_target.GlobalPosition + _target.RealPosition - GlobalPosition).Normalized();
-        Move(direction * (float)delta * _speed);
+        Move(direction * (float)delta * Speed);
     }
     
     public override async void Cast()
@@ -38,7 +38,6 @@ public abstract partial class TargetSpell : Spell
 
     private void OnAreaEntered(Area3D area3D)
     {
-        GD.Print("1");
         OnAreaEnteredInternal(area3D);
     }
 

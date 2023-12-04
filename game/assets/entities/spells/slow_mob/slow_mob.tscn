@@ -15,7 +15,7 @@ collision_mask = 512
 script = ExtResource("1_m5l6h")
 _durationAfterApplied = 3.0
 _newSpeed = 1.0
-_speed = 10.0
+Speed = 7.0
 Type = 1
 Duration = 5.0
 

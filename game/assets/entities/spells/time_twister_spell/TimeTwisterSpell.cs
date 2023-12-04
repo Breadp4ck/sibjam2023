@@ -6,9 +6,28 @@ public partial class TimeTwisterSpell : Spell
     public static bool IsCasting => _isCasting;
     private static bool _isCasting;
     
-    [Export] private float _playerNewTimescale; // e.g. 1.7f => 170% of the original timescale will be used.
-    [Export] private float _enemyNewTimescale; // e.g. 0.7f => 70% of the original timescale will be used.
-    
+    private float _playerNewTimescale; // e.g. 1.7f => 170% of the original timescale will be used.
+    private float _enemyNewTimescale; // e.g. 0.7f => 70% of the original timescale will be used.
+
+    public override void UpgradeByLevel(uint level)
+    {
+        if (level == 1)
+        {
+            _playerNewTimescale = 1.0f;
+            _enemyNewTimescale = 0.7f;
+        }
+        else if (level == 2)
+        {
+            _playerNewTimescale = 1.35f;
+            _enemyNewTimescale = 0.5f;
+        }
+        else
+        {
+            _playerNewTimescale = 1.7f;
+            _enemyNewTimescale = 0.35f;
+        }
+    }
+
     public override async void Cast()
     {
         if (_isCasting == true)

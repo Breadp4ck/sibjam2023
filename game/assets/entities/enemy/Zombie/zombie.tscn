@@ -13,6 +13,8 @@ albedo_color = Color(0, 1, 0.266667, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v8opj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3l7hc"]
+radius = 1.10212
+height = 2.82704
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x776u"]
 radius = 0.7
@@ -20,7 +22,7 @@ radius = 0.7
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g4a1r"]
 height = 1.0
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "HitArea", "_patrolPoints")]
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "_patrolPoints")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_sqsdn")
 _chargeSpeed = 8.0
@@ -29,10 +31,8 @@ _speed = 2.0
 _attackRange = 3.0
 _viewDistance = 5.0
 _forgetDistanceIfChasing = 15.0
-StartAttackTimeSeconds = 1.0
 EndAttackTimeSeconds = 2.0
 _attackCooldownSeconds = 2.0
-HitArea = NodePath("HitArea")
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
