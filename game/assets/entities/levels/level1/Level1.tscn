@@ -1,4 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://dggow3wnhk5yy"]
+[gd_scene load_steps=15 format=3 uid="uid://dggow3wnhk5yy"]
+
 
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="1_eqay0"]
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="2_twq5j"]
@@ -6,8 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cbw52p5ystp20" path="res://assets/models/pillar.gltf" id="4_eri75"]
 [ext_resource type="PackedScene" uid="uid://ce46gochwcpnj" path="res://assets/models/box.gltf" id="5_0p48w"]
 [ext_resource type="PackedScene" uid="uid://n2tfm8tauh4o" path="res://assets/models/fence.gltf" id="6_5e6lw"]
-[ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="7_hnuei"]
-[ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="8_fx7d8"]
+[ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="7_18j3g"]
+[ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="8_vdq6a"]
+[ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="9_idlbg"]
+[ext_resource type="PackedScene" uid="uid://dy55rfw7cbvvs" path="res://assets/entities/enemy/Enemy.tscn" id="10_2xqja"]
+
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rldqx"]
 vertices = PackedVector3Array(-5, 0.5, -8.75, -5, 0.5, -7.75, -4.5, 0.5, -7.5, 7.5, 0.5, 0.25, 7.75, 0.5, 0.75, 10.25, 0.5, 0.75, 7.5, 0.5, 0.25, 10.25, 0.5, 0.75, 9, 0.5, -5, 3, 0.5, -0.75, 12.75, 0.5, -6, 18.5, 0.5, -6.25, 17, 0.5, -10, -9, 0.5, -17.25, -8, 0.5, -11, -7.25, 0.5, -11, -2.75, 0.5, -19.5, -7.5, 0.5, -18.25, -9, 0.5, -17.25, -7.25, 0.5, -11, -5, 0.5, -8.75, 7.5, 0.5, -18.25, 2.75, 0.5, -19.5, -2.75, 0.5, -19.5, 14, 0.5, -14, 11.25, 0.5, -16.25, 7.5, 0.5, -18.25, 12.75, 0.5, -6, 17, 0.5, -10, 14, 0.5, -14, 9, 0.5, -5, 9, 0.5, -5, 14, 0.5, -14, 7.5, 0.5, -18.25, -2.75, 0.5, -19.5, -5, 0.5, -8.75, 3, 0.5, -0.75, -4.5, 0.5, -7.5, -3, 0.5, -3.75, 3, 0.5, -0.75, -5, 0.5, -8.75, -4.5, 0.5, -7.5, 3, 0.5, -0.75, -18.25, 0.5, -7.5, -18.75, 0.5, -5.5, -14, 0.5, -5, -8, 0.5, -11, -9, 0.5, -17.25, -12.25, 0.5, -15.5, -15.5, 0.5, -12.25, -18.25, 0.5, -7.5, -14, 0.5, -5, -8, 3.5, -9.75, -12.75, 3.5, -5, -12.75, 3.5, -4.5, -11, 3.5, -3.25, -6.25, 3.5, -8, -7.5, 3.5, -9.75, -12.25, 0.5, -4.75, -11.25, 0.5, -3.75, -6.75, 0.5, -8.25, -7.75, 0.5, -9.25, 15, 0.5, 2.5, 19.25, 0.5, 3, 19.5, 0.5, -2.75, 18.5, 0.5, -6.25, 12.75, 0.5, -6, -5, 3.5, -5.25, -6.25, 3.5, -5.75, -6.5, 3.5, -5.25, -6.5, 3.5, -4.5, -5.75, 3.5, -4.25, -5.25, 3.5, -4.25, -14, 0.5, -4.25, -14, 0.5, -5, -18.75, 0.5, -5.5, -19.5, 0.5, -2.75, -19.5, 0.5, 2.25, -18.75, 0.5, 2.25, -18.25, 0.5, 3.25, -18.25, 0.5, 4.5, -16.75, 0.5, 8.25, -14, 0.5, 14, -10.5, 0.5, 16.5, -8.5, 0.5, 13.25, -14, 0.5, -4.25, -18.75, 0.5, -5.5, -19.5, 0.5, -2.75, -18.75, 0.5, 2.25, -18.25, 0.5, 3.25, -11.75, 0.5, -2, -16.75, 0.5, 8.25, -14, 0.5, 14, -8.5, 0.5, 13.25, -8.5, 0.5, 5, -11.75, 0.5, -2, -18.25, 0.5, 3.25, -16.75, 0.5, 8.25, -17.25, 0.5, 9.5, -14, 0.5, 14, -8.5, 0.5, 5, -11, 0.5, -2, -11.75, 0.5, -2, -8.25, 2.25, -4.75, -7.5, 2.25, -3.5, -7.5, 2.25, -5, 11.75, 3.5, 2.75, 14, 3.5, 2.25, 12.25, 3.5, -4.75, 10, 3.5, -4.25, 12, 0.5, 2.25, 13.5, 0.5, 2, 12, 0.5, -4.25, 10.5, 0.5, -4, -4.75, 0.5, -2.5, -6.75, 0.5, -3, -7, 0.5, -2.5, -8.5, 0.5, -2.5, -9.25, 0.5, -3.75, -11, 0.5, -2, -7, 0.5, -2.5, -8.5, 0.5, -2.5, -11, 0.5, -2, -4.75, 0.5, -2.5, -7, 0.5, -2.5, -11, 0.5, -2, -8.25, 0.5, 4.5, -4.75, 0.5, 4.5, -11, 0.5, -2, -8.5, 0.5, 5, -8.25, 0.5, 4.5, -4.25, 0.5, 4.75, -4.25, 0.5, 5.5, -2.25, 0.5, 5.5, -4.25, 0.5, 4.75, -2.25, 0.5, 5.5, -1.75, 0.5, 4.75, -4.75, 0.5, 4.5, 2.25, 0.5, 0, 3, 0.5, -0.75, -3, 0.5, -3.75, -1.75, 0.5, 4.75, 1.5, 0.5, 3.5, 2.25, 0.5, 0, -3, 0.5, -3.75, -4.75, 0.5, -2.5, -4.75, 0.5, 4.5, 4, 0.5, 4.5, 3.75, 0.5, 6, 4.25, 0.5, 6.25, 7.5, 0.5, 1.75, 6.5, 0.5, 1.75, 2.5, 0.5, 8.5, 2.75, 0.5, 11.25, 3.25, 0.5, 11.25, 10.25, 0.5, 0.75, 7.75, 0.5, 0.75, 7.5, 0.5, 1.75, 10, 0.5, 13.25, 10.25, 0.5, 14.25, 11, 0.5, 16.25, 14, 0.5, 14, 16.25, 0.5, 11.25, 3.5, 0.5, 0.75, 3, 0.5, 3.5, 4, 0.5, 4.5, 6.5, 0.5, 1.75, 4.25, 0.5, 7.5, 5.5, 0.5, 14, 10, 0.5, 13.25, 16.25, 0.5, 11.25, 18.25, 0.5, 7.5, 11.25, 0.5, 4, 4.25, 0.5, 7.5, 2.5, 0.5, 8.5, 3.25, 0.5, 11.25, 5.5, 0.5, 14, 18.25, 0.5, 7.5, 19.25, 0.5, 3, 14.75, 0.5, 3.25, 11.25, 0.5, 4, 11.25, 0.5, 4, 10.25, 0.5, 0.75, 7.5, 0.5, 1.75, 4.25, 0.5, 6.25, 4.25, 0.5, 7.5, 19.25, 0.5, 3, 15, 0.5, 2.5, 14.75, 0.5, 3.25, 0.25, 2.5, 5.5, 0.75, 2.5, 6.5, 1.75, 2.5, 6, 1.5, 2.5, 5, -7.5, 3.25, 5.5, -7.5, 3.25, 12.5, -5.5, 3.25, 12.5, -5.5, 3.25, 5.5, 1.75, 0.5, 8.5, 1.25, 0.5, 7.5, 0.25, 0.5, 7.5, -2, 0.5, 6.25, -2.25, 0.5, 5.5, -4.25, 0.5, 5.5, 0.25, 0.5, 7.5, -0.5, 0.5, 6, -2, 0.5, 6.25, 2.75, 0.5, 11.25, 2.5, 0.5, 8.5, 1.75, 0.5, 8.5, 2, 0.5, 11.5, 1.75, 0.5, 8.5, 0.25, 0.5, 7.5, -2, 0.5, 6.25, -4.25, 0.5, 5.5, -4.25, 0.5, 12.75, 2, 0.5, 12.25, 2, 0.5, 12.25, 2, 0.5, 11.5, 1.75, 0.5, 8.5, -7.25, 0.5, 5.75, -7.25, 0.5, 12.25, -5.75, 0.5, 12.25, -5.75, 0.5, 5.75, 2.25, 2, 6.75, 2.25, 2, 7.25, 3.25, 2, 7, 3, 2, 6.5, -8.25, 0.5, 13.75, -8.5, 0.5, 13.25, -10.5, 0.5, 16.5, -8.25, 0.5, 13.75, -10.5, 0.5, 16.5, -7.5, 0.5, 18.25, -4.25, 0.5, 19.25, -4.75, 0.5, 13.75, 7.5, 0.5, 18.25, 11, 0.5, 16.25, 10.25, 0.5, 14.25, 5, 0.5, 15.5, 2.75, 0.5, 19.5, -4.25, 0.5, 12.75, -4.75, 0.5, 13.75, -4.25, 0.5, 19.25, 2.75, 0.5, 19.5, 5, 0.5, 15.5, 2, 0.5, 12.25)
@@ -126,6 +130,45 @@ transform = Transform3D(0.294891, 0, -0.955531, 0, 1, 0, 0.955531, 0, 0.294891, 
 [node name="fence3" parent="." instance=ExtResource("6_5e6lw")]
 transform = Transform3D(0.329328, 0, -0.944216, 0, 1, 0, 0.944216, 0, 0.329328, -17.8682, 0, 7.68377)
 
+[node name="EnemySpawner" parent="." instance=ExtResource("7_18j3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.28048, 3.481, 9.28601)
+_enemyScene = ExtResource("8_vdq6a")
+_autoSpawn = true
+_maxEnemies = 1
+_spawnIntervalSeconds = 7.0
+_pathToPlayerInScene = "Player"
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("7_18j3g")]
+transform = Transform3D(0.880237, 0, 0.474534, 0, 1, 0, -0.474534, 0, 0.880237, -8.84051, 0.535637, -16.8151)
+_enemyScene = ExtResource("8_vdq6a")
+_autoSpawn = true
+_maxEnemies = 1
+_spawnIntervalSeconds = 30.0
+_pathToPlayerInScene = "Player"
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("7_18j3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9383, 0.538158, -16.127)
+_enemyScene = ExtResource("9_idlbg")
+_autoSpawn = true
+_maxEnemies = 5
+_spawnIntervalSeconds = 25.0
+_pathToPlayerInScene = "Player"
+
+[node name="EnemySpawner4" parent="." instance=ExtResource("7_18j3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0797, 0.513214, 3.5979)
+_enemyScene = ExtResource("9_idlbg")
+_autoSpawn = true
+_maxEnemies = 8
+_spawnIntervalSeconds = 5.0
+_pathToPlayerInScene = "Player"
+
+[node name="EnemySpawner5" parent="." instance=ExtResource("7_18j3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.783, 0.518096, 5.82191)
+_enemyScene = ExtResource("10_2xqja")
+_autoSpawn = true
+_maxEnemies = 8
+_spawnIntervalSeconds = 5.0
+_pathToPlayerInScene = "Player"
 [node name="TeleportBackZone" parent="." node_paths=PackedStringArray("_teleportBackPosition") instance=ExtResource("7_hnuei")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 _teleportBackPosition = NodePath("../TPBackPosition")

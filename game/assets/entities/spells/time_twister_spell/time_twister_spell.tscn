@@ -4,5 +4,5 @@
 
 [node name="TimeTwisterSpell" type="Node3D"]
 script = ExtResource("1_3qdxx")
-Duration = 2.0
+Duration = 4.0
 ManaCost = 5

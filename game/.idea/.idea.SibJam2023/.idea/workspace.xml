@@ -6,14 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/player/GUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/GUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Enemy.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Enemy.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/EnemySpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/flying_zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/flying_zombie.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/projectile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/projectile.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/levels/level1/Level1.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/level1/Level1.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/levels/level3/Level3.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/level3/Level3.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/levels/level4/Level4.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/level4/Level4.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/spells/Spell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/Spell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/spells/SpellCaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/SpellCaster.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/spells/fireball/fireball.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/fireball/fireball.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/spells/slow_mob/slow_mob.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/slow_mob/slow_mob.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/spells/spurn/spurn.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/spurn/spurn.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/spells/storm/storm.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/storm/storm.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/spells/time_twister_spell/time_twister_spell.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/time_twister_spell/time_twister_spell.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
@@ -43,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "UI",
+    "git-widget-placeholder": "monster-design",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -117,6 +120,7 @@
       <workItem from="1701658959357" duration="3266000" />
       <workItem from="1701670702267" duration="6338000" />
       <workItem from="1701696370003" duration="1890000" />
+      <workItem from="1701701755857" duration="637000" />
     </task>
     <servers />
   </component>

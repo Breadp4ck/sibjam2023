@@ -58,6 +58,7 @@ bg_color = Color(0.00392157, 0.278431, 0.466667, 1)
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent")]
 script = ExtResource("1_4txfr")
 _spellPresenter = NodePath("SpellPresenter")
+_walkSpeed = 15.0
 _hitboxComponent = NodePath("HitboxComponent")
 
 [node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
@@ -162,6 +163,7 @@ script = ExtResource("2_hvfwp")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
+WALK_SPEED = 12.0
 
 [node name="Leap" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
 script = ExtResource("3_cmuim")
@@ -175,7 +177,7 @@ script = ExtResource("4_yhsxb")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
-FALL_WALK_SPEED = 9.0
+FALL_WALK_SPEED = 11.0
 FALL_SOAR = 2.0
 
 [node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast", "shape_cast_walls")]
@@ -185,7 +187,7 @@ collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
 shape_cast_walls = NodePath("../../ShapeCastWalls")
-SLIDE_SPEED = 10.0
+SLIDE_SPEED = 12.0
 SLIDE_DURATION = 4.0
 
 [node name="SlideJump" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
@@ -198,6 +200,7 @@ script = ExtResource("9_7mvlg")
 player = NodePath("../..")
 camera = NodePath("../../PseudoCamera")
 FALL_SLIDE_SPEED = 10.0
+MAX_VELOCITY = 20.0
 
 [node name="Crouch" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
 script = ExtResource("10_fteug")
