@@ -3,7 +3,7 @@ using System;
 
 public partial class SpellCaster : Node3D
 {
-	public event Action<int> ManaLostEvent;
+	public event Action<int> ManaChangedEvent;
 	
 	[Export] private Camera3D _camera;
 
@@ -17,6 +17,16 @@ public partial class SpellCaster : Node3D
 	private Vector3 _lookDirection;
 	
 	private Enemy _target; // Capture me using last raycast hit.
+
+	public override void _Ready()
+	{
+		var manaPerKill = 15;
+		Enemy.DieEvent += () =>
+		{
+			_mana += manaPerKill;
+			ManaChangedEvent?.Invoke(_mana);
+		};
+	}
 
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -59,13 +69,14 @@ public partial class SpellCaster : Node3D
 
 		if (_mana < spell.ManaCost)
 		{
+			spell.QueueFree();
 			GD.Print("Not enough mana for cast");
 		}
 		else
 		{
 			spell.Cast();
 			_mana -= spell.ManaCost;
-			ManaLostEvent?.Invoke(spell.ManaCost);
+			ManaChangedEvent?.Invoke(_mana);
 			GD.Print($"Casted {spell}!");
 		}
 	}

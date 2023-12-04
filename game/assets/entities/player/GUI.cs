@@ -22,8 +22,8 @@ public partial class GUI : Control
 			_dictionary.Add((SpellType)i, texture);
 		}
 
-		_playerHitbox.HPLostEvent += OnHPLost;
-		_spellCaster.ManaLostEvent += OnManaLost;
+		_playerHitbox.HpChangedEvent += OnHpChanged;
+		_spellCaster.ManaChangedEvent += OnManaChanged;
 	}
 
 	private void OnSpellTypeChanged(SpellType spellType)
@@ -36,13 +36,14 @@ public partial class GUI : Control
 		_image.Texture = textureRect;
 	}
 
-	private void OnHPLost(double health)
+	private void OnHpChanged(double health)
 	{
-		_hpBar.Value += health;
+		_hpBar.Value = 100 - health;
 	}
 	
-	private void OnManaLost(int mana)
+	private void OnManaChanged(int mana)
 	{
-		_manaBar.Value += mana;
+		GD.Print("PIZDA");
+		_manaBar.Value = 100 - mana;
 	}
 }

@@ -227,7 +227,7 @@ shape = SubResource("CapsuleShape3D_jfsaf")
 [node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
 _maxHealth = 100.0
 
-[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("_image", "_hpBar", "_manaBar", "_playerHitbox")]
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("_image", "_hpBar", "_manaBar", "_playerHitbox", "_spellCaster")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1153.0
@@ -238,6 +238,7 @@ _image = NodePath("HUD/Spells/HBoxContainer/TextureRect")
 _hpBar = NodePath("HUD/HP/HPBar")
 _manaBar = NodePath("HUD/Mana/ManaBar")
 _playerHitbox = NodePath("../HitboxComponent")
+_spellCaster = NodePath("../PseudoCamera/SpellCaster")
 
 [node name="HUD" type="Control" parent="GUI"]
 anchors_preset = 0
