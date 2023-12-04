@@ -1,22 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw2ac62ymfwlq"]
+[gd_scene load_steps=9 format=3 uid="uid://bw2ac62ymfwlq"]
 
 [ext_resource type="Script" path="res://assets/entities/spells/fireball/Fireball.cs" id="1_xfx4e"]
+[ext_resource type="Texture2D" uid="uid://bgew7h8k3uluy" path="res://assets/entities/particles/spark_02.png" id="2_ua80b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t241y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hscld"]
 albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.819608, 0.537255, 0, 1)
+emission_energy_multiplier = 2.08
 
 [sub_resource type="SphereMesh" id="SphereMesh_708l7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qnrmy"]
+emission_shape = 2
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 1, 0)
+tangential_accel_min = -1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmbra"]
+transparency = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.654902, 0, 1)
+albedo_texture = ExtResource("2_ua80b")
+emission_enabled = true
+emission = Color(0.937255, 0.4, 0.0823529, 1)
+emission_energy_multiplier = 11.16
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_32212"]
+material = SubResource("StandardMaterial3D_bmbra")
+size = Vector2(0.1, 0.1)
 
 [node name="Fireball" type="Area3D"]
 collision_layer = 0
 collision_mask = 512
 script = ExtResource("1_xfx4e")
-_damage = 1.0
+_damage = 2.0
 _destroyOnCollide = true
 Type = 3
 Duration = 5.0
+ManaCost = 30
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_t241y")
@@ -24,5 +50,12 @@ shape = SubResource("SphereShape3D_t241y")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_hscld")
 mesh = SubResource("SphereMesh_708l7")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304292, 0, 0)
+amount = 64
+trail_lifetime = 1.81
+process_material = SubResource("ParticleProcessMaterial_qnrmy")
+draw_pass_1 = SubResource("QuadMesh_32212")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

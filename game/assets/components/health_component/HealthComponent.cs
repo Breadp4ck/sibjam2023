@@ -9,6 +9,7 @@ public partial class HealthComponent : Node
 
 	[Signal] public delegate void DeadEventHandler();
 
+	public double Health => _health;
 	private double _health;
 	
 	public override void _Ready()

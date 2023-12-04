@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://calopp2kof350"]
+
+[ext_resource type="Script" path="res://assets/entities/levels/TeleportNextLevel.cs" id="1_6ohe1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fuvmy"]
+size = Vector3(3.05432, 3.75879, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7lt3o"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -9.64
+radial_accel_max = -4.82
+tangential_accel_min = 4.82
+tangential_accel_max = 4.82
+scale_max = 3.0
+color = Color(0.25098, 0.25098, 0.25098, 0.564706)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_bglpu"]
+offsets = PackedFloat32Array(0.701754, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b7cgb"]
+gradient = SubResource("Gradient_bglpu")
+fill = 1
+fill_from = Vector2(0.516854, 0.460674)
+fill_to = Vector2(0.882023, 0.0786517)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2h40"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_b7cgb")
+billboard_mode = 1
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_elcwi"]
+material = SubResource("StandardMaterial3D_t2h40")
+size = 0.1
+sections = 10
+section_segments = 1
+
+[sub_resource type="Gradient" id="Gradient_brivj"]
+offsets = PackedFloat32Array(0.342105, 0.833333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xhmcx"]
+gradient = SubResource("Gradient_brivj")
+fill = 1
+fill_from = Vector2(0.505618, 0.522472)
+fill_to = Vector2(0.893258, 0.876405)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yhau"]
+transparency = 1
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.290196, 0.419608, 1)
+albedo_texture = SubResource("GradientTexture2D_xhmcx")
+emission_enabled = true
+emission = Color(0.313726, 0.564706, 0.666667, 1)
+emission_energy_multiplier = 0.44
+emission_operator = 1
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_njiy5"]
+material = SubResource("StandardMaterial3D_8yhau")
+size = Vector2(0.1, 0.1)
+
+[node name="TeleportNextLevel" type="Area3D"]
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource("1_6ohe1")
+_teleportPositionOffset = Vector3(0, 100, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00665283, 1.37939, 0)
+shape = SubResource("BoxShape3D_fuvmy")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13963, 0)
+visible = false
+amount = 256
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_7lt3o")
+draw_pass_1 = SubResource("RibbonTrailMesh_elcwi")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61991, 0)
+amount = 64
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_7lt3o")
+draw_pass_1 = SubResource("QuadMesh_njiy5")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

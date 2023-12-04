@@ -17,6 +17,11 @@ public static class Inventory
             {SpellType.Spurn, 1},
         };
     }
+
+    public static void Clear()
+    {
+        SpellsLevel.Clear();
+    }
     
     public static bool HasSpell(SpellType spellType)
     {

@@ -1,16 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy55rfw7cbvvs"]
+[gd_scene load_steps=10 format=3 uid="uid://buta0kfnkmkcg"]
 
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="1_67tjl"]
 [ext_resource type="Script" path="res://assets/entities/enemy/Enemy.cs" id="1_jrucy"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="2_n3b2o"]
 [ext_resource type="Script" path="res://assets/entities/enemy/Zombie/HitArea.cs" id="3_7jcyd"]
+[ext_resource type="PackedScene" uid="uid://c2ilppm5okfo1" path="res://assets/models/jumper/jumper.gltf" id="5_pj0oj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7f6sj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nirpr"]
-albedo_color = Color(0, 0.666667, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_ahaml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wj3db"]
 radius = 0.827584
@@ -40,11 +36,6 @@ _patrolPoints = []
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("SphereShape3D_7f6sj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-material_override = SubResource("StandardMaterial3D_nirpr")
-mesh = SubResource("SphereMesh_ahaml")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.15
 
@@ -73,11 +64,14 @@ transform = Transform3D(0.0351262, 0, -0.999383, 0, 1, 0, 0.999383, 0, 0.0351262
 collision_layer = 0
 collision_mask = 1024
 script = ExtResource("3_7jcyd")
-_damage = 1.0
+_damage = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.888901, 0.269651, 0)
 shape = SubResource("CylinderShape3D_6p0wk")
+
+[node name="jumper" parent="." instance=ExtResource("5_pj0oj")]
+transform = Transform3D(-0.114989, 0, -0.993367, 0, 1, 0, 0.993367, 0, -0.114989, 0, -1.02524, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]

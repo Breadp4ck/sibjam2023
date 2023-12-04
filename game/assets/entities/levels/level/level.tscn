@@ -173,10 +173,11 @@ _maxEnemies = 2
 _spawnIntervalSeconds = 3.0
 _pathToPlayerInScene = "Player"
 
-[node name="TeleportBackZone" parent="." node_paths=PackedStringArray("_teleportBackPosition") instance=ExtResource("11_1mv6h")]
+[node name="TeleportBackZone" parent="." instance=ExtResource("11_1mv6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 collision_mask = 1024
-_teleportBackPosition = NodePath("../TeleportBackPosition")
+_teleportBackPosition = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50015, 0, 17.5003),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
+
 
 [node name="TeleportBackPosition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50015, 0, 17.5003)
