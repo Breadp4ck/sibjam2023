@@ -33,7 +33,7 @@ _subresources={
 "materials": {
 "Base": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/asphalt.tres"
+"use_external/path": "res://assets/materials/rubber.tres"
 }
 }
 }

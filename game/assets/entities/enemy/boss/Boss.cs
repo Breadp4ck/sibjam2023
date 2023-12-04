@@ -33,9 +33,7 @@ public partial class Boss : Enemy
             spawner.Position = _horcruxSpawnPositions[i % _horcruxSpawnPositions.Length].Position;
         }
     }
-
-    public override void _Process(double delta) { }
-
+    
     public override void _PhysicsProcess(double delta)
     {
         if (BlockStateMachine == true)
@@ -111,6 +109,7 @@ public partial class Boss : Enemy
             _horcruxLeft++;
             AddChild(horcrux);
             horcrux.Position = _horcruxSpawnPositions[i].Position;
+            horcrux.TopLevel = true;
         }
         
         Horcrux.OnHorcruxDie += OnHorcruxDie;

@@ -18,12 +18,12 @@ public partial class TimeTwisterSpell : Spell
         }
         else if (level == 2)
         {
-            _playerNewTimescale = 1.2f;
+            _playerNewTimescale = 1.35f;
             _enemyNewTimescale = 0.5f;
         }
         else
         {
-            _playerNewTimescale = 1.5f;
+            _playerNewTimescale = 1.7f;
             _enemyNewTimescale = 0.35f;
         }
     }

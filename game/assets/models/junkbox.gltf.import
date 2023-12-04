@@ -29,6 +29,22 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Placeholder1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/galvanized-netall.tres"
+}
+},
+"nodes": {
+"PATH:JunkBox": {
+"generate/physics": true,
+"physics/shape_type": 5,
+"primitive/height": 0.65,
+"primitive/position": Vector3(0, 0.325, 0),
+"primitive/radius": 0.3
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

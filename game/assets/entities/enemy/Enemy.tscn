@@ -13,8 +13,8 @@ albedo_color = Color(0, 0.666667, 1, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_ahaml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wj3db"]
-radius = 0.6
-height = 1.2
+radius = 0.827584
+height = 1.70184
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gixq6"]
 radius = 0.759444
@@ -28,8 +28,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_jrucy")
 _navigationAgent = NodePath("NavigationAgent3D")
 _speed = 4.0
+_attackRange = 1.0
 _viewDistance = 10.0
 _forgetDistanceIfChasing = 15.0
+EndAttackTimeSeconds = 0.5
 _attackCooldownSeconds = 3.0
 HitArea = NodePath("HitArea")
 _patrolPoints = []

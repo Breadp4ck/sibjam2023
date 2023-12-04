@@ -11,8 +11,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ckvdk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_13pr2"]
-radius = 0.7
-height = 1.57054
+radius = 1.4
+height = 2.8
 
 [node name="FlyingZombie" type="CharacterBody3D" node_paths=PackedStringArray("_navigationAgent", "_patrolPoints")]
 script = ExtResource("1_1qx1p")
