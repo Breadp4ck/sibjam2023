@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=28 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
 [ext_resource type="Script" path="res://assets/entities/player/camera.gd" id="1_oms4q"]
+[ext_resource type="PackedScene" uid="uid://c4uekr54e48lg" path="res://assets/components/speech_recognition/speech_recognition.tscn" id="2_fwr6h"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/walk.gd" id="2_hvfwp"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/leap.gd" id="3_cmuim"]
 [ext_resource type="Script" path="res://assets/entities/spells/SpellRaycast.cs" id="4_hnmun"]
@@ -10,14 +11,13 @@
 [ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableRaycast.cs" id="5_2ak8n"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide.gd" id="6_uxfl0"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_jump.gd" id="8_ew7od"]
+[ext_resource type="Script" path="res://assets/components/speech_recognition/Speech.cs" id="8_h682d"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/slide_fall.gd" id="9_7mvlg"]
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_fteug"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
-[ext_resource type="PackedScene" uid="uid://cl5yaaagfvr6o" path="res://assets/entities/spells/cum_spell/cum_spell.tscn" id="12_xoixf"]
-[ext_resource type="PackedScene" uid="uid://bsxbqrtg375o" path="res://assets/entities/spells/timeslow_spell/timeslow_spell.tscn" id="13_50ohs"]
-[ext_resource type="PackedScene" uid="uid://c1nptww8k5mnx" path="res://assets/entities/particles/rain.tscn" id="14_cdnav"]
-[ext_resource type="PackedScene" uid="uid://djbr80sjqadcb" path="res://assets/entities/particles/lightning.tscn" id="15_6rqo6"]
+[ext_resource type="Script" path="res://assets/entities/player/Weapon.cs" id="18_8gtre"]
+[ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="18_albsl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -27,12 +27,38 @@ material = SubResource("StandardMaterial3D_2vt5i")
 radius = 0.05
 height = 0.05
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_14kkl"]
+size = Vector3(1, 0.962891, 1.34119)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc7ht"]
+albedo_color = Color(1, 0, 0.266667, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_v5frw"]
+material = SubResource("StandardMaterial3D_rc7ht")
+text = "WEAPON
+WEAPON
+WEAPON
+WEAPON
+WEAPON
+"
+horizontal_alignment = 3
+autowrap_mode = 2
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_itaav"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c660s"]
+height = 0.1
+radius = 0.55
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("1_4txfr")
+_spellPresenter = NodePath("SpellPresenter")
+
+[node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
 
 [node name="PseudoCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -54,14 +80,17 @@ mesh = SubResource("SphereMesh_sywkj")
 [node name="PidController" type="PidController" parent="PseudoCamera" node_paths=PackedStringArray("parent", "object")]
 parent = NodePath("..")
 object = NodePath("../Camera3D")
+visible = false
 
 [node name="SpellCaster" parent="PseudoCamera" node_paths=PackedStringArray("_camera", "_spellPresenter") instance=ExtResource("11_6aujr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
 _camera = NodePath("../Camera3D")
 _spellPresenter = NodePath("../../SpellPresenter")
 
 [node name="Spellraycast" type="RayCast3D" parent="PseudoCamera" node_paths=PackedStringArray("_spellCaster")]
 transform = Transform3D(4, 0, 0, 0, -4.37114e-08, -4, 0, 1, -1.74846e-07, 0, 0, 0)
+visible = false
 target_position = Vector3(0, -20, 0)
 collision_mask = 512
 collide_with_areas = true
@@ -71,17 +100,48 @@ script = ExtResource("4_hnmun")
 _spellCaster = NodePath("../SpellCaster")
 
 [node name="PickableRaycast" type="RayCast3D" parent="PseudoCamera"]
-transform = Transform3D(1, 0, 0, 0, -1.31134e-07, -1, 0, 3, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, -1.31134e-07, -300, 0, 3, -1.31134e-05, 0, 0, 0)
+visible = false
 collision_mask = 128
+hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("5_2ak8n")
+
+[node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+collision_layer = 0
+collision_mask = 512
+monitoring = false
+script = ExtResource("18_8gtre")
+_damage = 2
+_attackDurationSeconds = 0.2
+_attackCooldownSeconds = 1.0
+_mesh = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PseudoCamera/Weapon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35211, -1.05736)
+shape = SubResource("BoxShape3D_14kkl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Weapon"]
+transform = Transform3D(1.458, 0, 0, 0, 0.93359, 0, 0, 0, 1, 0.0203929, 1.36105, -1.69537)
+visible = false
+mesh = SubResource("TextMesh_v5frw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PseudoCamera/Weapon/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2901)
+mesh = SubResource("TextMesh_v5frw")
+skeleton = NodePath("../..")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ggpe2")
 
 [node name="SpellPresenter" parent="." instance=ExtResource("10_5wjp8")]
+
+[node name="Speech" type="Node3D" parent="." node_paths=PackedStringArray("_spellPresenter")]
+script = ExtResource("8_h682d")
+_spellPresenter = NodePath("../SpellPresenter")
 
 [node name="Movement" type="FiniteStateMachine" parent="." node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
@@ -110,26 +170,29 @@ script = ExtResource("4_yhsxb")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
-FALL_WALK_SPEED = 7.0
+FALL_WALK_SPEED = 9.0
 FALL_SOAR = 2.0
 
-[node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
+[node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast", "shape_cast_walls")]
 script = ExtResource("6_uxfl0")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
-SLIDE_SPEED = 9.0
-SLIDE_FADING = 4.0
+shape_cast_walls = NodePath("../../ShapeCastWalls")
+SLIDE_SPEED = 10.0
+SLIDE_DURATION = 4.0
 
 [node name="SlideJump" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
 script = ExtResource("8_ew7od")
 player = NodePath("../..")
 JUMP_POWER = 3.0
 
-[node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
+[node name="SlideFall" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "camera")]
 script = ExtResource("9_7mvlg")
 player = NodePath("../..")
+camera = NodePath("../../PseudoCamera")
+FALL_SLIDE_SPEED = 10.0
 
 [node name="Crouch" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
 script = ExtResource("10_fteug")
@@ -139,5 +202,25 @@ camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
 
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285248, 1.6, 0)
+visible = false
 shape = SubResource("SphereShape3D_itaav")
+
+[node name="ShapeCastWalls" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452309, 0)
+shape = SubResource("CylinderShape3D_c660s")
+target_position = Vector3(0, 0, 0)
+
+[node name="HitboxComponent" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape3D_jfsaf")
+
+[node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
+
+[connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
+[connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]
+[connection signal="Dead" from="HealthComponent" to="." method="Die"]
