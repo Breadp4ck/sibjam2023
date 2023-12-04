@@ -4,17 +4,16 @@ using System;
 public partial class Horcrux : Area3D
 {
     public static event Action OnHorcruxDie;
-    
-    private void OnAreaEntered(Area3D area3D)
+
+    private void Die()
     {
         OnHorcruxDie?.Invoke();
-        // Animator state change.
-        // TODO: Delete me.
-        Die();
+        // Call Destroy() after animation ends.
+        Destroy(); // TODO: Delete
     }
-    
+
     // Animator.
-    private void Die()
+    private void Destroy()
     {
         QueueFree();
     }

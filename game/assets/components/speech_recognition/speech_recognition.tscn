@@ -13,4 +13,9 @@ language_model_path = "pocketsphinx/en-us/en-us.lm.bin"
 dictionary_path = "pocketsphinx/spells.dict"
 filename_to_record = "pocketsphinx/recorded.wav"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="speech_parsed" from="SpeechRecognitionComponent" to="." method="_on_speech_recognition_component_speech_parsed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

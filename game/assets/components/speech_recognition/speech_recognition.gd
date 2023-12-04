@@ -2,8 +2,10 @@ extends Node
 
 @onready var player = $".."
 @onready var speech_recognition: SpeechRecognitionComponent = $SpeechRecognitionComponent
+@onready var timer = $Timer
 
 var is_recording: bool
+var finished: bool = true;
 
 signal speech_parsed(text: String)
 
@@ -12,12 +14,18 @@ func _input(event):
 		return
 	
 	if event.is_action_pressed("microphone") and !is_recording:
-		start()
+		if finished:
+			start()
 	elif event.is_action_released("microphone") and is_recording:
-		stop()
+		if finished:
+			stop()
+		else: 
+			finished = true
 
 # Begin recording
 func start() -> void:
+	timer.start()
+	finished = false
 	speech_recognition.start_record()
 	is_recording = true
 
@@ -32,3 +40,10 @@ func _on_speech_recognition_component_speech_parsed(raw_json: String) -> void:
 	
 	print("Speech parsed:", text)
 	speech_parsed.emit(text)
+
+
+func _on_timer_timeout():
+	if finished:
+		stop()
+	else:
+		finished = true
