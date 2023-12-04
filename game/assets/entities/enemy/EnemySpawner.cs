@@ -10,8 +10,10 @@ public partial class EnemySpawner : Node3D
     [Export] private uint _maxEnemies;
     [Export] private float _spawnIntervalSeconds;
 
-    [Export] private string _pathToPlayerInScene; // Path to player RELATIVE to this node!!! SANYAAAAAAAAAAAAAAAAAAAAAAA
+    [Export] private string _pathToPlayerInScene;
 
+    private Player _player;
+    
     public override async void _Ready()
     {
         if (_autoSpawn == false)
@@ -19,6 +21,19 @@ public partial class EnemySpawner : Node3D
             return;
         }
 
+        _player = GetTree().Root.GetNode<Player>(_pathToPlayerInScene);
+
+
+        while (true)
+        {
+            if (_player.GlobalPosition.DistanceTo(GlobalPosition) < 50)
+            {
+                break;
+            }
+
+            await Task.Delay(1000);
+        }
+        
         await Task.Delay((int)(_spawnIntervalSeconds * 1000));
         AutoSpawn();
     }
@@ -42,7 +57,7 @@ public partial class EnemySpawner : Node3D
         uint enemiesSpawned = 0;
         while (enemiesSpawned < _maxEnemies)
         {
-            Spawn(_enemyScene, GetParent().GetNode<Player>(_pathToPlayerInScene));
+            Spawn(_enemyScene, GetTree().Root.GetNode<Player>("/" + _pathToPlayerInScene));
             enemiesSpawned++;
 
             await Task.Delay((int)(_spawnIntervalSeconds * 1000));

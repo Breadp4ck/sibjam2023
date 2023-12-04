@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dp82l8fynfary"]
+[gd_scene load_steps=20 format=3 uid="uid://dp82l8fynfary"]
 
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="1_g1plj"]
 [ext_resource type="PackedScene" uid="uid://dj61lycasaeyh" path="res://assets/models/grid_tile_large.gltf" id="2_lpj2d"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cm7buvpa5tb6l" path="res://assets/models/grid_tile.gltf" id="8_bj1pc"]
 [ext_resource type="PackedScene" uid="uid://dop8e6qfkw2ub" path="res://assets/models/grid_fence_large.gltf" id="9_410fx"]
 [ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="10_og0fn"]
-[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="10_p75xh"]
 [ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="11_mxrlx"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="11_qec81"]
 [ext_resource type="PackedScene" uid="uid://buta0kfnkmkcg" path="res://assets/entities/enemy/Enemy.tscn" id="12_2vb3i"]
@@ -226,10 +225,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 12)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("11_mxrlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
-_teleportPositionOffset = Vector3(0, 150, 0)
-
-[node name="Player" parent="." instance=ExtResource("10_p75xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 23.0455)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("11_qec81")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9848, 0.578804, -12.3376)

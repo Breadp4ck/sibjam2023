@@ -188,4 +188,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 17.3968)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("11_0a4k6")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 7.54931, 0, 12.9155)
-_teleportPositionOffset = Vector3(0, 150, 0)

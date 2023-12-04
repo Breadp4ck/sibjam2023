@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://dggow3wnhk5yy"]
+[gd_scene load_steps=16 format=3 uid="uid://dggow3wnhk5yy"]
 
-[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="1_eqay0"]
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="2_twq5j"]
 [ext_resource type="PackedScene" uid="uid://dj61lycasaeyh" path="res://assets/models/grid_tile_large.gltf" id="3_kjp0a"]
 [ext_resource type="PackedScene" uid="uid://cbw52p5ystp20" path="res://assets/models/pillar.gltf" id="4_eri75"]
@@ -51,9 +50,6 @@ outline_modulate = Color(0.498039, 0.219608, 0.266667, 1)
 text = "LEVEL ONE"
 font_size = 2000
 outline_size = 100
-
-[node name="Player" parent="." instance=ExtResource("1_eqay0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 16.5)
 
 [node name="cargo" parent="." instance=ExtResource("2_twq5j")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 12, 0, -1)
