@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=31 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c4uekr54e48lg" path="res://assets/components/speech_recognition/speech_recognition.tscn" id="2_fwr6h"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/walk.gd" id="2_hvfwp"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/leap.gd" id="3_cmuim"]
+[ext_resource type="PackedScene" uid="uid://dlbrucxji3qgd" path="res://assets/models/dagger/dagger.gltf" id="4_6epea"]
 [ext_resource type="Script" path="res://assets/entities/spells/SpellRaycast.cs" id="4_hnmun"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/fall.gd" id="4_yhsxb"]
 [ext_resource type="Script" path="res://assets/entities/pickable_spells/PickableRaycast.cs" id="5_2ak8n"]
@@ -74,6 +75,9 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
 visible = false
 mesh = SubResource("SphereMesh_sywkj")
+
+[node name="dagger" parent="PseudoCamera/Camera3D" instance=ExtResource("4_6epea")]
+transform = Transform3D(0.00437548, -0.969261, 0.245996, 0.200643, 0.241847, 0.949343, -0.979655, 0.0452036, 0.195534, 0.447369, -0.371294, -0.886809)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
