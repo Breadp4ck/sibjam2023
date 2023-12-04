@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ccehc0dq7pm8s"
-path="res://.godot/imported/wheel.gltf-a6db80205c4b6f99bb5ab8616d5f9742.scn"
+uid="uid://c7r1m2k46100u"
+path="res://.godot/imported/cargo_red.gltf-b4a78dedf7af56683bab6a48928919ba.scn"
 
 [deps]
 
-source_file="res://assets/models/wheel.gltf"
-dest_files=["res://.godot/imported/wheel.gltf-a6db80205c4b6f99bb5ab8616d5f9742.scn"]
+source_file="res://assets/models/cargo_red.gltf"
+dest_files=["res://.godot/imported/cargo_red.gltf-b4a78dedf7af56683bab6a48928919ba.scn"]
 
 [params]
 
@@ -31,17 +31,19 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"Base": {
+"Placeholder1": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/rubber.tres"
+"use_external/path": "res://assets/materials/aluminic-planks-red-dark.tres"
+},
+"Placeholder2": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/aluminic-planks-red.tres"
 }
 },
 "nodes": {
-"PATH:Torus": {
+"PATH:Cargo": {
 "generate/physics": true,
-"physics/shape_type": 5,
-"primitive/height": 0.2,
-"primitive/radius": 0.45
+"physics/shape_type": 1
 }
 }
 }
