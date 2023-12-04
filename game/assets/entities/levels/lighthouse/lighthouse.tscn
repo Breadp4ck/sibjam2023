@@ -250,7 +250,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.51, 19.9349, 319.198)
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://assets/terrain/data/"
 layersDataDir = "res://assets/terrain/layers_data/"
-create_grid = true
 material = SubResource("ShaderMaterial_ssfer")
 brush_layers = [SubResource("MBrushLayers_41bq1")]
 script = ExtResource("4_ilwv8")
