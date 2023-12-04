@@ -218,15 +218,16 @@ transform = Transform3D(0.883464, 0.0309572, 0.467474, -0.0273627, 0.999521, -0.
 [node name="junkbox_large2" parent="." instance=ExtResource("6_18tid")]
 transform = Transform3D(-0.526259, 0, -0.850325, 0, 1, 0, 0.850325, 0, -0.526259, 6.05893, 0, -8.64672)
 
-[node name="TeleportBackZone" parent="." instance=ExtResource("10_og0fn")]
+[node name="TeleportBackZone" parent="." node_paths=PackedStringArray("_teleportBackPosition") instance=ExtResource("10_og0fn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+_teleportBackPosition = NodePath("../TPBackPosition")
 
 [node name="TPBackPosition" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 12)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("11_mxrlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
-_teleportPositionOffset = Vector3(0, 150, 0)
+_killsToOpen = 38
 
 [node name="Player" parent="." instance=ExtResource("10_p75xh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 23.0455)

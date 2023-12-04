@@ -305,7 +305,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 11)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("12_nka58")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -9)
-_teleportPositionOffset = Vector3(0, 150, 0)
+_killsToOpen = 35
 
 [node name="Player" parent="." instance=ExtResource("11_0d681")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 23.0455)
