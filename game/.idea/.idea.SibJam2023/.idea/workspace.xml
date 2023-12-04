@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/entities/levels/level1/Level1.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/level1/Level1.tscn" afterDir="false" />
-    </list>
+    <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

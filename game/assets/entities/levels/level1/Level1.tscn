@@ -147,7 +147,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9383, 0.538158, -16.127)
 _enemyScene = ExtResource("9_idlbg")
 _autoSpawn = true
 _maxEnemies = 5
-_spawnIntervalSeconds = 25.0
+_spawnIntervalSeconds = 6.0
 _pathToPlayerInScene = "Player"
 
 [node name="EnemySpawner4" parent="." instance=ExtResource("7_18j3g")]
