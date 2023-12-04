@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/assets/components/health_component/HealthComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/health_component/HealthComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/EnemySpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/hitbox_component/HitboxComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/hitbox_component/HitboxComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/boss/boss_projectile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/boss/boss_projectile.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/projectile.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/flying_zombie/projectile.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/levels/backrooms/backrooms.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/player/GUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/GUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/spells/SpellPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/spells/SpellPresenter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,13 +37,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "door",
+    "git-widget-placeholder": "UI",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

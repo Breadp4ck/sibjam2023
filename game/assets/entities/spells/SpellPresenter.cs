@@ -41,6 +41,7 @@ public partial class SpellPresenter : Node3D
 		}
 		
 		_chosenSpellType = spellType;
+		SpellTypeChangedEvent?.Invoke(spellType);
 		GD.Print($"Spell {_chosenSpellType} selected!");
 		return true;
 	}
