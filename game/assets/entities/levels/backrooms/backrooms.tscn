@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dehodl12notn5"]
+[gd_scene load_steps=16 format=3 uid="uid://dehodl12notn5"]
 
 [ext_resource type="Environment" uid="uid://c8q4wwr8cnji2" path="res://assets/entities/levels/backrooms/envs/fog.tres" id="1_1x53r"]
 [ext_resource type="Texture2D" uid="uid://cyn1ron5d4hfj" path="res://assets/textures/kenney_prototype/orange/texture_01.png" id="1_s2xhs"]
@@ -29,6 +29,9 @@ size = Vector3(5, 1, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_df2ar"]
 size = Vector3(5, 1, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bdvle"]
+material = ExtResource("10_n4a7n")
 
 [node name="Backrooms" type="Node3D"]
 
@@ -109,7 +112,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8686, 1.11892, 10.8412)
 [node name="CassettePlayer2" parent="." instance=ExtResource("9_ssjfp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.414448, 2.74655, 1.49622)
 
-[node name="Zombie" parent="." node_paths=PackedStringArray("Target", "_patrolPoints") instance=ExtResource("7_gytr3")]
+[node name="Zombie" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("7_gytr3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2226, 1.5, 9.41381)
 Target = NodePath("../Player")
-_patrolPoints = [NodePath("../PatrolPosition"), NodePath("../PatrolPosition2"), NodePath("../PatrolPosition3")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2546, 0)
+mesh = SubResource("PlaneMesh_bdvle")

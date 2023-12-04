@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=28 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://b6qwfi7s3mlse" path="res://assets/entities/spells/spell_presenter.tscn" id="10_5wjp8"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/crouch.gd" id="10_fteug"]
 [ext_resource type="PackedScene" uid="uid://pojln6664eq7" path="res://assets/entities/spells/spell_caster.tscn" id="11_6aujr"]
-[ext_resource type="Script" path="res://assets/components/hitbox_component/HitboxComponent.cs" id="18_5wssi"]
 [ext_resource type="Script" path="res://assets/entities/player/Weapon.cs" id="18_8gtre"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="18_albsl"]
 
@@ -55,10 +54,9 @@ radius = 0.55
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter")]
 script = ExtResource("1_4txfr")
 _spellPresenter = NodePath("SpellPresenter")
-_hitboxComponent = NodePath("HitboxComponent")
 
 [node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
 
@@ -205,6 +203,7 @@ shape_cast = NodePath("../../ShapeCast")
 
 [node name="ShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0285248, 1.6, 0)
+visible = false
 shape = SubResource("SphereShape3D_itaav")
 
 [node name="ShapeCastWalls" type="ShapeCast3D" parent="."]
@@ -212,12 +211,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452309, 0)
 shape = SubResource("CylinderShape3D_c660s")
 target_position = Vector3(0, 0, 0)
 
-[node name="HitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("_healthComponent")]
+[node name="HitboxComponent" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 1024
 collision_mask = 0
-script = ExtResource("18_5wssi")
-_healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape3D_jfsaf")
