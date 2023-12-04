@@ -42,6 +42,7 @@ public partial class Enemy : CharacterBody3D
 
 		if (IsOnFloor() && BlockStateMachine == false)
 		{
+			GD.Print(State);
 			switch (State)
 			{
 				case EnemyState.Idle:
@@ -211,11 +212,11 @@ public partial class Enemy : CharacterBody3D
 	protected virtual async void AttackInternal()
 	{
 		_hitArea.Monitoring = true;
-		await Task.Delay(100);
+		await Task.Delay((int)EndAttackTimeSeconds * 1000);
 		_hitArea.Monitoring = false;
 	}
 	
-	protected async void Attack()
+	protected virtual async void Attack()
 	{
 		AttackInternal();
 		State = EnemyState.EndAttack;

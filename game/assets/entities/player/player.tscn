@@ -55,9 +55,10 @@ radius = 0.55
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent")]
 script = ExtResource("1_4txfr")
 _spellPresenter = NodePath("SpellPresenter")
+_hitboxComponent = NodePath("HitboxComponent")
 
 [node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
 
