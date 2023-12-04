@@ -4,10 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="1_vcy0f"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="2_n6upg"]
 [ext_resource type="PackedScene" uid="uid://cltuw6dcqnd0c" path="res://assets/entities/enemy/flying_zombie/projectile.tscn" id="2_q4agl"]
+[ext_resource type="PackedScene" uid="uid://cnipjn7ubis3v" path="res://assets/models/beholder/beholder.gltf" id="5_r6e43"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vvw55"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_w1dp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ckvdk"]
 
@@ -25,16 +24,14 @@ _attackRange = 3.0
 _viewDistance = 7.0
 _forgetDistanceIfChasing = 15.0
 _runAwayDistance = 4.5
-_startAttackTimeSeconds = 1.0
+StartAttackTimeSeconds = 1.0
+EndAttackTimeSeconds = 0.5
+_attackCooldownSeconds = 2.0
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("SphereShape3D_vvw55")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-mesh = SubResource("SphereMesh_w1dp1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.15
@@ -57,5 +54,8 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetRaycastArea"]
 shape = SubResource("CapsuleShape3D_13pr2")
+
+[node name="beholder" parent="." instance=ExtResource("5_r6e43")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]

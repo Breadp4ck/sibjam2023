@@ -109,6 +109,7 @@ pause={
 
 [layer_names]
 
+3d_physics/layer_7="InteractRaycast"
 3d_physics/layer_8="PickableRaycast"
 3d_physics/layer_9="SpellRaycast"
 3d_physics/layer_10="EnemyHitbox"

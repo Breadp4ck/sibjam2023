@@ -9,13 +9,14 @@ public partial class PickableRaycast : RayCast3D
     {
         if (IsColliding() == false)
         {
+            CurrentPickableSpell = null;
             return;
         }
 
         Area3D area = GetCollider() as Area3D;
         PickableSpell pickableSpell = (PickableSpell)area;
 		
-        if (pickableSpell == null)
+        if (pickableSpell == null || CurrentPickableSpell == pickableSpell)
         {
             return;
         }

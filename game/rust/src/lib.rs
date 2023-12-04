@@ -1,3 +1,4 @@
+#![windows_subsystem = "windows"]
 use godot::prelude::*;
 
 mod components;

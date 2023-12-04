@@ -27,6 +27,12 @@ public partial class SpellPresenter : Node3D
 		SelectViaKeyboard(inputEvent);
 	}
 	
+	public void SetSpellSelectType(SpellSelectType spellSelectType)
+	{
+		_spellSelectType = spellSelectType;
+		GD.Print($"SpellSelectType set to {_spellSelectType}");
+	}
+	
 	public bool TryChooseSpell(SpellType spellType)
 	{
 		if (Inventory.HasSpell(spellType) == false)
