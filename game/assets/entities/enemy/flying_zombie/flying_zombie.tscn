@@ -56,6 +56,6 @@ collision_mask = 0
 shape = SubResource("CapsuleShape3D_13pr2")
 
 [node name="beholder" parent="." instance=ExtResource("5_r6e43")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3, 0)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 3, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
