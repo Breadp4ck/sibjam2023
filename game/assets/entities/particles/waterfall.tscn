@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwohw8721ugik"]
+
+[ext_resource type="Material" uid="uid://cu46b100244nd" path="res://assets/entities/particles/deep_ocean_material.tres" id="1_cvp7d"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_pq2b7"]
+material = ExtResource("1_cvp7d")
+inner_radius = 4.5
+outer_radius = 4.7
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kwjxj"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 10.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 4.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_18s65"]
+radius = 0.1
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_pq2b7")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.970933, 0)
+visible = false
+process_material = SubResource("ParticleProcessMaterial_kwjxj")
+draw_pass_1 = SubResource("SphereMesh_18s65")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21955, -2.94492, -0.020452)
+visible = false
+size = Vector3(7.36475, 2, 9.2627)
