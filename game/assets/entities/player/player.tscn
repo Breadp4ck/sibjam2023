@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=38 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -55,9 +55,13 @@ bg_color = Color(0.741176, 0, 0.392157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhfn6"]
 bg_color = Color(0.00392157, 0.278431, 0.466667, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gwpy"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent")]
 script = ExtResource("1_4txfr")
 _spellPresenter = NodePath("SpellPresenter")
+_walkSpeed = 15.0
 _hitboxComponent = NodePath("HitboxComponent")
 
 [node name="SpeechRecognition" parent="." instance=ExtResource("2_fwr6h")]
@@ -162,6 +166,7 @@ script = ExtResource("2_hvfwp")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
+WALK_SPEED = 12.0
 
 [node name="Leap" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera")]
 script = ExtResource("3_cmuim")
@@ -175,7 +180,7 @@ script = ExtResource("4_yhsxb")
 player = NodePath("../..")
 collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
-FALL_WALK_SPEED = 9.0
+FALL_WALK_SPEED = 11.0
 FALL_SOAR = 2.0
 
 [node name="Slide" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast", "shape_cast_walls")]
@@ -185,7 +190,7 @@ collision = NodePath("../../Collision")
 camera = NodePath("../../PseudoCamera")
 shape_cast = NodePath("../../ShapeCast")
 shape_cast_walls = NodePath("../../ShapeCastWalls")
-SLIDE_SPEED = 10.0
+SLIDE_SPEED = 12.0
 SLIDE_DURATION = 4.0
 
 [node name="SlideJump" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player")]
@@ -198,6 +203,7 @@ script = ExtResource("9_7mvlg")
 player = NodePath("../..")
 camera = NodePath("../../PseudoCamera")
 FALL_SLIDE_SPEED = 10.0
+MAX_VELOCITY = 20.0
 
 [node name="Crouch" type="FiniteState" parent="Movement" node_paths=PackedStringArray("player", "collision", "camera", "shape_cast")]
 script = ExtResource("10_fteug")
@@ -297,6 +303,73 @@ layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_dhfn6")
 fill_mode = 1
 show_percentage = false
+
+[node name="EndGameScreen" type="Control" parent="GUI" groups=["EndGameScreen"]]
+visible = false
+anchors_preset = 0
+offset_left = -233.0
+offset_top = -183.0
+offset_right = 1687.0
+offset_bottom = 897.0
+
+[node name="Panel" type="Panel" parent="GUI/EndGameScreen"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5gwpy")
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI/EndGameScreen"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 180.0
+offset_right = 1509.0
+offset_bottom = 304.0
+
+[node name="Label" type="Label" parent="GUI/EndGameScreen/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "You`ve win in computer game!
+Thank you for playing!"
+
+[node name="CenterContainer2" type="CenterContainer" parent="GUI/EndGameScreen"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 436.0
+offset_right = 1411.0
+offset_bottom = 895.0
+
+[node name="Label" type="Label" parent="GUI/EndGameScreen/CenterContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 54
+text = "These guys worked hard for you:
+Breadp4ck
+TheActualTwinkle
+Dot3eeerg
+Tombleron
+
+"
+
+[node name="DeathScreen" type="Control" parent="GUI" groups=["DeathScreen"]]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="GUI/DeathScreen"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5gwpy")
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI/DeathScreen"]
+offset_left = -141.0
+offset_top = 274.0
+offset_right = 1258.0
+offset_bottom = 398.0
+
+[node name="Label" type="Label" parent="GUI/DeathScreen/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "YOU DIED!"
 
 [connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
 [connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]

@@ -19,7 +19,7 @@ public partial class EnemySpawner : Node3D
             return;
         }
 
-        await Task.Delay(200); // Avoids a bug.
+        await Task.Delay((int)(_spawnIntervalSeconds * 1000));
         AutoSpawn();
     }
 
@@ -47,5 +47,7 @@ public partial class EnemySpawner : Node3D
 
             await Task.Delay((int)(_spawnIntervalSeconds * 1000));
         }
+        
+        QueueFree();
     }
 }
