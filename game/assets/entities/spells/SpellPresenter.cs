@@ -6,6 +6,8 @@ using System;
 /// </summary>
 public partial class SpellPresenter : Node3D
 {
+	public static event Action<SpellType> SpellTypeChangedEvent;
+	
 	public SpellSelectType SpellSelectType => _spellSelectType;
 	[Export] private SpellSelectType _spellSelectType;
 
@@ -23,6 +25,12 @@ public partial class SpellPresenter : Node3D
 		}
 
 		SelectViaKeyboard(inputEvent);
+	}
+	
+	public void SetSpellSelectType(SpellSelectType spellSelectType)
+	{
+		_spellSelectType = spellSelectType;
+		GD.Print($"SpellSelectType set to {_spellSelectType}");
 	}
 	
 	public bool TryChooseSpell(SpellType spellType)

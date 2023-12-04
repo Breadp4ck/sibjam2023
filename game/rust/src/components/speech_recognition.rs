@@ -9,6 +9,9 @@ use cpal::{FromSample, Sample, SampleRate};
 use godot::engine::Os;
 use godot::prelude::*;
 
+#[cfg(target_os = "windows")]
+use std::os::windows::process::CommandExt;
+
 /// Cpal stream config with parameters for PocketSphinx purposes
 static CPAL_STREAM_CONFIG: cpal::StreamConfig = cpal::StreamConfig {
     channels: 1,
@@ -219,7 +222,9 @@ impl INode for SpeechRecognitionComponent {
         std::thread::spawn(move || loop {
             match &rx_command.recv() {
                 Ok(data) => {
-                    let output = Command::new(&data.pocketsphinx_path)
+                    let mut command = Command::new(&data.pocketsphinx_path);
+
+                    command
                         .arg("single")
                         .arg(&data.filename_path)
                         .arg("-hmm")
@@ -227,9 +232,12 @@ impl INode for SpeechRecognitionComponent {
                         .arg("-lm")
                         .arg(&data.language_model_path)
                         .arg("-dict")
-                        .arg(&data.dictionary_path)
-                        .output()
-                        .expect("failed to execute process");
+                        .arg(&data.dictionary_path);
+
+                    #[cfg(target_os = "windows")]
+                    command.creation_flags(0x08000000);
+
+                    let output = command.output().expect("failed to execute process");
 
                     tx_tokens
                         .send(vec![String::from_utf8(output.stdout).unwrap()])

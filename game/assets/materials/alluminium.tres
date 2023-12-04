@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dbv1ul0ugr33q"]
+
+[ext_resource type="Texture2D" uid="uid://bopj41nk77n8f" path="res://assets/textures/Aluminum_Corrugated_normal.png" id="1_eu0x1"]
+
+[resource]
+albedo_color = Color(0.721569, 0.721569, 0.721569, 1)
+metallic = 1.0
+normal_enabled = true
+normal_texture = ExtResource("1_eu0x1")

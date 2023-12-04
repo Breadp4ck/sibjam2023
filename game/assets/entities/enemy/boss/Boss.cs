@@ -14,8 +14,6 @@ public partial class Boss : Enemy
 
     [Export] private HitboxComponent _hitboxComponent;
 
-    [Export] private Vector3 _realPosition;
-    
     [Export] private uint _horcruxSpawnCount;
     [Export] private uint _monsterSpawnCount;
     
@@ -35,6 +33,8 @@ public partial class Boss : Enemy
             spawner.Position = _horcruxSpawnPositions[i % _horcruxSpawnPositions.Length].Position;
         }
     }
+
+    public override void _Process(double delta) { }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -94,7 +94,9 @@ public partial class Boss : Enemy
 
     private void SpawnHorcrux()
     {
-        // Be INVULNERABLE.
+        GD.Print("Boss is invulnerable.");
+        _hitboxComponent.SetDeferred("monitorable", false);
+
         _canSpawnHorcrux = false;
 
         for (var i = 0; i < _horcruxSpawnCount; i++)
@@ -105,7 +107,8 @@ public partial class Boss : Enemy
             {
                 return;
             }
-        
+
+            _horcruxLeft++;
             AddChild(horcrux);
             horcrux.Position = _horcruxSpawnPositions[i].Position;
         }
@@ -140,7 +143,7 @@ public partial class Boss : Enemy
         }
 
         GetTree().Root.AddChild(bossProjectile);
-        bossProjectile.GlobalPosition = GlobalPosition + _realPosition;
+        bossProjectile.GlobalPosition = GlobalPosition + RealPosition;
         bossProjectile.SetDirection(Target.GlobalPosition + Vector3.Up - bossProjectile.GlobalPosition);
         bossProjectile.Cast();
     }
@@ -168,7 +171,8 @@ public partial class Boss : Enemy
         
         Horcrux.OnHorcruxDie -= OnHorcruxDie;
 
-        // Be VULNERABLE.
+        GD.Print("Boss is vulnerable.");
+        _hitboxComponent.SetDeferred("monitorable", true);
         await Task.Delay((int)(_horcruxSpawnCooldownSeconds * 1000));
         _canSpawnHorcrux = true;
     }

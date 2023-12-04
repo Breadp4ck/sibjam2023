@@ -21,11 +21,11 @@ public partial class Enemy : CharacterBody3D
 	[Export] private float _viewDistance;
 	[Export] private float _forgetDistanceIfChasing;
 	[Export] private float _runAwayDistance;
-	[Export] private float _startAttackTimeSeconds;
+	[Export] protected float StartAttackTimeSeconds;
 	[Export] protected float EndAttackTimeSeconds;
 	[Export] private float _attackCooldownSeconds;
 
-	[Export] private HitArea _hitArea;
+	[Export] protected HitArea HitArea;
 	
 	[Export] private Node3D[] _patrolPoints;
 	
@@ -35,14 +35,16 @@ public partial class Enemy : CharacterBody3D
 
 	protected bool BlockStateMachine;
 	protected bool IsAttackOnCooldown;
-	
-	public override void _PhysicsProcess(double delta)
+
+	public override void _Process(double delta)
 	{
 		LookAt(new Vector3(Target.GlobalPosition.X, GlobalPosition.Y, Target.GlobalPosition.Z), Vector3.Up);
+	}
 
+	public override void _PhysicsProcess(double delta)
+	{
 		if (IsOnFloor() && BlockStateMachine == false)
 		{
-			GD.Print(State);
 			switch (State)
 			{
 				case EnemyState.Idle:
@@ -192,7 +194,7 @@ public partial class Enemy : CharacterBody3D
 
 		var timePassedSeconds = 0f;
 		var stepMs = 50;
-		while (timePassedSeconds < _startAttackTimeSeconds)
+		while (timePassedSeconds < StartAttackTimeSeconds)
 		{
 			await Task.Delay(stepMs);
 			timePassedSeconds += stepMs / 1000f;
@@ -211,12 +213,12 @@ public partial class Enemy : CharacterBody3D
 
 	protected virtual async void AttackInternal()
 	{
-		_hitArea.Monitoring = true;
+		HitArea.Monitoring = true;
 		await Task.Delay((int)EndAttackTimeSeconds * 1000);
-		_hitArea.Monitoring = false;
+		HitArea.Monitoring = false;
 	}
 	
-	protected virtual async void Attack()
+	protected async void Attack()
 	{
 		AttackInternal();
 		State = EnemyState.EndAttack;
