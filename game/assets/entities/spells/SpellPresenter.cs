@@ -6,6 +6,8 @@ using System;
 /// </summary>
 public partial class SpellPresenter : Node3D
 {
+	public static event Action<SpellType> SpellTypeChangedEvent;
+	
 	public SpellSelectType SpellSelectType => _spellSelectType;
 	[Export] private SpellSelectType _spellSelectType;
 
