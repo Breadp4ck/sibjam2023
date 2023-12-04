@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Player : CharacterBody3D
 {
@@ -22,16 +23,14 @@ public partial class Player : CharacterBody3D
 		MoveAndSlide();
 	}
 
-	private void Die()
+	private async void Die()
 	{
 		GD.Print("Player is dead!");
 
-		// Animator play.
-		Destroy();
-	}
-
-	private void Destroy()
-	{
-		QueueFree();
+		Inventory.Clear();
+		Control screen = (Control)GetTree().GetFirstNodeInGroup("DeathScreen");
+		screen.Visible = true;
+		await Task.Delay(4000);
+		GetTree().ReloadCurrentScene();
 	}
 }

@@ -177,5 +177,5 @@ _teleportBackPosition = NodePath("../TPBackPosition")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("8_fx7d8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 _teleportPositionOffset = Vector3(0, 150, 0)

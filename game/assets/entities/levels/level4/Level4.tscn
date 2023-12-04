@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ktlfq8bxm44a" path="res://assets/models/stairs_desk.gltf" id="9_akmky"]
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="11_0d681"]
 [ext_resource type="PackedScene" uid="uid://cn85e0rqj1dj0" path="res://assets/models/junkbox.gltf" id="11_cho16"]
+[ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="11_rej8x"]
+[ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="12_nka58"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="12_y53mo"]
 [ext_resource type="PackedScene" uid="uid://dy55rfw7cbvvs" path="res://assets/entities/enemy/Enemy.tscn" id="13_vk4un"]
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="13_y4o70"]
@@ -294,6 +296,16 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 
 [node name="junkbox" parent="." instance=ExtResource("11_cho16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25027, 3, 17.1152)
+
+[node name="TeleportBackZone" parent="." instance=ExtResource("11_rej8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="TPBackPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
+
+[node name="TeleportNextLevel" parent="." instance=ExtResource("12_nka58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -9)
+_teleportPositionOffset = Vector3(0, 150, 0)
 
 [node name="Player" parent="." instance=ExtResource("11_0d681")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 23.0455)

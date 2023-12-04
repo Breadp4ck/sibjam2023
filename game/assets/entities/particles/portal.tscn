@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://v24rme08nfo2"]
+[gd_scene load_steps=10 format=3 uid="uid://dmyauhkbsbakt"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uhwum"]
 emission_shape = 2
@@ -13,17 +13,17 @@ color = Color(0.25098, 0.25098, 0.25098, 0.564706)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[sub_resource type="Gradient" id="Gradient_bglpu"]
+[sub_resource type="Gradient" id="Gradient_vikon"]
 offsets = PackedFloat32Array(0.701754, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vps76"]
-gradient = SubResource("Gradient_bglpu")
+gradient = SubResource("Gradient_vikon")
 fill = 1
 fill_from = Vector2(0.516854, 0.460674)
 fill_to = Vector2(0.882023, 0.0786517)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2h40"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4c0g"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -32,22 +32,22 @@ albedo_texture = SubResource("GradientTexture2D_vps76")
 billboard_mode = 1
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_bdfl3"]
-material = SubResource("StandardMaterial3D_t2h40")
+material = SubResource("StandardMaterial3D_e4c0g")
 size = 0.1
 sections = 10
 section_segments = 1
 
-[sub_resource type="Gradient" id="Gradient_brivj"]
+[sub_resource type="Gradient" id="Gradient_8axmj"]
 offsets = PackedFloat32Array(0.342105, 0.833333)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f5emv"]
-gradient = SubResource("Gradient_brivj")
+gradient = SubResource("Gradient_8axmj")
 fill = 1
 fill_from = Vector2(0.505618, 0.522472)
 fill_to = Vector2(0.893258, 0.876405)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yhau"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_snnwi"]
 transparency = 1
 shading_mode = 2
 vertex_color_use_as_albedo = true
@@ -60,7 +60,7 @@ emission_operator = 1
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_jedr3"]
-material = SubResource("StandardMaterial3D_8yhau")
+material = SubResource("StandardMaterial3D_snnwi")
 size = Vector2(0.1, 0.1)
 
 [node name="Node3D" type="Node3D"]
