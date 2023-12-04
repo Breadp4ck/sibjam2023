@@ -28,6 +28,7 @@ public partial class SpellPresenter : Node3D
 	public void SetSpellSelectType(SpellSelectType spellSelectType)
 	{
 		_spellSelectType = spellSelectType;
+		GD.Print($"SpellSelectType set to {_spellSelectType}");
 	}
 	
 	public bool TryChooseSpell(SpellType spellType)
