@@ -25,7 +25,9 @@ _attackRange = 3.0
 _viewDistance = 7.0
 _forgetDistanceIfChasing = 15.0
 _runAwayDistance = 4.5
-_startAttackTimeSeconds = 1.0
+StartAttackTimeSeconds = 1.0
+EndAttackTimeSeconds = 0.5
+_attackCooldownSeconds = 2.0
 _patrolPoints = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
