@@ -6,6 +6,7 @@ public partial class Zombie : Enemy
 {
     [Export] private float _chargeSpeed;
 
+    // Almost base StartAttack but with velocity reset.
     protected override async void StartAttack()
     {
         BlockStateMachine = true;
@@ -17,6 +18,13 @@ public partial class Zombie : Enemy
             await Task.Delay(stepMs);
             timePassedSeconds += stepMs / 1000f;
 
+            if (Target.GlobalPosition.DistanceTo(GlobalPosition) > AttackRange)
+            {
+                BlockStateMachine = false;
+                State = EnemyState.Chase;
+                return;
+            }
+            
             Velocity = Vector3.Zero;
             MoveAndSlide();
         }
@@ -28,6 +36,7 @@ public partial class Zombie : Enemy
     protected override async void AttackInternal()
     {
         HitArea.Monitoring = true;
+        
 
         Vector3 direction = Target.GlobalPosition - GlobalPosition;
 
