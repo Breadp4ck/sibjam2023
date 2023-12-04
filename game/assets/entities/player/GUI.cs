@@ -9,6 +9,7 @@ public partial class GUI : Control
 	[Export] private ProgressBar _hpBar;
 	[Export] private ProgressBar _manaBar;
 	[Export] private HitboxComponent _playerHitbox;
+	[Export] private SpellCaster _spellCaster;
 	
 	private Dictionary<SpellType, Texture2D> _dictionary = new ();
 
@@ -21,8 +22,8 @@ public partial class GUI : Control
 			_dictionary.Add((SpellType)i, texture);
 		}
 
-		GD.Print("HpLost");
-		_playerHitbox.HPLostEvent += OnHPLost;
+		_playerHitbox.HpChangedEvent += OnHpChanged;
+		_spellCaster.ManaChangedEvent += OnManaChanged;
 	}
 
 	private void OnSpellTypeChanged(SpellType spellType)
@@ -35,8 +36,14 @@ public partial class GUI : Control
 		_image.Texture = textureRect;
 	}
 
-	private void OnHPLost(double health)
+	private void OnHpChanged(double health)
 	{
-		_hpBar.Value += health;
+		_hpBar.Value = 100 - health;
+	}
+	
+	private void OnManaChanged(int mana)
+	{
+		GD.Print("PIZDA");
+		_manaBar.Value = 100 - mana;
 	}
 }

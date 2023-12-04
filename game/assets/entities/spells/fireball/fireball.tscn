@@ -17,6 +17,7 @@ _damage = 1.0
 _destroyOnCollide = true
 Type = 3
 Duration = 5.0
+ManaCost = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_t241y")

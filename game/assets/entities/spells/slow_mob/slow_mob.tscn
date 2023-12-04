@@ -18,6 +18,7 @@ _newSpeed = 1.0
 Speed = 7.0
 Type = 1
 Duration = 5.0
+ManaCost = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_mge0q")
