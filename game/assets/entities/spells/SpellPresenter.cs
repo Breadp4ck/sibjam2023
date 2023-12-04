@@ -13,7 +13,8 @@ public partial class SpellPresenter : Node3D
 	private SpellType? _chosenSpellType;
 
 	private const string SelectSpellSignature = "select_spell_";
-
+	private const uint PlayerOnlySpellTypesCount = 5;
+	
 	public override void _Input(InputEvent inputEvent)
 	{
 		if (_spellSelectType != SpellSelectType.Keyboard)
@@ -38,7 +39,7 @@ public partial class SpellPresenter : Node3D
 	
 	private void SelectViaKeyboard(InputEvent inputEvent)
 	{
-		for (var i = 0; i < Enum.GetNames(typeof(SpellType)).Length; i++)
+		for (var i = 0; i < PlayerOnlySpellTypesCount; i++)
 		{
 			string selectSpellActionName = SelectSpellSignature + (i+1);
 				
