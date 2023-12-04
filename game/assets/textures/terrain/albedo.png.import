@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://l23ysjtt2v0e"
+path="res://.godot/imported/albedo.png-29e06dbedc64d81488e32d511e4c8a93.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/textures/terrain/albedo.png"
+dest_files=["res://.godot/imported/albedo.png-29e06dbedc64d81488e32d511e4c8a93.ctexarray"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=4
+slices/vertical=2

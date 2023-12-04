@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://4wtk7yiwym3y"]
+
+[ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="2_6v7dc"]
+[ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="2_hgq7v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ypm0o"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_rla03"]
+sky_material = SubResource("ProceduralSkyMaterial_ypm0o")
+
+[sub_resource type="Environment" id="Environment_q4f0y"]
+background_mode = 1
+background_color = Color(1, 1, 0.105882, 1)
+sky = SubResource("Sky_rla03")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a2og5"]
+size = Vector2(200, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqiop"]
+size = Vector3(200, 1, 40)
+
+[node name="Tower" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q4f0y")
+
+[node name="Player" parent="." instance=ExtResource("2_6v7dc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_a2og5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_iqiop")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.2222e-08, -0.258819, -0.965926, -1.13133e-08, 0.965926, -0.258819, 1, 0, -4.37114e-08, 49, 18.5, 0)
+modulate = Color(1, 0.235294, 0.415686, 1)
+outline_modulate = Color(0.105882, 0.0156863, 0.0235294, 1)
+text = "LEVEL UP"
+font_size = 2000
+outline_size = 50
+
+[node name="FlyingZombie" parent="." instance=ExtResource("2_hgq7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, 0, 0)
