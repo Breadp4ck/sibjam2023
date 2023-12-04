@@ -1,5 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cui7lalga4frl"]
-
+[gd_scene load_steps=29 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -38,21 +37,7 @@ radius = 0.05
 height = 0.05
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_14kkl"]
-size = Vector3(1, 0.962891, 1.34119)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc7ht"]
-albedo_color = Color(1, 0, 0.266667, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_v5frw"]
-material = SubResource("StandardMaterial3D_rc7ht")
-text = "WEAPON
-WEAPON
-WEAPON
-WEAPON
-WEAPON
-"
-horizontal_alignment = 3
-autowrap_mode = 2
+size = Vector3(1, 2.66357, 2.86719)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggpe2"]
 
@@ -131,7 +116,7 @@ collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("7_m4xbj")
 
-[node name="Weapon" type="Area3D" parent="PseudoCamera" node_paths=PackedStringArray("_mesh")]
+[node name="Weapon" type="Area3D" parent="PseudoCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
 collision_layer = 0
 collision_mask = 512
@@ -140,21 +125,10 @@ script = ExtResource("18_8gtre")
 _damage = 2
 _attackDurationSeconds = 0.2
 _attackCooldownSeconds = 1.0
-_mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PseudoCamera/Weapon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35211, -1.05736)
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 1.60131, -2.08853)
 shape = SubResource("BoxShape3D_14kkl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Weapon"]
-transform = Transform3D(1.458, 0, 0, 0, 0.93359, 0, 0, 0, 1, 0.0203929, 1.36105, -1.69537)
-visible = false
-mesh = SubResource("TextMesh_v5frw")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="PseudoCamera/Weapon/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2901)
-mesh = SubResource("TextMesh_v5frw")
-skeleton = NodePath("../..")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

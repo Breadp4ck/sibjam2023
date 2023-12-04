@@ -4,11 +4,9 @@ using System.Threading.Tasks;
 
 public partial class Weapon : Area3D
 {
-	[Export] private uint _damage;
-	[Export] private float _attackDurationSeconds;
-	[Export] private float _attackCooldownSeconds; // Cooldown starts after attack performed.
-	
-	[Export] private MeshInstance3D _mesh;
+  [Export] private uint _damage;
+  [Export] private float _attackDurationSeconds;
+  [Export] private float _attackCooldownSeconds; // Cooldown starts after attack performed.
 
 	private bool _canAttack = true;
 	
@@ -52,19 +50,17 @@ public partial class Weapon : Area3D
 		_canAttack = true;
 	}
 
-	// Animator.
-	private void EnableHitbox()
-	{
-		_mesh.Visible = true;
-		Monitoring = true;
-	}
+  // Animator.
+  private void EnableHitbox()
+  {
+      Monitoring = true;
+  }
 
-	// Animator.
-	private void DisableHitbox()
-	{
-		_mesh.Visible = false;
-		Monitoring = false;
-	}
+  // Animator.
+  private void DisableHitbox()
+  {
+      Monitoring = false;
+  }
 
 	private void OnAreaEntered(Area3D area3D)
 	{
