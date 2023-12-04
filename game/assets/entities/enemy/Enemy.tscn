@@ -64,10 +64,7 @@ transform = Transform3D(0.0351262, 0, -0.999383, 0, 1, 0, 0.999383, 0, 0.0351262
 collision_layer = 0
 collision_mask = 1024
 script = ExtResource("3_7jcyd")
-<<<<<<< HEAD
-=======
 _damage = 5.0
->>>>>>> 60e1b6dc15b80e5fcbf7a92844886130fbdf1e12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.888901, 0.269651, 0)
