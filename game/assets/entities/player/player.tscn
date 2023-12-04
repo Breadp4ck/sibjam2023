@@ -1,4 +1,5 @@
-[gd_scene load_steps=31 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=35 format=3 uid="uid://cui7lalga4frl"]
+
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -21,6 +22,12 @@
 [ext_resource type="Script" path="res://assets/components/hitbox_component/HitboxComponent.cs" id="18_5wssi"]
 [ext_resource type="Script" path="res://assets/entities/player/Weapon.cs" id="18_8gtre"]
 [ext_resource type="PackedScene" uid="uid://b6vahig21otim" path="res://assets/components/health_component/health_component.tscn" id="18_albsl"]
+[ext_resource type="Script" path="res://assets/entities/player/GUI.cs" id="20_qnes2"]
+[ext_resource type="Texture2D" uid="uid://cu1604xcpobn6" path="res://assets/entities/particles/spark_01.png" id="21_djg8j"]
+[ext_resource type="Texture2D" uid="uid://bgew7h8k3uluy" path="res://assets/entities/particles/spark_02.png" id="22_miqbo"]
+[ext_resource type="Texture2D" uid="uid://bnipe4a0hyk8d" path="res://assets/entities/particles/spark_03.png" id="23_cnck6"]
+[ext_resource type="Texture2D" uid="uid://dcwxyexuprb67" path="res://assets/entities/particles/spark_04.png" id="24_i5k0o"]
+[ext_resource type="Texture2D" uid="uid://b185d4pinjenn" path="res://assets/entities/particles/spark_05.png" id="25_sfekx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vt5i"]
 albedo_color = Color(1, 0.141176, 1, 1)
@@ -238,6 +245,41 @@ _healthComponent = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_jfsaf")
 
 [node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 647.0
+script = ExtResource("20_qnes2")
+_spellTextures = Array[Texture2D]([ExtResource("21_djg8j"), ExtResource("22_miqbo"), ExtResource("23_cnck6"), ExtResource("24_i5k0o"), ExtResource("25_sfekx")])
+
+[node name="HUD" type="Control" parent="GUI"]
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -94.0
+offset_right = -991.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="GUI/HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("21_djg8j")
 
 [connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
 [connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]

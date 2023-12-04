@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33e4bd11-754f-4933-995a-a66aa6e0c03e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SibJam2023/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/assets/components/health_component/HealthComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/health_component/HealthComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/enemy/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/EnemySpawner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/enemy/Zombie/zombie.tscn" afterDir="false" />
@@ -32,6 +33,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
