@@ -25,3 +25,5 @@ shape = SubResource("SphereShape3D_dqnaq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_85l3k")
 mesh = SubResource("SphereMesh_fcjm2")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

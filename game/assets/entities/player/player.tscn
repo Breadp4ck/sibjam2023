@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cui7lalga4frl"]
+[gd_scene load_steps=37 format=3 uid="uid://cui7lalga4frl"]
 
 [ext_resource type="Script" path="res://assets/entities/player/Player.cs" id="1_4txfr"]
 [ext_resource type="Script" path="res://assets/entities/player/movement/idle.gd" id="1_e7nmj"]
@@ -49,6 +49,12 @@ radius = 0.55
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfsaf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlqd1"]
+bg_color = Color(0.741176, 0, 0.392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhfn6"]
+bg_color = Color(0.00392157, 0.278431, 0.466667, 1)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_spellPresenter", "_hitboxComponent")]
 script = ExtResource("1_4txfr")
 _spellPresenter = NodePath("SpellPresenter")
@@ -62,6 +68,7 @@ script = ExtResource("1_oms4q")
 
 [node name="Camera3D" type="Camera3D" parent="PseudoCamera"]
 top_level = true
+far = 95.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PseudoCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.53453)
@@ -219,41 +226,77 @@ _healthComponent = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_jfsaf")
 
 [node name="HealthComponent" parent="." instance=ExtResource("18_albsl")]
+_maxHealth = 100.0
 
-[node name="GUI" type="Control" parent="."]
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("_image", "_hpBar", "_manaBar", "_playerHitbox", "_spellCaster")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 647.0
 script = ExtResource("20_qnes2")
 _spellTextures = Array[Texture2D]([ExtResource("21_djg8j"), ExtResource("22_miqbo"), ExtResource("23_cnck6"), ExtResource("24_i5k0o"), ExtResource("25_sfekx")])
+_image = NodePath("HUD/Spells/HBoxContainer/TextureRect")
+_hpBar = NodePath("HUD/HP/HPBar")
+_manaBar = NodePath("HUD/Mana/ManaBar")
+_playerHitbox = NodePath("../HitboxComponent")
+_spellCaster = NodePath("../PseudoCamera/SpellCaster")
 
 [node name="HUD" type="Control" parent="GUI"]
 anchors_preset = 0
-offset_right = 1153.0
-offset_bottom = 649.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 1155.0
+offset_bottom = 651.0
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
+[node name="Spells" type="MarginContainer" parent="GUI/HUD"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 33.0
-offset_top = -94.0
-offset_right = -991.0
+offset_left = 508.0
+offset_top = -119.0
+offset_right = -519.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD/Spells"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="GUI/HUD/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="GUI/HUD/Spells/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("21_djg8j")
+
+[node name="HP" type="MarginContainer" parent="GUI/HUD"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 537.0
+offset_right = 234.0
+offset_bottom = 562.0
+
+[node name="HPBar" type="ProgressBar" parent="GUI/HUD/HP"]
+custom_minimum_size = Vector2(40, 25)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.619608, 0.439216, 0.662745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_jlqd1")
+fill_mode = 1
+show_percentage = false
+
+[node name="Mana" type="MarginContainer" parent="GUI/HUD"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 567.0
+offset_right = 234.0
+offset_bottom = 593.0
+
+[node name="ManaBar" type="ProgressBar" parent="GUI/HUD/Mana"]
+custom_minimum_size = Vector2(40, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_dhfn6")
+fill_mode = 1
+show_percentage = false
 
 [connection signal="speech_parsed" from="SpeechRecognition" to="Speech" method="OnSpeechParsed"]
 [connection signal="area_entered" from="PseudoCamera/Weapon" to="PseudoCamera/Weapon" method="OnAreaEntered"]

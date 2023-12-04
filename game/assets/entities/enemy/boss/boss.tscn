@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b83spc5req7g5"]
+[gd_scene load_steps=16 format=3 uid="uid://b83spc5req7g5"]
 
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="1_8lcvc"]
 [ext_resource type="Script" path="res://assets/entities/enemy/boss/Boss.cs" id="1_vwhwh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="4_lrvtg"]
 [ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="5_4py2w"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="5_ax4me"]
+[ext_resource type="PackedScene" uid="uid://dy55rfw7cbvvs" path="res://assets/entities/enemy/Enemy.tscn" id="6_0ewfq"]
 [ext_resource type="PackedScene" uid="uid://doowxoqxkj6gk" path="res://assets/models/boss/boss.gltf" id="10_tmxtp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4b0nm"]
@@ -26,7 +27,7 @@ radius = 2.2
 script = ExtResource("1_vwhwh")
 _bossProjectile = ExtResource("2_c0uk2")
 _horcruxScene = ExtResource("3_pm15s")
-_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w"), ExtResource("4_lrvtg")])
+_enemyScenes = Array[PackedScene]([ExtResource("4_lrvtg"), ExtResource("5_4py2w"), ExtResource("6_0ewfq")])
 _horcruxSpawnPositions = [NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition2"), NodePath("HorcruxSpawnPositions/HorcruxSpawnPosition3")]
 _enemySpawners = [NodePath("EnemySpawnPositions/EnemySpawner"), NodePath("EnemySpawnPositions/EnemySpawner2"), NodePath("EnemySpawnPositions/EnemySpawner3"), NodePath("EnemySpawnPositions/EnemySpawner4")]
 _hitboxComponent = NodePath("HitboxComponent")
@@ -51,10 +52,9 @@ shape = SubResource("CapsuleShape3D_4b0nm")
 path_height_offset = 0.15
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("_healthComponent") instance=ExtResource("1_8lcvc")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, -0.355848)
 collision_layer = 512
 collision_mask = 0
-monitorable = false
 _healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
@@ -64,6 +64,7 @@ shape = SubResource("CapsuleShape3D_uxl7u")
 
 [node name="TargetRaycastArea" type="Area3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3, 0)
+visible = false
 collision_layer = 256
 collision_mask = 0
 
@@ -71,6 +72,7 @@ collision_mask = 0
 shape = SubResource("CapsuleShape3D_b54k5")
 
 [node name="HitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.421017)
 collision_layer = 0
 collision_mask = 1024
 script = ExtResource("3_026hh")
@@ -112,7 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 visible = false
 
 [node name="boss" parent="." instance=ExtResource("10_tmxtp")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.127757, 0)
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, -0.127757, 0)
 
 [connection signal="Dead" from="HealthComponent" to="." method="Die"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="OnAreaEntered"]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ra06olmu12qq" path="res://assets/textures/brushlike/Aluminum_Corrugated_roughness.png" id="4_jsejt"]
 
 [resource]
+cull_mode = 2
 diffuse_mode = 3
 albedo_color = Color(1, 0.894118, 0.87451, 1)
 albedo_texture = ExtResource("1_k56v1")

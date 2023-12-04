@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://spsh7ery60kj"]
+[gd_scene load_steps=17 format=3 uid="uid://spsh7ery60kj"]
 
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="1_4if3s"]
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="2_7uvwb"]
@@ -6,11 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://cbw52p5ystp20" path="res://assets/models/pillar.gltf" id="4_j6wtj"]
 [ext_resource type="PackedScene" uid="uid://ce46gochwcpnj" path="res://assets/models/box.gltf" id="5_ep37g"]
 [ext_resource type="PackedScene" uid="uid://n2tfm8tauh4o" path="res://assets/models/fence.gltf" id="6_h3smx"]
+[ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="7_buy1c"]
+[ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="8_drklx"]
+[ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="9_vc7qv"]
+[ext_resource type="PackedScene" uid="uid://dy55rfw7cbvvs" path="res://assets/entities/enemy/Enemy.tscn" id="10_i4ey5"]
+[ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="11_1mv6h"]
 
 [sub_resource type="Environment" id="Environment_cmxui"]
 background_mode = 1
 background_color = Color(0.929412, 0.929412, 0.678431, 1)
 ambient_light_color = Color(0.776471, 0.494118, 0.639216, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_1ejmr"]
+vertices = PackedVector3Array(7.5, 0.5, 0.25, 7.75, 0.5, 0.75, 10.25, 0.5, 0.75, -16.5, 0.5, -10.75, -16.25, 0.5, -10.25, -13.75, 0.5, -13, -12.25, 0.5, -15.5, 12.25, 0.5, -15.5, 7.5, 0.5, -18.25, 2.75, 0.5, -19.5, -12.25, 0.5, -15.5, -13.75, 0.5, -13, -12.75, 0.5, -13, -10.5, 0.5, -10.75, -10.5, 0.5, -10, -7.5, 0.5, -7.5, -12.25, 0.5, -15.5, -12.75, 0.5, -13, -10.5, 0.5, -10.75, 7.5, 0.5, 0.25, 10.25, 0.5, 0.75, 9, 0.5, -5, 3, 0.5, -0.75, -10.5, 0.5, -10.75, -7.5, 0.5, -7.5, -5.25, 0.5, -8.5, -7.5, 0.5, -18.25, -12.25, 0.5, -15.5, 12.75, 0.5, -6, 18.5, 0.5, -6.25, 16.25, 0.5, -11.25, 2.75, 0.5, -19.5, -2.75, 0.5, -19.5, -7.5, 0.5, -18.25, 2.75, 0.5, -19.5, -7.5, 0.5, -18.25, -5.25, 0.5, -8.5, 3, 0.5, -0.75, 9, 0.5, -5, 12.25, 0.5, -15.5, 12.75, 0.5, -6, 16.25, 0.5, -11.25, 12.25, 0.5, -15.5, 9, 0.5, -5, -5.25, 0.5, -8.5, -3, 0.5, -3.75, 3, 0.5, -0.75, -13.5, 3.5, -11.75, -18.25, 3.5, -7, -18.25, 3.5, -6.5, -16.5, 3.5, -5.25, -11.75, 3.5, -10, -13, 3.5, -11.75, -17.75, 0.5, -6.75, -16.75, 0.5, -5.75, -12.25, 0.5, -10.25, -13.25, 0.5, -11.25, -9.5, 0.5, -5.25, -8, 0.5, -6, -8, 0.5, -7.25, -10.5, 0.5, -10, -16.25, 0.5, -4, -17.25, 0.5, -4, -18.75, 0.5, -5.5, -19.5, 0.5, -2.75, -16.25, 0.5, -4, -17.25, 0.5, -4, -19.5, 0.5, -2.75, -18.75, 0.5, 2.25, -18.25, 0.5, 3.25, -8, 0.5, -7.25, -7.5, 0.5, -7.5, -10.5, 0.5, -10, -8.75, 0.5, -2.75, -9.5, 0.5, -5.25, -16.25, 0.5, -4, -18.25, 0.5, 3.25, -16.75, 0.5, 8.25, -8.5, 0.5, 4.75, -19.5, 0.5, -2.75, -19.5, 0.5, 2.25, -18.75, 0.5, 2.25, -18.25, 0.5, 3.25, -18.25, 0.5, 4.5, -16.75, 0.5, 8.25, -14, 0.5, 14, -10.5, 0.5, 16.5, -8.5, 0.5, 13.25, -8.5, 0.5, 4.75, -16.75, 0.5, 8.25, -17.25, 0.5, 9.5, -8.5, 0.5, 4.75, -8, 0.5, 4.5, -8, 0.5, -2.5, -8.75, 0.5, -2.75, -6.25, 2.25, -7, -5.5, 2.25, -6.75, -5.75, 2.25, -7.25, 15, 0.5, 2.5, 19.25, 0.5, 3, 19.5, 0.5, -2.75, 18.5, 0.5, -6.25, 12.75, 0.5, -6, -5, 3.5, -5.25, -6.25, 3.5, -5.75, -6.5, 3.5, -5.25, -6.5, 3.5, -4.5, -5.75, 3.5, -4.25, -5.25, 3.5, -4.25, -8.25, 2.25, -4.75, -7.5, 2.25, -3.5, -7.5, 2.25, -5, 11.75, 3.5, 2.75, 14, 3.5, 2.25, 12.25, 3.5, -4.75, 10, 3.5, -4.25, 12, 0.5, 2.25, 13.5, 0.5, 2, 12, 0.5, -4.25, 10.5, 0.5, -4, -6, 0.5, -2.5, -6.75, 0.5, -3, -7, 0.5, -2.5, -8, 0.5, 4.5, -4.5, 0.5, 4.5, -4.5, 0.5, 4.5, -4.25, 0.5, 5.5, -2.25, 0.5, 5.5, -1.75, 0.5, 4.75, -4.5, 0.5, -2.5, -6, 0.5, -2.5, -4.5, 0.5, 4.5, -4.5, 0.5, 4.5, -1.75, 0.5, 4.75, 1.5, 0.5, 3.5, 2.25, 0.5, 0, -3, 0.5, -3.75, -4.5, 0.5, -2.5, 2.25, 0.5, 0, 3, 0.5, -0.75, -3, 0.5, -3.75, -7, 0.5, -2.5, -8, 0.5, -2.5, -8, 0.5, 4.5, 4, 0.5, 4.5, 3.75, 0.5, 6, 4.25, 0.5, 6.25, 7.5, 0.5, 1.75, 6.5, 0.5, 1.75, 2.5, 0.5, 8.5, 2.75, 0.5, 11.25, 3.25, 0.5, 11.25, 10.25, 0.5, 0.75, 7.75, 0.5, 0.75, 7.5, 0.5, 1.75, 10, 0.5, 13.25, 10.25, 0.5, 14.25, 11, 0.5, 16.25, 14, 0.5, 14, 16.25, 0.5, 11.25, 3.5, 0.5, 0.75, 3, 0.5, 3.5, 4, 0.5, 4.5, 6.5, 0.5, 1.75, 4.25, 0.5, 7.5, 5.5, 0.5, 14, 10, 0.5, 13.25, 16.25, 0.5, 11.25, 18.25, 0.5, 7.5, 11.25, 0.5, 4, 4.25, 0.5, 7.5, 2.5, 0.5, 8.5, 3.25, 0.5, 11.25, 5.5, 0.5, 14, 18.25, 0.5, 7.5, 19.25, 0.5, 3, 14.75, 0.5, 3.25, 11.25, 0.5, 4, 11.25, 0.5, 4, 10.25, 0.5, 0.75, 7.5, 0.5, 1.75, 4.25, 0.5, 6.25, 4.25, 0.5, 7.5, 19.25, 0.5, 3, 15, 0.5, 2.5, 14.75, 0.5, 3.25, 0.25, 2.5, 5.5, 0.75, 2.5, 6.5, 1.75, 2.5, 6, 1.5, 2.5, 5, -7.5, 3.25, 5.5, -7.5, 3.25, 12.5, -5.5, 3.25, 12.5, -5.5, 3.25, 5.5, 1.75, 0.5, 8.5, 1.25, 0.5, 7.5, 0.25, 0.5, 7.5, -2, 0.5, 6.25, -2.25, 0.5, 5.5, -4.25, 0.5, 5.5, 0.25, 0.5, 7.5, -0.5, 0.5, 6, -2, 0.5, 6.25, 2.75, 0.5, 11.25, 2.5, 0.5, 8.5, 1.75, 0.5, 8.5, 2, 0.5, 11.5, 1.75, 0.5, 8.5, 0.25, 0.5, 7.5, -2, 0.5, 6.25, -4.25, 0.5, 5.5, -4.25, 0.5, 12.75, 2, 0.5, 12.25, 2, 0.5, 12.25, 2, 0.5, 11.5, 1.75, 0.5, 8.5, -7.25, 0.5, 5.75, -7.25, 0.5, 12.25, -5.75, 0.5, 12.25, -5.75, 0.5, 5.75, 2.25, 2, 6.75, 2.25, 2, 7.25, 3.25, 2, 7, 3, 2, 6.5, -8.25, 0.5, 13.75, -8.5, 0.5, 13.25, -10.5, 0.5, 16.5, -8.25, 0.5, 13.75, -10.5, 0.5, 16.5, -7.5, 0.5, 18.25, -4.25, 0.5, 19.25, -4.75, 0.5, 13.75, 7.5, 0.5, 18.25, 11, 0.5, 16.25, 10.25, 0.5, 14.25, 5, 0.5, 15.5, 2.75, 0.5, 19.5, -4.25, 0.5, 12.75, -4.75, 0.5, 13.75, -4.25, 0.5, 19.25, 2.75, 0.5, 19.5, 5, 0.5, 15.5, 2, 0.5, 12.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(9, 8, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(15, 14, 13), PackedInt32Array(16, 18, 17), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 27), PackedInt32Array(25, 27, 26), PackedInt32Array(30, 29, 28), PackedInt32Array(33, 32, 31), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(39, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(40, 43, 41), PackedInt32Array(41, 43, 42), PackedInt32Array(46, 45, 44), PackedInt32Array(52, 51, 47), PackedInt32Array(47, 51, 50), PackedInt32Array(47, 50, 48), PackedInt32Array(48, 50, 49), PackedInt32Array(56, 55, 53), PackedInt32Array(53, 55, 54), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 60), PackedInt32Array(60, 57, 61), PackedInt32Array(64, 63, 62), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 68), PackedInt32Array(68, 65, 69), PackedInt32Array(72, 71, 70), PackedInt32Array(74, 73, 75), PackedInt32Array(75, 73, 76), PackedInt32Array(76, 73, 78), PackedInt32Array(76, 78, 77), PackedInt32Array(81, 80, 79), PackedInt32Array(84, 83, 82), PackedInt32Array(90, 89, 85), PackedInt32Array(85, 89, 86), PackedInt32Array(86, 89, 87), PackedInt32Array(87, 89, 88), PackedInt32Array(92, 91, 93), PackedInt32Array(93, 91, 94), PackedInt32Array(97, 96, 95), PackedInt32Array(101, 100, 102), PackedInt32Array(102, 100, 98), PackedInt32Array(98, 100, 99), PackedInt32Array(107, 106, 108), PackedInt32Array(108, 106, 105), PackedInt32Array(108, 105, 104), PackedInt32Array(108, 104, 103), PackedInt32Array(111, 110, 109), PackedInt32Array(115, 114, 112), PackedInt32Array(112, 114, 113), PackedInt32Array(119, 118, 116), PackedInt32Array(116, 118, 117), PackedInt32Array(121, 120, 122), PackedInt32Array(122, 120, 123), PackedInt32Array(123, 120, 124), PackedInt32Array(126, 125, 127), PackedInt32Array(127, 125, 128), PackedInt32Array(131, 130, 129), PackedInt32Array(133, 132, 134), PackedInt32Array(134, 132, 135), PackedInt32Array(135, 132, 137), PackedInt32Array(135, 137, 136), PackedInt32Array(138, 140, 139), PackedInt32Array(143, 142, 141), PackedInt32Array(145, 144, 146), PackedInt32Array(146, 144, 148), PackedInt32Array(146, 148, 147), PackedInt32Array(151, 150, 149), PackedInt32Array(154, 153, 152), PackedInt32Array(156, 155, 157), PackedInt32Array(157, 155, 158), PackedInt32Array(158, 155, 159), PackedInt32Array(161, 160, 162), PackedInt32Array(162, 160, 163), PackedInt32Array(165, 164, 166), PackedInt32Array(166, 164, 169), PackedInt32Array(166, 169, 167), PackedInt32Array(167, 169, 168), PackedInt32Array(171, 170, 172), PackedInt32Array(172, 170, 173), PackedInt32Array(175, 174, 176), PackedInt32Array(176, 174, 177), PackedInt32Array(179, 178, 180), PackedInt32Array(180, 178, 181), PackedInt32Array(181, 178, 182), PackedInt32Array(185, 184, 183), PackedInt32Array(187, 186, 188), PackedInt32Array(188, 186, 189), PackedInt32Array(193, 192, 190), PackedInt32Array(190, 192, 191), PackedInt32Array(195, 194, 196), PackedInt32Array(199, 198, 197), PackedInt32Array(202, 201, 200), PackedInt32Array(204, 203, 205), PackedInt32Array(205, 203, 206), PackedInt32Array(208, 207, 209), PackedInt32Array(209, 207, 210), PackedInt32Array(210, 207, 212), PackedInt32Array(210, 212, 211), PackedInt32Array(215, 214, 213), PackedInt32Array(219, 218, 216), PackedInt32Array(216, 218, 217), PackedInt32Array(220, 223, 221), PackedInt32Array(221, 223, 222), PackedInt32Array(224, 226, 225), PackedInt32Array(228, 227, 229), PackedInt32Array(229, 227, 231), PackedInt32Array(229, 231, 230), PackedInt32Array(233, 232, 234), PackedInt32Array(234, 232, 235), PackedInt32Array(235, 232, 236), PackedInt32Array(238, 237, 239), PackedInt32Array(239, 237, 242), PackedInt32Array(239, 242, 240), PackedInt32Array(240, 242, 241)]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jf5do"]
 height = 1.0
@@ -27,6 +36,9 @@ height = 1.0
 
 [node name="Level" type="Node3D"]
 
+[node name="Player" parent="." instance=ExtResource("1_4if3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 17.5)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cmxui")
 
@@ -40,18 +52,21 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.5, 0)
 light_color = Color(0.870588, 0.713726, 0.956863, 1)
 
-[node name="Level1" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_1ejmr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level1"]
+[node name="Level1" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Level1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Level1/StaticBody3D"]
 shape = SubResource("CylinderShape3D_jf5do")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level1/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Level1/StaticBody3D"]
 mesh = SubResource("CylinderMesh_eg6yx")
 
-[node name="Label3D" type="Label3D" parent="Level1"]
+[node name="Label3D" type="Label3D" parent="NavigationRegion3D/Level1"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 20, -42.0308)
 modulate = Color(1, 0.192157, 0.356863, 1)
 outline_modulate = Color(0.498039, 0.219608, 0.266667, 1)
@@ -59,80 +74,110 @@ text = "LEVEL ONE"
 font_size = 2000
 outline_size = 100
 
-[node name="Player" parent="Level1" instance=ExtResource("1_4if3s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 16.5)
-
-[node name="cargo" parent="Level1" instance=ExtResource("2_7uvwb")]
+[node name="cargo" parent="NavigationRegion3D/Level1" instance=ExtResource("2_7uvwb")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 12, 0, -1)
 
-[node name="cargo2" parent="Level1" instance=ExtResource("2_7uvwb")]
+[node name="cargo2" parent="NavigationRegion3D/Level1" instance=ExtResource("2_7uvwb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 9)
 
-[node name="cargo3" parent="Level1" instance=ExtResource("2_7uvwb")]
+[node name="cargo3" parent="NavigationRegion3D/Level1" instance=ExtResource("2_7uvwb")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15, 0, -8.5)
 
-[node name="grid_tile_large" parent="Level1" instance=ExtResource("3_4bdbd")]
+[node name="grid_tile_large" parent="NavigationRegion3D/Level1" instance=ExtResource("3_4bdbd")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 2.6, 0, 1.9)
 
-[node name="grid_tile_large3" parent="Level1" instance=ExtResource("3_4bdbd")]
+[node name="grid_tile_large3" parent="NavigationRegion3D/Level1" instance=ExtResource("3_4bdbd")]
 transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, 0.906308, 0.25, 0, 4.7)
 
-[node name="grid_tile_large2" parent="Level1" instance=ExtResource("3_4bdbd")]
+[node name="grid_tile_large2" parent="NavigationRegion3D/Level1" instance=ExtResource("3_4bdbd")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 5.05, 0, 0.45)
 
-[node name="pillar" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 
-[node name="pillar2" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar2" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(0.943002, 0, -0.332787, 0, 1, 0, 0.332787, 0, 0.943002, 3.13229, 0, -0.0460442)
 
-[node name="pillar3" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar3" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(0.943002, 0, -0.332787, 0, 1, 0, 0.332787, 0, 0.943002, 2.09665, 0, 3.83242)
 
-[node name="grid_tile_large4" parent="Level1" instance=ExtResource("3_4bdbd")]
+[node name="grid_tile_large4" parent="NavigationRegion3D/Level1" instance=ExtResource("3_4bdbd")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 4.10876, 0, 13.4061)
 
-[node name="pillar5" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar5" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(0.759703, 0, 0.650271, 0, 1, 0, -0.650271, 0, 0.759703, 2.68958, 0, 11.9721)
 
-[node name="pillar6" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar6" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(0.759703, 0, 0.650271, 0, 1, 0, -0.650271, 0, 0.759703, 5.5306, 0, 14.8082)
 
-[node name="grid_tile_large5" parent="Level1" instance=ExtResource("3_4bdbd")]
+[node name="grid_tile_large5" parent="NavigationRegion3D/Level1" instance=ExtResource("3_4bdbd")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 7.53969, 0, 14.3329)
 
-[node name="pillar7" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar7" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(0.183299, 0, -0.983057, 0, 1, 0, 0.983057, 0, 0.183299, 9.49116, 0, 13.8209)
 
-[node name="pillar4" parent="Level1" instance=ExtResource("4_j6wtj")]
+[node name="pillar4" parent="NavigationRegion3D/Level1" instance=ExtResource("4_j6wtj")]
 transform = Transform3D(0.714009, 0, -0.700137, 0, 1, 0, 0.700137, 0, 0.714009, -1.50335, 0, 5.58242)
 
-[node name="box" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, 0.984812, 0, 5.60953)
 
-[node name="box4" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box4" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, -5.01519, -0.111007, -4.39047)
 
-[node name="box5" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box5" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, -7.51519, -0.111007, -4.39047)
 
-[node name="box6" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box6" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, -6.01519, -0.111007, -6.39047)
 
-[node name="box7" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box7" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(1.93185, 0, -0.517638, 0, 1.2, 0, 0.517638, 0, 1.93185, -5.80468, 1.88899, -5.02643)
 
-[node name="box2" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box2" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(1.38564, 0, 0.8, 0, 1.6, 0, -0.8, 0, 1.38564, 2.62281, 0, 6.80909)
 
-[node name="box3" parent="Level1" instance=ExtResource("5_ep37g")]
+[node name="box3" parent="NavigationRegion3D/Level1" instance=ExtResource("5_ep37g")]
 transform = Transform3D(0.936816, 0, -0.891732, 0, 1.6, 0, 1.29706, 0, 0.644061, 2.54251, 0, 4.75482)
 
-[node name="fence" parent="Level1" instance=ExtResource("6_h3smx")]
+[node name="fence" parent="NavigationRegion3D/Level1" instance=ExtResource("6_h3smx")]
 transform = Transform3D(0.191186, 0, -0.981554, 0, 1, 0, 0.981554, 0, 0.191186, -19, 0, 3.8)
 
-[node name="fence2" parent="Level1" instance=ExtResource("6_h3smx")]
+[node name="fence2" parent="NavigationRegion3D/Level1" instance=ExtResource("6_h3smx")]
 transform = Transform3D(0.294891, 0, -0.955531, 0, 1, 0, 0.955531, 0, 0.294891, -18.4977, 0, 5.75504)
 
-[node name="fence3" parent="Level1" instance=ExtResource("6_h3smx")]
+[node name="fence3" parent="NavigationRegion3D/Level1" instance=ExtResource("6_h3smx")]
 transform = Transform3D(0.329328, 0, -0.944216, 0, 1, 0, 0.944216, 0, 0.329328, -17.8682, 0, 7.68377)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("7_buy1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, 10)
+_enemyScene = ExtResource("8_drklx")
+_autoSpawn = true
+_maxEnemies = 1
+_spawnIntervalSeconds = 1.0
+_pathToPlayerInScene = "Player"
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("7_buy1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, -9)
+_enemyScene = ExtResource("9_vc7qv")
+_autoSpawn = true
+_maxEnemies = 2
+_spawnIntervalSeconds = 7.0
+_pathToPlayerInScene = "Player"
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("7_buy1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, 2)
+_enemyScene = ExtResource("10_i4ey5")
+_autoSpawn = true
+_maxEnemies = 2
+_spawnIntervalSeconds = 3.0
+_pathToPlayerInScene = "Player"
+
+[node name="TeleportBackZone" parent="." instance=ExtResource("11_1mv6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+collision_mask = 1024
+_teleportBackPosition = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50015, 0, 17.5003),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
+
+
+[node name="TeleportBackPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50015, 0, 17.5003)

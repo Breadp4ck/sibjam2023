@@ -3,16 +3,30 @@ using System;
 
 public partial class SpellCaster : Node3D
 {
+	public event Action<int> ManaChangedEvent;
+	
 	[Export] private Camera3D _camera;
 
 	[Export] private SpellPresenter _spellPresenter;
-	
+
+	[Export] private int _mana = 100;
+
 	// Objects MUST be in the same order as in 'SpellType' enum!
 	[Export] private PackedScene[] _spellObject;
 	
 	private Vector3 _lookDirection;
 	
 	private Enemy _target; // Capture me using last raycast hit.
+
+	public override void _Ready()
+	{
+		var manaPerKill = 15;
+		Enemy.DieEvent += () =>
+		{
+			_mana += manaPerKill;
+			ManaChangedEvent?.Invoke(_mana);
+		};
+	}
 
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -53,8 +67,18 @@ public partial class SpellCaster : Node3D
 			return;
 		}
 
-		spell.Cast();
-		GD.Print($"Casted {spell}!");
+		if (_mana < spell.ManaCost)
+		{
+			spell.QueueFree();
+			GD.Print("Not enough mana for cast");
+		}
+		else
+		{
+			spell.Cast();
+			_mana -= spell.ManaCost;
+			ManaChangedEvent?.Invoke(_mana);
+			GD.Print($"Casted {spell}!");
+		}
 	}
 	
 	private Spell GetSpell(SpellType? spellType)

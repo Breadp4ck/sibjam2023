@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 public partial class Enemy : CharacterBody3D
 {
+	public static event Action DieEvent;
+	
 	protected Vector3 Impulse = Vector3.Zero;
 	protected EnemyState State = EnemyState.Idle;
 	
@@ -99,6 +101,7 @@ public partial class Enemy : CharacterBody3D
 	{
 		GD.Print(this + " dead!");
 		State = EnemyState.Dead;
+		DieEvent?.Invoke();
 		
 		// Animator play.
 		Destroy();
