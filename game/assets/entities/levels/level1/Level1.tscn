@@ -170,8 +170,12 @@ _maxEnemies = 8
 _spawnIntervalSeconds = 5.0
 _pathToPlayerInScene = "Player"
 
-[node name="TeleportBackZone" parent="." instance=ExtResource("11_q265s")]
+[node name="TeleportBackZone" parent="." node_paths=PackedStringArray("_teleportBackPosition") instance=ExtResource("11_q265s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+_teleportBackPosition = NodePath("../TpBackPosition")
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("12_w2ajy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.343178, 0, -11.8139)
+
+[node name="TpBackPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 16)

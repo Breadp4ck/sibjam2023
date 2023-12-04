@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dp82l8fynfary"]
+[gd_scene load_steps=21 format=3 uid="uid://dp82l8fynfary"]
 
 [ext_resource type="PackedScene" uid="uid://d2sedkhjl3hgd" path="res://assets/models/cargo.gltf" id="1_g1plj"]
 [ext_resource type="PackedScene" uid="uid://dj61lycasaeyh" path="res://assets/models/grid_tile_large.gltf" id="2_lpj2d"]
@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cm7buvpa5tb6l" path="res://assets/models/grid_tile.gltf" id="8_bj1pc"]
 [ext_resource type="PackedScene" uid="uid://dop8e6qfkw2ub" path="res://assets/models/grid_fence_large.gltf" id="9_410fx"]
 [ext_resource type="PackedScene" uid="uid://bd8fvpb2oetcn" path="res://assets/entities/levels/teleport_back_zone.tscn" id="10_og0fn"]
-[ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="11_mxrlx"]
 [ext_resource type="PackedScene" uid="uid://cui7lalga4frl" path="res://assets/entities/player/player.tscn" id="10_p75xh"]
+[ext_resource type="PackedScene" uid="uid://calopp2kof350" path="res://assets/entities/levels/teleport_next_level.tscn" id="11_mxrlx"]
 [ext_resource type="PackedScene" uid="uid://c4pbggolx8cug" path="res://assets/entities/enemy/enemy_spawner.tscn" id="11_qec81"]
-[ext_resource type="PackedScene" uid="uid://dy55rfw7cbvvs" path="res://assets/entities/enemy/Enemy.tscn" id="12_2vb3i"]
+[ext_resource type="PackedScene" uid="uid://buta0kfnkmkcg" path="res://assets/entities/enemy/Enemy.tscn" id="12_2vb3i"]
 [ext_resource type="PackedScene" uid="uid://rqih78h0i46n" path="res://assets/entities/enemy/flying_zombie/flying_zombie.tscn" id="13_p8e7e"]
 [ext_resource type="PackedScene" uid="uid://xih81spniu1v" path="res://assets/entities/enemy/Zombie/zombie.tscn" id="14_b4dny"]
 
@@ -222,7 +222,7 @@ transform = Transform3D(-0.526259, 0, -0.850325, 0, 1, 0, 0.850325, 0, -0.526259
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="TPBackPosition" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 12)
 
 [node name="TeleportNextLevel" parent="." instance=ExtResource("11_mxrlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
