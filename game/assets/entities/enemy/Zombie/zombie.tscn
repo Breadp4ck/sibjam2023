@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xih81spniu1v"]
+[gd_scene load_steps=11 format=3 uid="uid://xih81spniu1v"]
 
 [ext_resource type="Script" path="res://assets/entities/enemy/Zombie/Zombie.cs" id="1_sqsdn"]
 [ext_resource type="PackedScene" uid="uid://bi1bewtbqi4gr" path="res://assets/components/hitbox_component/hitbox_component.tscn" id="2_n6ggd"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://assets/entities/enemy/Zombie/HitArea.cs" id="4_4rik2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dycl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88co1"]
+albedo_color = Color(0, 1, 0.266667, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v8opj"]
 
@@ -36,6 +39,7 @@ _patrolPoints = []
 shape = SubResource("CapsuleShape3D_4dycl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_88co1")
 mesh = SubResource("CapsuleMesh_v8opj")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
